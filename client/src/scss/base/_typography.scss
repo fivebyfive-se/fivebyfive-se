@@ -8,14 +8,19 @@
         @extend %font-size-default;
         background-color: var(--color-background);
         color: var(--color-text);
+        line-height: 1.2;
     }
 
+    h1, h2, h3, h4, h5, p {
+        margin: 0;
+        padding: 0;
+    }
     h1 {
-        @extend %font-size-xxl;
+        @extend %font-size-xxxl;
         @extend %font-black;
     }
     h2 {
-        @extend %font-size-xl;
+        @extend %font-size-xxl;
         @extend %font-extra-bold;
     }
     h3 {
@@ -23,8 +28,12 @@
         @extend %font-bold;
     }
     h4 {
-        @extend %font-size-m;
-        @extend %font-medium;
+        @extend %font-size-l;
+        @extend %font-semi-bold;
+    }
+    h5 {
+        @extend %font-size-l;
+        @extend %font-regular;
     }
 
     .small {
@@ -38,15 +47,17 @@
     }
 
     .headline {
-        @extend %font-light;
+        @extend %font-extra-light;
         @extend %font-size-xxxl;
+
+        text-transform: uppercase;
     }
     .subheadline {
-        @extend %font-light;
+        @extend %font-thin;
         @extend %font-size-xl;
     }
     .superheadline {
-        @extend %font-extra-light;
+        @extend %font-light;
         @extend %font-size-l;
     }
 }

@@ -1,0 +1,17 @@
+@include critical {
+    .page-headline {
+        @extend %font-size-xxxl;
+        @extend %font-black;
+        transform-origin: 50% 50%;
+        transform: rotate(90deg);
+
+        color: var(--color-primary);
+    }
+    .page-heading {
+        @extend %font-size-xl;
+        @extend %font-thin;
+    }
+    .page-intro {
+        @include margin-y(2);
+    }
+}

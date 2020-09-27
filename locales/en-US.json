@@ -14,11 +14,13 @@
 	},
 	"button": {
 		"readmore": "Read more",
+		"readless": "Close",
 		"close": "Close"
 	},
 	"work": {
 		"client": "Client",
 		"link": "Link",
-		"tags": "Tags"
+		"tags": "Tags",
+		"casecollection": "Collection"
 	}
 }

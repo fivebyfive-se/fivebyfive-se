@@ -46,40 +46,45 @@
     font-kerning: normal;
 }
 
+%font-thin {
+    @extend %font-common;
+    font-weight: 100;
+}
+
 %font-extra-light {
     @extend %font-common;
-    font-variation-settings: "wght" 200;
+    font-weight: 200;
 }
 
 %font-light {
     @extend %font-common;
-    font-variation-settings: "wght" 300;
+    font-weight: 300;
 }
 %font-regular {
     @extend %font-common;
-    font-variation-settings: "wght" 400;
+    font-weight: 400;
 }
 %font-medium {
     @extend %font-common;
-    font-variation-settings: "wght" 500;
+    font-weight: 500;
 }
 %font-semi-bold {
     @extend %font-common;
-    font-variation-settings: "wght" 600;
+    font-weight: 600;
 }
 %font-bold {
     @extend %font-common;
-    font-variation-settings: "wght" 700;
+    font-weight: 700;
 }
 
 %font-extra-bold {
     @extend %font-common;
-    font-variation-settings: "wght" 800;
+    font-weight: 800;
 }
 
 %font-black {
     @extend %font-common;
-    font-variation-settings: "wght" 900;
+    font-weight: 900;
 }
 
 %font-size-default {
@@ -101,16 +106,16 @@
 }
 
 %font-size-l {
-    @include font-size(1.25rem, -.05em);
+    @include font-size(1.5rem, -.05em);
 }
 %font-size-xl {
-    @include font-size(1.5rem, -.06em);
+    @include font-size(2rem, -.06em);
 }
 %font-size-xxl {
-    @include font-size(2rem, -.08em);
+    @include font-size(4rem, -.08em);
 }
 %font-size-xxxl {
-    @include font-size(2.5rem, -.1em);
+    @include font-size(5rem, -.08em);
 }
 
 %button {

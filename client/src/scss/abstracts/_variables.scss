@@ -1,21 +1,29 @@
 $breakpoints: (
-    desktop: 1200px,
+    desktop: 1440px,
     mobile: 900px
 );
 /* Color Theme Swatches in Hex */
-$color-pink: #CA3368;
+$color-black: #060B0D;
 $color-blackish: #0D171A;
+$color-greyish: #676966;
+$color-light-greyish: #A6A8A5;
 $color-whiteish: #E6E9E4;
+$color-white: #F2F5F0;
+
+$color-pink: #CA3368;
 $color-teal: #0099A6;
 $color-pale-red: #F26B5B;
 
-$color-white: #F2F5F0;
-$color-greyish: #676966;
-$color-light-greyish: #A6A8A5;
 
-$font-body: 'League Spartan', 'Spartan', 'Futura', sans-serif;
+$font-body: 'Spartan', 'Futura', sans-serif;
 $font-heading: $font-body;
 $base-size: 10px;
-$base-font-size: 22px;
+$base-font-size: 20px;
 
 $border-radius: $base-size * .2;
+
+$grid-columns: 12;
+$gutter-width: 15px;
+$col-width: percentage(1/$grid-columns);
+
+$menu-height: 150px;

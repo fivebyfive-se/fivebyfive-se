@@ -25,10 +25,7 @@
 
         &__text, &__image {
             height: 100vh;
-            width: 50vw;
             max-height: 100vh;
-            max-width: 50vw;
-            flex-basis: 50%;
             flex-grow: 0;
         }
         &__text {
@@ -37,6 +34,9 @@
                 %flex--align-flex-start;
             @include padding(6);
             overflow-y: auto;
+            width: 40vw;
+            max-width: 40vw;
+            flex-basis: 40%;
 
             .page-item__section {
                 @include margin-bottom(1);
@@ -52,6 +52,9 @@
         }
 
         &__image {
+            width: 60vw;
+            max-width: 60vw;
+            flex-basis: 60%;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;

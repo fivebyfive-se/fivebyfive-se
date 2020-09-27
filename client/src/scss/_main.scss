@@ -10,15 +10,16 @@
     'base/typography';
 
 @import
-    'layout/layout';
+    'layout/layout',
+    'layout/grid';
 
-// @import
-//     'views/document';
+@import
+    'views/page';
 
 @import
     'components/button',
     'components/details-view',
-    'components/page-item';
+    'components/item-list';
     
 //     'components/card',
 //     'components/form',

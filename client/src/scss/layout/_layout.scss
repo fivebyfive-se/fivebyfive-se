@@ -6,7 +6,7 @@
         @extend %flex,
             %flex--justify-space-between;
         align-items: center;
-        height: 90px;
+        height: $menu-height;
 
         &__menues {
             @extend %flex,
@@ -19,14 +19,22 @@
                 %flex--row,
                 %flex--justify-flex-end;
             align-items: center;
+            width: 100%;
 
             .navigation-item {
                 @extend %flex;
                 @include margin-left(1);
-                @include padding(.5, 1);
+
+                @include padding(1);
 
                 text-decoration: none;
+                text-transform: lowercase;
                 border-bottom: 1px solid transparent;
+
+                width: 25%;
+                flex-basis: 25%;
+                flex-grow: 0;
+                flex-shrink: 0;
 
                 &:hover {
                     color: var(--color-secondary);
@@ -41,16 +49,17 @@
                 @include margin-bottom(.5);
                 
                 .navigation-item {
-                    @extend %font-size-xxs;
+                    @extend %font-size-xs;
                     @extend %font-light;
+
 
                     color: var(--color-text-secondary);
                 }
             }
             &--main-menu {
                 .navigation-item {
-                    @extend %font-size-m;
-                    @extend %font-medium;
+                    @extend %font-size-s;
+                    @extend %font-semi-bold;
 
                     color: var(--color-text);
 
@@ -74,17 +83,16 @@
     .header__logo {
         @extend %flex,
             %flex--justify-space-between;
-
-        width: 240px;
-        height: 60px;
+        height: $menu-height;
 
         &--logo {
-            height: 50px;
-            width: 50px;
+            @include margin-right(1);
+            height: 130px;
+            width: 130px;
         }
         &--wordmark {
-            height: 46px;
-            width: 180px;
+            height: 125px;
+            width: 516px;
         }
     }
 }

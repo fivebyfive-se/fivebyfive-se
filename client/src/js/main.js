@@ -42,6 +42,23 @@
             ev.preventDefault();
             getDetailsView(button).classList.add('details-view--active');
         });
-
     });
+
+    document.querySelectorAll('[data-activate]').forEach((button) => {
+        button.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            const { activate, toggleLabel } = button.dataset;
+            const label = button.querySelector('.button__label');
+            const activateEl = document.querySelector(`[data-activate-target=${activate}`);
+            if (button.classList.contains('active')) {
+                activateEl.classList.remove('active');
+                button.classList.remove('active');
+            } else {
+                activateEl.classList.add('active');
+                button.classList.add('active');
+            }
+            button.dataset.toggleLabel = label.innerText;
+            label.innerText = toggleLabel;
+        });
+    })
 })();

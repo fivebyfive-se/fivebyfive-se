@@ -1,5 +1,29 @@
 @include critical {
     .button {
         @extend %button;
+
+        &--activate {
+            @extend %flex,
+                %flex--justify-flex-start,
+                %font-medium,
+                %font-size-m;
+            @include padding-y(2);
+            width: 100%;
+            background-color: var(--color-background);
+            color: var(--color-text);
+            border: 2px solid (--color-text);
+
+            &.active {
+                i {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+}
+
+@include non-critical {
+    .button--activate:hover {
+        border-color: var(--color-primary);
     }
 }

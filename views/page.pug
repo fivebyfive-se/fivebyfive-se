@@ -1,55 +1,85 @@
 extends _layout.pug
 
-block content
-    .page-intro
-        h2
-            != page.heading
-        div
-            != page.intro
-
-    .page-items
-        for item in page.items
+mixin list_items(items, listType)
+    div.item-list.row(class=`item-list--${listType}`)
+        for item in items
             case item.type
+                when 'casecollection'
+                    - const caseItem = item.item;
+                    - const subItems = item.sub_items;
+                    .item.item--collection.col.col--12
+                        .item__section.col.col--11.col--push-1
+                            p.superheadline.item__title= __('work.casecollection')
+                            h3.headline.item__title= caseItem.getStructuredText('casecollection.title').asText()
+                            h4.subheadline.item__title.item__description= caseItem.getStructuredText('casecollection.description').asText()
+                            p.item__meta.item__tags
+                                i.ri-price-tag-3-line
+                                != caseItem.tags.join(', ')
+                        .item__section.item__subitems.row(data-activate-target=caseItem.uid)
+                            - const subCollectionClass = subItems.length === 1 ? 'col--12' : 'col--6';
+                            for subItem in subItems
+                                .item__subitem.col(class=subCollectionClass)
+                                    h5.item__title.subitem__title= subItem.text
+                                    +list_items(subItem.items, 'subcollection')
+                        a.button.button--activate(data-activate=caseItem.uid, data-toggle-label=__('button.readless'))
+                            i.ri-arrow-down-s-line
+                            span.button__label= __('button.readmore')
+
                 when 'case'
                     - const image = item.getImage('case.image')
                     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
-                    .page-item(style=`background-image: url(${image.url})`)
-                        .page-item__text(data-details-view=`${item.uid}`)
-                            .page-item__section
-                                p.page-item__meta
+                    .item.item--case(style=`background-image: url(${image.url})`).col--3
+                        .item__text(data-details-view=`${item.uid}`)
+                            .item__section
+                                p.item__meta
                                     i.ri-calendar-line
                                     = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' }).format(item.getDate('case.release_date'))
-                                h3.page-item__title= item.getStructuredText('case.title').asText()
-                                h4.page-item__subtitle= item.getStructuredText('case.subtitle').asText()
+                                h3.item__title= item.getStructuredText('case.title').asText()
+                                h4.item__title.item__title--subtitle= item.getStructuredText('case.subtitle').asText()
 
-                            .page-item__section.page-item__details
+                            .item__section.item__details
                                 a.button.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
                                     = __('button.readmore')
 
-                            .page-item__section
+                            .item__section
                                 if item.tags.length > 0
                                     - const tags = item.tags.join(', '); 
-                                    p.page-item__meta
+                                    p.item__meta
                                         i.ri-price-tag-3-line
                                         strong= __('work.tags')
                                         = tags
-                                p.page-item__meta
-                                    i.ri-user-2-line
-                                    strong= __('work.client')
-                                    = item.getText('case.client_name')
+                                if item.getText('case.client_name')
+                                    p.item__meta
+                                        i.ri-user-2-line
+                                        strong= __('work.client')
+                                        = item.getText('case.client_name')
                                 if item.getLink('case.link')
                                     - const linkUrl = item.getLink('case.link').url(ctx.linkResolver);
-                                    p.page-item__meta.details-view__details
+                                    p.item__meta.details-view__details
                                         i.ri-external-link-line
                                         strong= __('work.link')
                                         a(href=linkUrl,rel='noopener',target='_blank')
                                             = linkUrl
 
-                            .page-item__section.details-view__details
+                            .item__section.details-view__details
                                 if (item.getStructuredText('case.description'))
-                                    p.page-item__description= item.getStructuredText('case.description').asText()
+                                    p.item__description= item.getStructuredText('case.description').asText()
                                 if (item.get('case.embed_media'))
                                     -console.log(item.get('case.embed_media'))
-                                    p.page-item__embed
+                                    p.item__embed
                                         != item.get('case.embed_media').asHtml()
+block content
+    .grid
+        .row
+            .col.col--1
+                .page-headline= page.uid
+            .col.col--11
+                h1.page-heading
+                    != page.heading
+                div.page-intro
+                    != page.intro
+
+    .page-body.grid
+        +list_items(page.items, 'root')
+
 
