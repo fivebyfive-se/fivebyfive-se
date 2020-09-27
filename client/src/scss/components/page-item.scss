@@ -1,0 +1,75 @@
+@include critical {
+    $base-size: 33.333%;
+
+    .page-items {
+        @extend %flex,
+            %flex--wrap,
+            %flex--justify-flex-start;
+    }
+
+    .page-item {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+
+        flex-basis: $base-size;
+        width: $base-size;
+        height: 360px;
+        max-height: 33vh;
+
+        flex-grow: 0;
+        flex-shrink: 0;
+
+        &:nth-child(1),
+        &:nth-child(8n) {
+            flex-basis: $base-size * 2;
+            width: $base-size * 2;
+        }
+        &:nth-child(3n) {
+            margin-left: $base-size;
+        }
+
+        &__text {
+            @extend %flex,
+                %flex--column,
+                %flex--justify-space-between,
+                %flex--align-flex-start;
+            @include padding(2,1);
+            background-color: var(--color-background-overlay);
+            color: var(--color-text);
+            width: 100%;
+            height: 100%;
+        }
+
+        h3, h4, p {
+            margin: 0;
+            padding: 0;
+        }
+        &__meta {
+            @extend %font-size-s;
+            @extend %font-light;
+            color: var(--color-text-secondary);
+            
+            i, strong {
+                margin-right: .25em;
+            }
+
+            i {
+                vertical-align: text-top;
+                font-size: .8em;
+            }
+
+            strong {
+                @extend %font-medium;
+                text-transform: lowercase;
+                &:after {
+                    content: ':';
+                }
+            }
+            .tag {
+                display: inline-block;
+                margin-right: .25em;
+            }
+        }
+    }
+}

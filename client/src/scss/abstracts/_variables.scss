@@ -1,0 +1,21 @@
+$breakpoints: (
+    desktop: 1200px,
+    mobile: 900px
+);
+/* Color Theme Swatches in Hex */
+$color-pink: #CA3368;
+$color-blackish: #0D171A;
+$color-whiteish: #E6E9E4;
+$color-teal: #0099A6;
+$color-pale-red: #F26B5B;
+
+$color-white: #F2F5F0;
+$color-greyish: #676966;
+$color-light-greyish: #A6A8A5;
+
+$font-body: 'League Spartan', 'Spartan', 'Futura', sans-serif;
+$font-heading: $font-body;
+$base-size: 10px;
+$base-font-size: 22px;
+
+$border-radius: $base-size * .2;

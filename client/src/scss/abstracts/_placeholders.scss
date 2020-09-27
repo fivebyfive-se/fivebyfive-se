@@ -1,0 +1,137 @@
+
+%rounded-border {
+    border-radius: $border-radius;
+}
+
+%flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--inline {
+        display: inline-flex;
+    }
+    &--row {
+        flex-direction: row;
+    }
+    &--column {
+        flex-direction: column;
+    }
+    &--wrap {
+        flex-wrap: wrap;
+    }
+    &--justify-space-between {
+        justify-content: space-between;
+    }
+    &--align-space-between {
+        align-items: space-between;
+    }
+    &--justify-flex-start {
+        justify-content: flex-start;
+    }
+    &--align-flex-start {
+        align-items: flex-start;
+    }
+    &--justify-flex-end {
+        justify-content: flex-end;
+    }
+    &--align-flex-end {
+        align-items: flex-end;
+    }
+}
+
+
+%font-common {
+    font-family: $font-body;
+    font-kerning: normal;
+}
+
+%font-extra-light {
+    @extend %font-common;
+    font-variation-settings: "wght" 200;
+}
+
+%font-light {
+    @extend %font-common;
+    font-variation-settings: "wght" 300;
+}
+%font-regular {
+    @extend %font-common;
+    font-variation-settings: "wght" 400;
+}
+%font-medium {
+    @extend %font-common;
+    font-variation-settings: "wght" 500;
+}
+%font-semi-bold {
+    @extend %font-common;
+    font-variation-settings: "wght" 600;
+}
+%font-bold {
+    @extend %font-common;
+    font-variation-settings: "wght" 700;
+}
+
+%font-extra-bold {
+    @extend %font-common;
+    font-variation-settings: "wght" 800;
+}
+
+%font-black {
+    @extend %font-common;
+    font-variation-settings: "wght" 900;
+}
+
+%font-size-default {
+    @include font-size(1rem, .01em);
+}
+
+%font-size-m {
+    @include font-size(1rem, -.02em);
+}
+
+%font-size-s {
+    @include font-size(.75rem, .02em);
+}
+%font-size-xs {
+    @include font-size(.6rem, .04em);
+}
+%font-size-xxs {
+    @include font-size(.5rem, .06em);
+}
+
+%font-size-l {
+    @include font-size(1.25rem, -.05em);
+}
+%font-size-xl {
+    @include font-size(1.5rem, -.06em);
+}
+%font-size-xxl {
+    @include font-size(2rem, -.08em);
+}
+%font-size-xxxl {
+    @include font-size(2.5rem, -.1em);
+}
+
+%button {
+    @extend %rounded-border,
+        %flex,
+        %flex--inline;
+    @include padding(1, 2);
+
+    cursor: pointer;
+    background-color: var(--color-primary);
+    color: var(--color-background);
+
+    &:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-background);
+    }
+    &--secondary {
+        background-color: var(--color-secondary);
+        &:hover {
+            background-color: var(--color-primary);
+        }
+    }
+}
+

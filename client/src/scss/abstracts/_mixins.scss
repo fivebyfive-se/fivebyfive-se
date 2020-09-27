@@ -1,0 +1,189 @@
+@mixin prop-if-set($property, $value: unset) {
+    @if $value !=unset {
+        #{$property}: $value;
+    }
+}
+
+@mixin margin-top($size, $base: $base-size) {
+    margin-top: size($size, $base);
+}
+
+@mixin margin-right($size, $base: $base-size) {
+    margin-right: size($size, $base);
+}
+
+@mixin margin-bottom($size, $base: $base-size) {
+    margin-bottom: size($size, $base);
+}
+
+@mixin margin-left($size, $base: $base-size) {
+    margin-left: size($size, $base);
+}
+
+@mixin margin-x($left, $right: $left, $base: $base-size) {
+    @include margin-left($left, $base);
+    @include margin-right($right, $base);
+}
+
+@mixin margin-y($top, $bottom: $top, $base: $base-size) {
+    @include margin-top($top, $base);
+    @include margin-bottom($bottom, $base);
+}
+
+@mixin margin($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-size) {
+    margin: size($top, $base) size($right, $base) size($bottom, $base) size($left, $base);
+}
+
+@mixin padding-top($size, $base: $base-size) {
+    padding-top: size($size, $base);
+}
+
+@mixin padding-right($size, $base: $base-size) {
+    padding-right: size($size, $base);
+}
+
+@mixin padding-bottom($size, $base: $base-size) {
+    padding-bottom: size($size, $base);
+}
+
+@mixin padding-left($size, $base: $base-size) {
+    padding-left: size($size, $base);
+}
+
+@mixin padding-x($left, $right: $left, $base: $base-size) {
+    @include padding-left($left, $base);
+    @include padding-right($right, $base);
+}
+
+@mixin padding-y($top, $bottom: $top, $base: $base-size) {
+    @include padding-top($top, $base);
+    @include padding-bottom($bottom, $base);
+}
+
+@mixin padding($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-size) {
+    padding: size($top, $base) size($right, $base) size($bottom, $base) size($left, $base);
+}
+
+@mixin border-radius-top-left($size, $base: $base-size) {
+    border-top-left-radius: size($size, $base);
+}
+@mixin border-radius-top-right($size, $base: $base-size) {
+    border-top-right-radius: size($size, $base);
+}
+@mixin border-radius-bottom-right($size, $base: $base-size) {
+    border-bottom-right-radius: size($size, $base);
+}
+@mixin border-radius-bottom-left($size, $base: $base-size) {
+    border-bottom-left-radius: size($size, $base);
+}
+@mixin border-radius-top($size, $base: $base-size) {
+    @include border-radius-top-left($size, $base);
+    @include border-radius-top-right($size, $base);
+}
+
+@mixin border-radius-bottom($size, $base: $base-size) {
+    @include border-radius-bottom-left($size, $base);
+    @include border-radius-bottom-right($size, $base);
+}
+
+@mixin border-radius-left($size, $base: $base-size) {
+    @include border-radius-top-left($size, $base);
+    @include border-radius-bottom-left($size, $base);
+}
+@mixin border-radius-right($size, $base: $base-size) {
+    @include border-radius-top-right($size, $base);
+    @include border-radius-bottom-right($size, $base);
+}
+@mixin border-radius($top-left, $top-right: $top-left, $bottom-right: $top-right, $bottom-left: $bottom-right, $base: $base-size) {
+    @include border-radius-top-left($top-left, $base);
+    @include border-radius-top-right($top-right, $base);
+    @include border-radius-bottom-right($bottom-right, $base);
+    @include border-radius-bottom-left($bottom-left, $base);
+}
+
+@mixin media-max($breakpoint) {
+    @if map-has($breakpoints, $breakpoint) {
+        @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+}
+@mixin media-min($breakpoint) {
+    @if map-has($breakpoints, $breakpoint) {
+        @media only screen and (min-width: map-get($breakpoints, $breakpoint) + 1) {
+            @content;
+        }
+    }
+}
+
+@mixin mobile-only() {
+    @include media-max(mobile) {
+        @content;
+    }
+}
+@mixin desktop-only() {
+    @include media-min(mobile) {
+        @content;
+    }
+}
+
+@mixin container($margin-top: 0, $margin-bottom: $margin-top) {
+    width: breakpoint(desktop);
+    max-width: 96%;
+    margin: $margin-top auto $margin-bottom;
+}
+
+@mixin position($position: unset, $top: unset, $right: unset, $bottom: unset, $left: unset, $z-index: unset) {
+    @include prop-if-set(position, $position);
+    @include prop-if-set(top, $top);
+    @include prop-if-set(right, $right);
+    @include prop-if-set(bottom, $bottom);
+    @include prop-if-set(left, $left);
+    @if $z-index != unset {
+        z-index: z($z-index);
+    }
+}
+
+@mixin position-fixed($top: unset, $right: unset, $bottom: unset, $left: unset, $z-index: unset) {
+    @include position(fixed, $top, $right, $bottom, $left, $z-index);
+}
+
+@mixin position-absolute($top: unset, $right: unset, $bottom: unset, $left: unset, $z-index: unset) {
+    @include position(absolute, $top, $right, $bottom, $left, $z-index);
+}
+
+@mixin position-absolute-centered($width: unset, $height: unset, $z-index: unset) {
+    @include position-absolute($top: 50%, $left: 50%, $z-index: $z-index);
+    @include prop-if-set(width, $width);
+    @include prop-if-set(height, $height);
+    transform: translate(-50%, -50%);
+}
+
+@mixin flex($inline: false, $direction: unset, $align: unset, $justify: unset, $wrap: unset) {
+    @if $inline {
+        display: inline-flex;
+    } @else {
+        display: flex;
+    }
+
+    @include prop-if-set(flex-direction, $direction);
+    @include prop-if-set(align-items, $align);
+    @include prop-if-set(justify-content, $justify);
+    @include prop-if-set(flex-wrap, $wrap);
+}
+
+@mixin font-size($size: 1rem, $letter-spacing: unset) {
+    font-size: $size;
+    @include prop-if-set(letter-spacing, $letter-spacing);
+}
+
+@mixin critical {
+    @if $critical == true {
+        @content;
+    }
+}
+@mixin non-critical {
+    @if $critical == false {
+        @content;
+    }
+}

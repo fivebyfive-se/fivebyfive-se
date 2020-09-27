@@ -1,0 +1,55 @@
+extends _layout.pug
+
+block content
+    .page-intro
+        h2
+            != page.heading
+        div
+            != page.intro
+
+    .page-items
+        for item in page.items
+            case item.type
+                when 'case'
+                    - const image = item.getImage('case.image')
+                    - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
+                    .page-item(style=`background-image: url(${image.url})`)
+                        .page-item__text(data-details-view=`${item.uid}`)
+                            .page-item__section
+                                p.page-item__meta
+                                    i.ri-calendar-line
+                                    = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' }).format(item.getDate('case.release_date'))
+                                h3.page-item__title= item.getStructuredText('case.title').asText()
+                                h4.page-item__subtitle= item.getStructuredText('case.subtitle').asText()
+
+                            .page-item__section.page-item__details
+                                a.button.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+                                    = __('button.readmore')
+
+                            .page-item__section
+                                if item.tags.length > 0
+                                    - const tags = item.tags.join(', '); 
+                                    p.page-item__meta
+                                        i.ri-price-tag-3-line
+                                        strong= __('work.tags')
+                                        = tags
+                                p.page-item__meta
+                                    i.ri-user-2-line
+                                    strong= __('work.client')
+                                    = item.getText('case.client_name')
+                                if item.getLink('case.link')
+                                    - const linkUrl = item.getLink('case.link').url(ctx.linkResolver);
+                                    p.page-item__meta.details-view__details
+                                        i.ri-external-link-line
+                                        strong= __('work.link')
+                                        a(href=linkUrl,rel='noopener',target='_blank')
+                                            = linkUrl
+
+                            .page-item__section.details-view__details
+                                if (item.getStructuredText('case.description'))
+                                    p.page-item__description= item.getStructuredText('case.description').asText()
+                                if (item.get('case.embed_media'))
+                                    -console.log(item.get('case.embed_media'))
+                                    p.page-item__embed
+                                        != item.get('case.embed_media').asHtml()
+

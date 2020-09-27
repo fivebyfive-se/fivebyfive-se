@@ -1,0 +1,63 @@
+@include critical {
+    html {
+        font-size: $base-font-size;
+    }
+
+    body {
+        @extend %font-regular;
+        @extend %font-size-default;
+        background-color: var(--color-background);
+        color: var(--color-text);
+    }
+
+    h1 {
+        @extend %font-size-xxl;
+        @extend %font-black;
+    }
+    h2 {
+        @extend %font-size-xl;
+        @extend %font-extra-bold;
+    }
+    h3 {
+        @extend %font-size-l;
+        @extend %font-bold;
+    }
+    h4 {
+        @extend %font-size-m;
+        @extend %font-medium;
+    }
+
+    .small {
+        @extend %font-size-s;
+    }
+    .smaller {
+        @extend %font-size-xs;
+    }
+    .smallest {
+        @extend %font-size-xxs;
+    }
+
+    .headline {
+        @extend %font-light;
+        @extend %font-size-xxxl;
+    }
+    .subheadline {
+        @extend %font-light;
+        @extend %font-size-xl;
+    }
+    .superheadline {
+        @extend %font-extra-light;
+        @extend %font-size-l;
+    }
+}
+
+@include non-critical {
+    a {
+        color: var(--color-primary);
+
+        &:hover {
+            color: var(--color-secondary);
+        }
+    }
+}
+

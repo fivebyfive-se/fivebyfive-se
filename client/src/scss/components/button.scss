@@ -1,0 +1,5 @@
+@include critical {
+    .button {
+        @extend %button;
+    }
+}

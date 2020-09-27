@@ -1,0 +1,31 @@
+@include non-critical {
+    @keyframes appear {
+        0% {
+            filter: blur(25px) brightness(0.5);
+            opacity: 0;
+        }
+    
+        100% {
+            filter: blur(5px) brightness(1);
+            opacity: 1;
+        }
+    }
+    @keyframes shine {
+        from {
+            transform: skewX(10deg);
+            opacity: 0;
+            left: -20%;
+        }
+    
+        5% {
+            opacity: .3;
+        }
+    
+        10% {
+            transform: skewX(-15deg);
+            opacity: 0;
+            left: 120%;
+        }
+        to { }
+    }    
+}

@@ -1,0 +1,97 @@
+@include critical {
+    header, main, footer {
+        @include container();
+    }
+    .header {
+        @extend %flex,
+            %flex--justify-space-between;
+        align-items: center;
+        height: 90px;
+
+        &__menues {
+            @extend %flex,
+                %flex--column,
+                %flex--align-flex-end;
+            justify-content: center;
+        }
+        &__menu {
+            @extend %flex,
+                %flex--row,
+                %flex--justify-flex-end;
+            align-items: center;
+
+            .navigation-item {
+                @extend %flex;
+                @include margin-left(1);
+                @include padding(.5, 1);
+
+                text-decoration: none;
+                border-bottom: 1px solid transparent;
+
+                &:hover {
+                    color: var(--color-secondary);
+                    border-bottom-color: var(--color-secondary);
+                }
+
+                > i {
+                    @include margin-right(.2);
+                }
+            }
+            &--top-menu {
+                @include margin-bottom(.5);
+                
+                .navigation-item {
+                    @extend %font-size-xxs;
+                    @extend %font-light;
+
+                    color: var(--color-text-secondary);
+                }
+            }
+            &--main-menu {
+                .navigation-item {
+                    @extend %font-size-m;
+                    @extend %font-medium;
+
+                    color: var(--color-text);
+
+                    &--active {
+                        color: var(--color-primary);
+                        border-bottom-color: var(--color-primary);
+                    }
+                    &--highlight {
+                        @extend %button, %button--secondary;
+                        color: var(--color-background);
+
+                        &:hover {
+                            color: var(--color-background);
+                            border-bottom-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header__logo {
+        @extend %flex,
+            %flex--justify-space-between;
+
+        width: 240px;
+        height: 60px;
+
+        &--logo {
+            height: 50px;
+            width: 50px;
+        }
+        &--wordmark {
+            height: 46px;
+            width: 180px;
+        }
+    }
+}
+
+@include non-critical {
+    footer {
+        @include margin-top(3);
+        @include padding-y(2);
+    }
+}

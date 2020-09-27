@@ -1,0 +1,61 @@
+-
+    const currLang = page.lang || 'en-US';
+    const otherLang = currLang === 'en-US' ? 'sv-SE' : 'en-US';
+
+mixin nav-link(link, label, icon, ...classes)
+    -
+        const currLink = `page/${page.uid}`;
+        const className = [...classes, link === currLink || (link === '' && page.uid === 'start') ? 'active' : null]
+            .filter((v) => !!v)
+            .map((v) => `navigation-item--${v}`)
+            .join(' ');
+    a.navigation-item(href='/' + link, class=className)
+        i.navigation-item__icon(class=`ri-${icon}-line`)
+        span.navigation-item__text= label
+
+doctype html
+html(lang=lang, data-theme=theme)
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+
+        link(rel='stylesheet', href='/fonts/fonts.css')
+        link(rel='stylesheet', href='/css/critical.css')
+
+        title= page.title
+
+        block head
+    body
+        header.header
+            .header__logo
+                img.header__logo--logo(src='/images/logo.svg', alt='Fivebyfive Logo')
+                img.header__logo--wordmark(src='/images/wordmark.svg', alt='Fivebyfive Wordmark')
+            .header__menues
+                nav.header__menu.header__menu--top-menu
+                    +nav-link('languages/' + otherLang, __('menu.language'), 'flag-2')
+                    if theme === 'dark'
+                        +nav-link('themes/default', __('menu.themes.light'), 'contrast')
+                    else
+                        +nav-link('themes/dark', __('menu.themes.dark'), 'contrast-2')
+
+                nav.header__menu.header__menu--main-menu
+                    +nav-link('', __('menu.main-menu.home'), 'arrow-left')
+                    +nav-link('page/work', __('menu.main-menu.work'), 'lightbulb')
+                    +nav-link('page/services', __('menu.main-menu.services'), 'service')
+                    +nav-link('page/contact', __('menu.main-menu.contact'), 'chat-smile', 'highlight')
+
+        main
+            block content
+
+        footer Copyright &copy; 2020 Fivebyfive AB.
+
+        script(src='/js/main.js')
+        link(rel='stylesheet', href='/css/non-critical.css')
+        link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')
+
+        block styles
+        block scripts
+
+
+    

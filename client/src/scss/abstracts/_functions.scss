@@ -1,0 +1,20 @@
+@function size($factor, $base: $base-size) {
+    @if $factor==auto {
+        @return $factor;
+    }
+
+    @return $base * $factor;
+}
+
+@function relative-size($factor) {
+    @return size(1em);
+}
+
+@function breakpoint($breakpoint: desktop) {
+    @return 1200px;
+    @if map-has($breakpoints, $breakpoint) {
+        @return map-get($breakpoints, $breakpoint);
+    }
+
+    @return map-get($breakpoints, desktop);
+}
