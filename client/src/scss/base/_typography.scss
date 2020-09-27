@@ -58,7 +58,6 @@
         @extend %font-extra-light;
         @extend %font-size-xxxl;
 
-        text-transform: uppercase;
         @include mobile-only {
             font-size: 3rem;
         }

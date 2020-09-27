@@ -2,14 +2,14 @@
     :root {
         --color-background: #{$color-white};
         --color-background-secondary: #{$color-whiteish};
-        --color-background-tertiary: #{$color-light-greyish};
+        --color-background-tertiary: #{$color-lighter-greyish};
         --color-text: #{$color-black};
-        --color-text-secondary: #{$color-greyish};
+        --color-text-secondary: #{$color-blackish};
         --color-primary: #{$color-pink};
         --color-secondary: #{$color-teal};
         --color-logo: #{$color-pale-red};
 
-        --color-background-overlay: #{rgba($color-whiteish, .7)};
+        --color-background-overlay: #{rgba($color-whiteish, .6)};
 
         --color-reverse-background: #{rgba($color-blackish, .8)};
         --color-reverse-text: #{$color-whiteish};
@@ -21,13 +21,22 @@
         --color-dark-pink: #{$color-dark-pink};
         --color-dark-teal: #{$color-dark-teal};
         --color-dark-red: #{$color-dark-red};
+
+        --color-pink-overlay: #{rgba($color-pink, .6)};
+        --color-teal-overlay: #{rgba($color-teal, .6)};
+        --color-pale-red-overlay: #{rgba($color-pale-red, .6)};
+        --color-dark-pink-overlay: #{rgba($color-dark-pink, .6)};
+        --color-dark-teal-overlay: #{rgba($color-dark-teal, .6)};
+        --color-dark-red-overlay: #{rgba($color-dark-red, .6)};
     }
     [data-theme="dark"] {
         --color-background: #{$color-black};
         --color-background-secondary: #{$color-blackish};
+        --color-background-tertiary: #{$color-greyish};
         --color-text: #{$color-white};
         --color-text-secondary: #{$color-light-greyish};
         --color-background-overlay: #{rgba($color-blackish, .8)};
+        --color-primary: #{$color-pale-red};
 
     }
     html body * {

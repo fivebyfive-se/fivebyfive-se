@@ -2,16 +2,9 @@
     .grid {
         $self: &;
         max-width: 96vw;    
+        width: 100%;
         @include desktop-only {
-            padding-right: ceil(($gutter-width / 2));
-            padding-left: floor(($gutter-width / 2));
             width: breakpoint(desktop);
-        }
-
-        @include mobile-only {
-            padding-right: ceil(($mobile-gutter-width / 2));
-            padding-left: floor(($mobile-gutter-width / 2));
-            width: 100%;
         }
 
         .row {
@@ -22,20 +15,10 @@
             @extend %flex--align-flex-start;
     
             width: 100%;
-            @include desktop-only {
-                margin-right: floor(($gutter-width / -2));
-                margin-left: ceil(($gutter-width / -2));    
-            }
-            @include mobile-only {
-                margin-right: floor(($mobile-gutter-width / -2));
-                margin-left: ceil(($mobile-gutter-width / -2));    
-            }
         }
+
         @include desktop-only {
-        
             .col {
-                padding-right: ($gutter-width / 2);
-                padding-left: ($gutter-width / 2);
                 width: $col-width;
                 flex-basis: $col-width;
     
@@ -65,11 +48,9 @@
         }
         @include mobile-only {
             .col-m {
-                padding-right: ($mobile-gutter-width / 2);
-                padding-left: ($mobile-gutter-width / 2);
                 width: $mobile-col-width;
                 flex-basis: $mobile-col-width;
-    
+
                 @for $c from $mobile-grid-columns through 1 {
                     $curr-col-width: $c * $mobile-col-width;
                     @if $c % 2 != 0 {

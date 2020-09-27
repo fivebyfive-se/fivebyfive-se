@@ -9,20 +9,20 @@ mixin list_items(items, listType)
                     - const subItems = item.sub_items;
                     .item.item--collection.col.col--12
                         .item__section.col.col--11.col--push-1
-                            p.superheadline.item__title= __('work.casecollection')
+                            //- p.superheadline.item__title= __('work.casecollection')
                             h3.headline.item__title= caseItem.getStructuredText('casecollection.title').asText()
                             h4.subheadline.item__title.item__description= caseItem.getStructuredText('casecollection.description').asText()
                             p.item__meta.item__tags
                                 i.ri-price-tag-3-line
                                 != caseItem.tags.join(', ')
                         .item__section.item__subitems.row(data-activate-target=caseItem.uid)
-                            - const subCollectionClass = subItems.length === 1 ? 'col--12' : 'col--6';
+                            //- - const subCollectionClass = subItems.length === 1 ? 'col--12' : 'col--6';
                             for subItem in subItems
-                                .item__subitem.col(class=subCollectionClass)
-                                    h5.item__title.subitem__title= subItem.text
+                                .item__subitem.col.col--12
+                                    p.col--push-1.item__title.subitem__title= subItem.text
                                     +list_items(subItem.items, 'subcollection')
                         a.button.button--activate(data-activate=caseItem.uid, data-toggle-label=__('button.readless'))
-                            i.ri-arrow-down-s-line
+                            i.col--push-1.ri-arrow-down-s-line
                             span.button__label= __('button.readmore')
 
                 when 'case'
@@ -38,9 +38,9 @@ mixin list_items(items, listType)
                                 h4.item__title.item__title--subtitle= item.getStructuredText('case.subtitle').asText()
 
                             .item__section.item__details
-                                a.button.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+                                a.button.button--border.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
                                     i.ri-fullscreen-line
-                                    = __('button.readmore')
+                                    = __('button.open')
 
                             .item__section
                                 if item.tags.length > 0

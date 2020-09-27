@@ -13,7 +13,8 @@
 		}
 	},
 	"button": {
-		"readmore": "Read more",
+		"readmore": "See more",
+		"open": "Open full view",
 		"readless": "Close",
 		"close": "Close"
 	},

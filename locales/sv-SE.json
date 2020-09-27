@@ -13,7 +13,8 @@
 		}
 	},
 	"button": {
-		"readmore": "Läs mer",
+		"open": "Öppna full vy",
+		"readmore": "Se mer",
 		"close": "Stäng",
 		"readless": "Stäng"
 	},

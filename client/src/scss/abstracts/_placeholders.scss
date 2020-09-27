@@ -112,10 +112,10 @@
     @include font-size(2rem, -.06em);
 }
 %font-size-xxl {
-    @include font-size(4rem, -.08em);
+    @include font-size(3rem, -.08em);
 }
 %font-size-xxxl {
-    @include font-size(5rem, -.08em);
+    @include font-size(4rem, -.08em);
 }
 
 %button {
