@@ -20,7 +20,7 @@
         @extend %font-black;
     }
     h2 {
-        @extend %font-size-xxl;
+        @extend %font-size-xl;
         @extend %font-extra-bold;
     }
     h3 {
@@ -28,12 +28,12 @@
         @extend %font-bold;
     }
     h4 {
-        @extend %font-size-l;
+        @extend %font-size-m;
         @extend %font-semi-bold;
     }
     h5 {
-        @extend %font-size-l;
-        @extend %font-regular;
+        @extend %font-size-m;
+        @extend %font-medium;
     }
 
     .small {

@@ -2,6 +2,12 @@
     .button {
         @extend %button;
 
+        i {
+            font-size: .85em;
+            vertical-align: text-top;
+            margin-right: .2em;
+        }
+
         &--activate {
             @extend %flex,
                 %flex--justify-flex-start,

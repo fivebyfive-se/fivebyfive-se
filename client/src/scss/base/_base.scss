@@ -18,6 +18,9 @@
         --color-pink: #{$color-pink};
         --color-teal: #{$color-teal};
         --color-pale-red: #{$color-pale-red};
+        --color-dark-pink: #{$color-dark-pink};
+        --color-dark-teal: #{$color-dark-teal};
+        --color-dark-red: #{$color-dark-red};
     }
     [data-theme="dark"] {
         --color-background: #{$color-black};

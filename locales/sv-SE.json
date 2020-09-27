@@ -21,6 +21,7 @@
 		"client": "Kund",
 		"link": "Länk",
 		"tags": "Taggar",
-		"casecollection": "Samling"
+		"casecollection": "Samling",
+		"fullimage": "Originalbild"
 	}
 }

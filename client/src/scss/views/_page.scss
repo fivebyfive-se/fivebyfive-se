@@ -4,8 +4,6 @@
         @extend %font-black;
         transform-origin: 50% 50%;
         transform: rotate(90deg);
-
-        color: var(--color-primary);
     }
     .page-heading {
         @extend %font-size-xl;
@@ -13,5 +11,14 @@
     }
     .page-intro {
         @include margin-y(2);
+    }
+}
+
+@include non-critical {
+    .page-headline {
+        &--start { color: var(--color-pale-red); }
+        &--work  { color: var(--color-pink); }
+        &--services { color: var(--color-dark-red); }
+        &--contact { color: var(--color-teal); }
     }
 }

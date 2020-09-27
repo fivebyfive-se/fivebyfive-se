@@ -14,7 +14,7 @@
             const closeButton = document.createElement('a');
 
             closeButton.classList.add('button', 'button--secondary', 'close-button');
-            closeButton.innerText = closeButtonLabel;
+            closeButton.innerHTML = `<i class="ri-fullscreen-exit-line"></i> ${closeButtonLabel}`;
 
             detailsView.dataset.detailsViewFor = detailsId;
             detailsView.classList.add('details-view');

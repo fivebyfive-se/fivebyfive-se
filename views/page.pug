@@ -39,6 +39,7 @@ mixin list_items(items, listType)
 
                             .item__section.item__details
                                 a.button.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+                                    i.ri-fullscreen-line
                                     = __('button.readmore')
 
                             .item__section
@@ -60,6 +61,11 @@ mixin list_items(items, listType)
                                         strong= __('work.link')
                                         a(href=linkUrl,rel='noopener',target='_blank')
                                             = linkUrl
+                                p.item__meta.details-view__details
+                                    i.ri-image-line
+                                    strong= __('work.fullimage') 
+                                    a(href=detailsImage,rel='noopener',target='_blank')
+                                        = detailsImage
 
                             .item__section.details-view__details
                                 if (item.getStructuredText('case.description'))
@@ -72,7 +78,7 @@ block content
     .grid
         .row
             .col.col--1
-                .page-headline= page.uid
+                .page-headline(class=`page-headline--${page.uid}`)= page.uid
             .col.col--11
                 h1.page-heading
                     != page.heading
