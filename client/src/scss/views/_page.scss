@@ -4,6 +4,9 @@
         @extend %font-black;
         transform-origin: 50% 50%;
         transform: rotate(90deg);
+        @include mobile-only {
+            font-size: 2.5rem;
+        }
     }
     .page-heading {
         @extend %font-size-xl;

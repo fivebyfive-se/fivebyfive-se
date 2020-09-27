@@ -1,18 +1,29 @@
 @include critical {
     header, main, footer {
         @include container();
+        @include mobile-only {
+            max-width: 100vw;
+            overflow: hidden;
+        }
     }
     .header {
         @extend %flex,
             %flex--justify-space-between;
         align-items: center;
         height: $menu-height;
+        
+        @include mobile-only {
+            height: $menu-height / 2;
+        }
 
         &__menues {
             @extend %flex,
                 %flex--column,
                 %flex--align-flex-end;
             justify-content: center;
+            @include mobile-only {
+                display: none;
+            }
         }
         &__menu {
             @extend %flex,
@@ -85,14 +96,27 @@
             %flex--justify-space-between;
         height: $menu-height;
 
-        &--logo {
-            @include margin-right(1);
-            height: 130px;
-            width: 130px;
+        @include desktop-only {
+            &--logo {
+                @include margin-right(1);
+                height: 130px;
+                width: 130px;
+            }
+            &--wordmark {
+                height: 125px;
+                width: 516px;
+            }    
         }
-        &--wordmark {
-            height: 125px;
-            width: 516px;
+        @include mobile-only {
+            &--logo {
+                @include margin-right(.5);
+                height: 50px;
+                width: 50px;
+            }
+            &--wordmark {
+                height: 45px;
+                width: 186px;
+            }
         }
     }
 }

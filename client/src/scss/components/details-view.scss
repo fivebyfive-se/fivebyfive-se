@@ -23,10 +23,40 @@
         background-color: var(--color-background-overlay);
         color: var(--color-text);
 
-        &__text, &__image {
-            height: 100vh;
-            max-height: 100vh;
-            flex-grow: 0;
+
+        @include desktop-only {
+            &__text, &__image {
+                height: 100vh;
+                max-height: 100vh;
+                flex-grow: 0;
+            }
+            &__text {
+                width: 40vw;
+                max-width: 40vw;
+                flex-basis: 40%;
+            }
+            &__image {
+                width: 60vw;
+                max-width: 60vw;
+                flex-basis: 60%;
+            }
+        }
+        @include mobile-only {
+            flex-direction: column;
+            &__text, &__image {
+                width: 100vw;
+                max-width: 100vw;
+            }
+            &__text {
+                height: 40vh;
+                max-height: 40vh;
+                flex-basis: 40%;
+            }
+            &__image {
+                height: 60vh;
+                max-height: 60vh;
+                flex-basis: 60%;
+            }
         }
         &__text {
             @extend %flex,
@@ -34,11 +64,9 @@
                 %flex--align-flex-start;
             @include padding(6);
             overflow-y: auto;
-            width: 40vw;
-            max-width: 40vw;
-            flex-basis: 40%;
 
             .page-item__section {
+                max-width: 100%;
                 @include margin-bottom(1);
 
                 .page-item__description {
@@ -52,9 +80,6 @@
         }
 
         &__image {
-            width: 60vw;
-            max-width: 60vw;
-            flex-basis: 60%;
             background-repeat: no-repeat;
             background-size: cover;
             background-position: center center;

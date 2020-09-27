@@ -28,7 +28,7 @@ mixin list_items(items, listType)
                 when 'case'
                     - const image = item.getImage('case.image')
                     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
-                    .item.item--case(style=`background-image: url(${image.url})`).col--3
+                    .item.item--case(style=`background-image: url(${image.url})`).col.col--3.col-m.col-m--12
                         .item__text(data-details-view=`${item.uid}`)
                             .item__section
                                 p.item__meta
@@ -77,9 +77,9 @@ mixin list_items(items, listType)
 block content
     .grid
         .row
-            .col.col--1
+            .col.col--1.col-m.col-m--2
                 .page-headline(class=`page-headline--${page.uid}`)= page.uid
-            .col.col--11
+            .col.col--11.col-m.col-m--10
                 h1.page-heading
                     != page.heading
                 div.page-intro

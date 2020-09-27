@@ -22,11 +22,17 @@ $font-body: 'Spartan', 'Futura', sans-serif;
 $font-heading: $font-body;
 $base-size: 10px;
 $base-font-size: 20px;
+$border-radius: 2px;
 
-$border-radius: $base-size * .2;
+$base-font-size-mobile: 16px;
 
 $grid-columns: 12;
 $gutter-width: 15px;
 $col-width: percentage(1/$grid-columns);
 
+$mobile-grid-columns: $grid-columns;
+$mobile-gutter-width: 10px;
+$mobile-col-width: percentage(1/$mobile-grid-columns);
+
 $menu-height: 150px;
+$mobile-menu-height: 75px;
