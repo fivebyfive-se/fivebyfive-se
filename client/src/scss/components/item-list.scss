@@ -43,7 +43,11 @@
                 @include padding-top(1);
 
                 position: relative;
-                border-top: 1px solid var(--color-text-secondary);
+
+                &:nth-child(odd) {
+                    background-color: var(--color-background);
+                }
+
                 .subitem__title {
                     @include margin-bottom(1);
                 }
@@ -85,15 +89,15 @@
             > .item {
 
                 .item__subitems {
-                    height: $item-height * .1;
+                    height: $item-height * .2;
                     overflow: hidden;
                     position: relative;
                     &:after {
                         content: '';
                         position: absolute;
-                        top: 0;
+                        bottom: 0;
                         left: 0;
-                        height: 100%;
+                        height: $item-height * .2;
                         width: 100%;
                         z-index: 100;
                     }

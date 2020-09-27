@@ -8,7 +8,7 @@ mixin list_items(items, listType)
                     - const caseItem = item.item;
                     - const subItems = item.sub_items;
                     .item.item--collection.col.col--12
-                        .item__section.col.col--11.col--push-1
+                        .item__section.col.col--9.col--push-3
                             //- p.superheadline.item__title= __('work.casecollection')
                             h3.headline.item__title= caseItem.getStructuredText('casecollection.title').asText()
                             h4.subheadline.item__title.item__description= caseItem.getStructuredText('casecollection.description').asText()
@@ -19,7 +19,8 @@ mixin list_items(items, listType)
                             //- - const subCollectionClass = subItems.length === 1 ? 'col--12' : 'col--6';
                             for subItem in subItems
                                 .item__subitem.col.col--12
-                                    p.col--push-1.item__title.subitem__title= subItem.text
+                                    .col.col--push-1.col--5
+                                        p.item__title.subitem__title= subItem.text
                                     +list_items(subItem.items, 'subcollection')
                         a.button.button--activate(data-activate=caseItem.uid, data-toggle-label=__('button.readless'))
                             i.col--push-1.ri-arrow-down-s-line
@@ -71,7 +72,6 @@ mixin list_items(items, listType)
                                 if (item.getStructuredText('case.description'))
                                     p.item__description= item.getStructuredText('case.description').asText()
                                 if (item.get('case.embed_media'))
-                                    -console.log(item.get('case.embed_media'))
                                     p.item__embed
                                         != item.get('case.embed_media').asHtml()
 block content
