@@ -49,6 +49,7 @@
                 }
 
                 .subitem__title {
+                    @include padding-y(2);
                     @include margin-bottom(1);
                 }
             }
@@ -157,6 +158,9 @@
                     width: 100%;
                     height: 100%;
                     background-color: var(--color-background-overlay);
+                }
+                &:nth-child(even) .item__text {
+                    background-color: var(--color-background-secondary-overlay);
                 }
             }
         }

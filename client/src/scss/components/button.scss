@@ -2,14 +2,15 @@
     .button {
         @extend %button;
 
-        i {
+        > i {
             font-size: .85em;
             vertical-align: text-top;
-            margin-right: .2em;
+            margin-right: .3em;
         }
 
         &--border {
-            border: 1px solid var(--color-primary);
+            @extend %font-medium;
+            border: 2px solid var(--color-primary);
             color: var(--color-primary);
             background-color: transparent;
         }
@@ -26,7 +27,7 @@
             border: 2px solid (--color-text);
 
             &.active {
-                i {
+                > i {
                     transform: rotate(180deg);
                 }
             }
@@ -35,12 +36,22 @@
 }
 
 @include non-critical {
-    .button--activate:hover {
-        border-color: var(--color-primary);
-    }
-    .button--border:hover {
-        color: var(--color-secondary);
-        border-color: var(--color-secondary);
-        background-color: transparent;
+    .button {
+        transition: all .25s;
+
+        &:hover {
+            transform: translateY(-1px);
+            & > i {
+                transform: scale(1.1);
+            }
+        }
+        &--activate:hover {
+            border-color: var(--color-primary);
+        }
+        &--border:hover {
+            color: var(--color-secondary);
+            border-color: var(--color-secondary);
+            background-color: transparent;
+        }    
     }
 }

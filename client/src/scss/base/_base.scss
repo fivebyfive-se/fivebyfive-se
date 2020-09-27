@@ -9,7 +9,9 @@
         --color-secondary: #{$color-teal};
         --color-logo: #{$color-pale-red};
 
-        --color-background-overlay: #{rgba($color-whiteish, .6)};
+        --color-background-overlay: #{rgba($color-white, .8)};
+        --color-background-secondary-overlay: #{rgba($color-whiteish, .8)};
+        --color-background-tertiary-overlay: #{rgba($color-greyish, .8)};
 
         --color-reverse-background: #{rgba($color-blackish, .8)};
         --color-reverse-text: #{$color-whiteish};
@@ -35,7 +37,9 @@
         --color-background-tertiary: #{$color-greyish};
         --color-text: #{$color-white};
         --color-text-secondary: #{$color-light-greyish};
-        --color-background-overlay: #{rgba($color-blackish, .8)};
+        --color-background-overlay: #{rgba($color-black, .8)};
+        --color-background-secondary-overlay: #{rgba($color-blackish, .8)};
+        --color-background-tertiary-overlay: #{rgba($color-greyish, .8)};
         --color-primary: #{$color-pale-red};
 
     }
