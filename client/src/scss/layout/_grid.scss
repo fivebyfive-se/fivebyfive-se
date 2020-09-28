@@ -3,10 +3,6 @@
         $self: &;
         width: 100%;
 
-        @include desktop-only {
-            width: breakpoint(desktop);
-        }
-
         .row {
             @extend %flex,
             %flex--row,

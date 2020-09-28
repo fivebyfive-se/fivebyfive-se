@@ -49,18 +49,23 @@
             }
     
             &__subitem {
-                @include margin-y(4);
+                @include margin-y(2);
+                .subitem__number {
+                    @include font(xx-large, 900);
+                }
                 .subitem__description {
-                    @include margin-bottom(3);
+                    @include margin-bottom(2);
                 }
             }
             &--case {
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
-                height: 500px;
-                max-height: 33vh;
+                height: grid-size(300px);
                 position: relative;
+                @include mobile-only {
+                    height:grid-size-m(300px);
+                }
             }
             &__text {
                 @extend %flex,

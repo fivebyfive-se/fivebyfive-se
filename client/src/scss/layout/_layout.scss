@@ -14,13 +14,12 @@
             %flex--justify-space-between,
             %flex--align-flex-end;
         @include margin-bottom(5);
-        height: $menu-height;
 
         @include desktop-only {
-
+            height: grid-size($menu-height);
             &__logo,
             &__menues {
-                height: $menu-height;
+                height: grid-size($menu-height);
             }
             &__menu-button {
                 display: none;
@@ -28,9 +27,10 @@
         }
 
         @include mobile-only {
+            height: grid-size-m($menu-height);
             &__logo,
             &__menues {
-                height: $mobile-menu-height;
+                height: grid-size-m($mobile-menu-height);
             }
         }
 
@@ -55,8 +55,8 @@
                 display: flex;
                 justify-content: flex-end;
                 align-items: center;
-                height: $mobile-menu-height;
-                $button-size: $mobile-menu-height * .6;
+                height: grid-size($mobile-menu-height);
+                $button-size: grid-size($mobile-menu-height / 2);
                 
                 .button {
                     border: none;
@@ -107,15 +107,10 @@
 
             .navigation-item {
                 @extend %flex;
-                @include margin-left(1);
 
-                @include padding(1);
 
                 text-decoration: none;
                 text-transform: lowercase;
-
-                width: 25%;
-                flex-basis: 25%;
                 flex-grow: 0;
                 flex-shrink: 0;
 
@@ -134,6 +129,7 @@
             &--main-menu {
                 .navigation-item {
                     @include font(small, 500);
+                    @include padding-y(.5);
                     color: var(--color-text);
 
                     &--active {
@@ -158,8 +154,8 @@
     
         @include desktop-only {
             height: $menu-height;
-            $logo-display-height: $menu-height - size(2);
-            $wordmark-display-height: $logo-display-height * .9;
+            $logo-display-height: grid-size($menu-height - size(2));
+            $wordmark-display-height: grid-size($logo-display-height * .9);
             $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
             &--logo {
                 @include margin-right(1);
@@ -173,8 +169,8 @@
         }
         @include mobile-only {
             height: $mobile-menu-height;
-            $logo-display-height: $mobile-menu-height - size(2);
-            $wordmark-display-height: $logo-display-height * .8;
+            $logo-display-height: grid-size-m($mobile-menu-height - size(2));
+            $wordmark-display-height: grid-size-m($logo-display-height * .8);
             $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
             &--logo {
                 @include margin-right(.5);

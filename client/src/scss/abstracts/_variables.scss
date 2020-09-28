@@ -14,6 +14,20 @@ $font-sizes: (
     xxx-large: 8rem,
     xxx-large-mobile: 5rem
 );
+
+$line-heights: (
+    default: 1,
+    small: 1,
+    x-small: 1,
+    xx-small: 1,
+
+    large: 2,
+    x-large: 2,
+    xx-large: 2,
+    xxx-large: 5,
+    xxx-large-mobile: 4
+);
+
 $font-spacings: (
     default: .01em,
     small: .02em,
@@ -45,23 +59,27 @@ $color-dark-red: #73332C;
 
 $font-body: 'Spartan', 'Futura', sans-serif;
 $font-heading: $font-body;
-$base-size: 10px;
 $base-font-size: 20px;
+$base-line-height: 28px;
 $border-width: 2px;
 $border-radius: 2px;
 
 $base-font-size-mobile: 16px;
+$base-line-height-mobile: 24px;
+
+$base-size: 14px;
+$base-size-mobile: 12px;
 
 $grid-columns: 12;
-$gutter-width: 15px;
+$gutter-width: $base-line-height;
 $col-width: percentage(1/$grid-columns);
 
 $mobile-grid-columns: $grid-columns;
-$mobile-gutter-width: 10px;
+$mobile-gutter-width: $base-line-height-mobile;
 $mobile-col-width: percentage(1/$mobile-grid-columns);
 
-$menu-height: 80px;
-$mobile-menu-height: 60px;
+$menu-height: 112px;
+$mobile-menu-height: 96px;
 
 $z-index-menu: 1000;
 $z-index-top: 2000;

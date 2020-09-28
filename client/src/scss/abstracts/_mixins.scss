@@ -4,63 +4,103 @@
     }
 }
 
-@mixin margin-top($size, $base: $base-size) {
-    margin-top: size($size, $base);
+@mixin margin-top($size, $base: $base-line-height) {
+    @include desktop-only {
+        margin-top: size($size, $base);
+    }
+    @include mobile-only {
+        margin-top: size-m($size, $base);
+    }
 }
 
-@mixin margin-right($size, $base: $base-size) {
-    margin-right: size($size, $base);
+@mixin margin-right($size, $base: $base-line-height) {
+    @include desktop-only {
+        margin-right: size($size, $base);
+    }
+    @include mobile-only {
+        margin-right: size-m($size, $base);
+    }
 }
 
-@mixin margin-bottom($size, $base: $base-size) {
-    margin-bottom: size($size, $base);
+@mixin margin-bottom($size, $base: $base-line-height) {
+    @include desktop-only {
+        margin-bottom: size($size, $base);
+    }
+    @include mobile-only {
+        margin-bottom: size-m($size, $base);
+    }
 }
 
-@mixin margin-left($size, $base: $base-size) {
-    margin-left: size($size, $base);
+@mixin margin-left($size, $base: $base-line-height) {
+    @include desktop-only {
+        margin-left: size($size, $base);
+    }
+    @include mobile-only {
+        margin-left: size-m($size, $base);
+    }
 }
 
-@mixin margin-x($left, $right: $left, $base: $base-size) {
+@mixin margin-x($left, $right: $left, $base: $base-line-height) {
     @include margin-left($left, $base);
     @include margin-right($right, $base);
 }
 
-@mixin margin-y($top, $bottom: $top, $base: $base-size) {
+@mixin margin-y($top, $bottom: $top, $base: $base-line-height) {
     @include margin-top($top, $base);
     @include margin-bottom($bottom, $base);
 }
 
-@mixin margin($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-size) {
+@mixin margin($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-line-height) {
     margin: size($top, $base) size($right, $base) size($bottom, $base) size($left, $base);
 }
 
-@mixin padding-top($size, $base: $base-size) {
-    padding-top: size($size, $base);
+@mixin padding-top($size, $base: $base-line-height) {
+    @include desktop-only {
+        padding-top: size($size, $base);
+    }
+    @include mobile-only {
+        padding-top: size-m($size, $base);
+    }
 }
 
-@mixin padding-right($size, $base: $base-size) {
-    padding-right: size($size, $base);
+@mixin padding-right($size, $base: $base-line-height) {
+    @include desktop-only {
+        padding-right: size($size, $base);
+    }
+    @include mobile-only {
+        padding-right: size-m($size, $base);
+    }
 }
 
-@mixin padding-bottom($size, $base: $base-size) {
-    padding-bottom: size($size, $base);
+@mixin padding-bottom($size, $base: $base-line-height) {
+    @include desktop-only {
+        padding-bottom: size($size, $base);
+    }
+    @include mobile-only {
+        padding-bottom: size-m($size, $base);
+    }
 }
 
-@mixin padding-left($size, $base: $base-size) {
-    padding-left: size($size, $base);
+@mixin padding-left($size, $base: $base-line-height) {
+    @include desktop-only {
+        padding-left: size($size, $base);
+    }
+    @include mobile-only {
+        padding-left: size-m($size, $base);
+    }
 }
 
-@mixin padding-x($left, $right: $left, $base: $base-size) {
+@mixin padding-x($left, $right: $left, $base: $base-line-height) {
     @include padding-left($left, $base);
     @include padding-right($right, $base);
 }
 
-@mixin padding-y($top, $bottom: $top, $base: $base-size) {
+@mixin padding-y($top, $bottom: $top, $base: $base-line-height) {
     @include padding-top($top, $base);
     @include padding-bottom($bottom, $base);
 }
 
-@mixin padding($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-size) {
+@mixin padding($top: 0, $right: $top, $bottom: $top, $left: $right, $base: $base-line-height) {
     padding: size($top, $base) size($right, $base) size($bottom, $base) size($left, $base);
 }
 
@@ -183,6 +223,12 @@
 @mixin font($size: default, $font-weight: unset, $letter-spacing: unset) {
     @if map-has-key($font-sizes, $size) {
         font-size: map-get($font-sizes, $size);
+        @include desktop-only {
+            line-height: $base-line-height * map-get($line-heights, $size);
+        }
+        @include mobile-only() {
+            line-height: $base-line-height-mobile * map-get($line-heights, $size);
+        }
         @if ($letter-spacing == unset and map-has-key($font-spacings, $size)) {
             letter-spacing: map-get($font-spacings, $size);
         }

@@ -45,8 +45,6 @@
     @extend %rounded-border,
         %flex,
         %flex--inline;
-    @include padding(1, 2);
-
     cursor: pointer;
     background-color: var(--color-primary);
     color: var(--color-background);
