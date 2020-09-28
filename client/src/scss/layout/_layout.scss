@@ -8,19 +8,31 @@
     }
     .header {
         @extend %flex,
-            %flex--justify-space-between;
-        align-items: center;
-        height: $menu-height;
-        
+            %flex--justify-space-between,
+            %flex--align-flex-end;
+        @include margin-bottom(5);
+
+        @include desktop-only {
+            height: $menu-height;
+            &__logo,
+            &__menues {
+                height: $menu-height;
+            }
+        }
+
         @include mobile-only {
-            height: $menu-height / 2;
+            height: $mobile-menu-height;
+            &__logo,
+            &__menues {
+                height: $mobile-menu-height;
+            }
         }
 
         &__menues {
             @extend %flex,
                 %flex--column,
+                %flex--justify-flex-end,
                 %flex--align-flex-end;
-            justify-content: center;
             @include mobile-only {
                 display: none;
             }
@@ -40,17 +52,11 @@
 
                 text-decoration: none;
                 text-transform: lowercase;
-                border-bottom: 1px solid transparent;
 
                 width: 25%;
                 flex-basis: 25%;
                 flex-grow: 0;
                 flex-shrink: 0;
-
-                &:hover {
-                    color: var(--color-secondary);
-                    border-bottom-color: var(--color-secondary);
-                }
 
                 > i {
                     @include margin-right(.2);
@@ -81,11 +87,7 @@
                     &--highlight {
                         @extend %button, %button--secondary;
                         color: var(--color-background);
-
-                        &:hover {
-                            color: var(--color-background);
-                            border-bottom-color: transparent;
-                        }
+                        background-color: var(--color-text);
                     }
                 }
             }
@@ -94,34 +96,88 @@
     .header__logo {
         @extend %flex,
             %flex--justify-space-between;
-        height: $menu-height;
-
+        $logo-height: 150px;
+        $wordmark-width: 621px;
+        $wordmark-height: 150px;
+    
         @include desktop-only {
+            height: $menu-height;
+            $logo-display-height: $menu-height - size(2);
+            $wordmark-display-height: $logo-display-height * .9;
+            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
             &--logo {
                 @include margin-right(1);
-                height: 130px;
-                width: 130px;
+                height: $logo-display-height;
+                width: $logo-display-height;
             }
             &--wordmark {
-                height: 125px;
-                width: 516px;
+                height: $wordmark-display-height;
+                width: $wordmark-display-width;
             }    
         }
         @include mobile-only {
+            height: $mobile-menu-height;
+            $logo-display-height: $mobile-menu-height - size(2);
+            $wordmark-display-height: $logo-display-height * .9;
+            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
             &--logo {
                 @include margin-right(.5);
-                height: 50px;
-                width: 50px;
+                height: $logo-display-height;
+                width: $logo-display-height;
             }
             &--wordmark {
-                height: 45px;
-                width: 186px;
-            }
+                height: $wordmark-display-height;
+                width: $wordmark-display-width;
+            }    
         }
     }
 }
 
 @include non-critical {
+    .header {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: $border-width;
+            background-color: var(--color-text);
+            z-index: -1;
+
+            animation: grow-width 1s ease-in-out 1.5s 1 forwards;
+        }
+
+        &__menu {
+            .navigation-item {
+                transition: border-color .25s;
+                border: 0px solid transparent;
+                &:hover {
+                    color: var(--color-secondary);
+                    border-color: var(--color-secondary);
+                }
+            }
+            &--top-menu {
+                .navigation-item {
+                    border-width: $border-width 0;
+                }
+            }
+            &--main-menu {
+                .navigation-item {
+                    border-bottom-width: $border-width;
+
+                    &--highlight {
+                        &:hover {
+                            color: var(--color-background);
+                            border-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     footer {
         @include margin-top(3);
         @include padding-y(2);

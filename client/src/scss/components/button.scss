@@ -8,13 +8,6 @@
             margin-right: .3em;
         }
 
-        &--border {
-            @extend %font-medium;
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
-            background-color: transparent;
-        }
-
         &--activate {
             @extend %flex,
                 %flex--justify-flex-start,
@@ -48,10 +41,5 @@
         &--activate:hover {
             border-color: var(--color-primary);
         }
-        &--border:hover {
-            color: var(--color-secondary);
-            border-color: var(--color-secondary);
-            background-color: transparent;
-        }    
     }
 }

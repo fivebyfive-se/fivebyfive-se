@@ -139,9 +139,7 @@
     @include prop-if-set(right, $right);
     @include prop-if-set(bottom, $bottom);
     @include prop-if-set(left, $left);
-    @if $z-index != unset {
-        z-index: z($z-index);
-    }
+    @include prop-if-set(z-index, $z-index);
 }
 
 @mixin position-fixed($top: unset, $right: unset, $bottom: unset, $left: unset, $z-index: unset) {

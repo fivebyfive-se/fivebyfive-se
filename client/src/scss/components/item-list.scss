@@ -1,166 +1,129 @@
 @include critical {
-    $item-width: 33.333%;
-    $item-height: 350px;
-    $item-max-height: 33vh;
 
     .item-list, .details-view {
-        $list: &;
         .item {
-            $item: &;
-            &__title, &__meta {
-                @include margin-y(0);
+            h2 {
+                @extend %font-size-xxl,
+                %font-black;            
             }
-            &__title + #{$item}__meta,
-            &__meta + #{$item}__title {
-                @include margin-bottom(1);
+            h3 {
+                @extend %font-size-l;
             }
-
-            &__title {
-                line-height: 1.4;
-            }
-            &__meta {
-                @extend %font-size-s;
-                @extend %font-light;
-                line-height: 1.2;
-
-                color: var(--color-text-secondary);
-                strong {
-                    @extend %font-medium;
-                    @include margin-right(.3);
-                    text-transform: lowercase;
-                    &:after {
-                        content: ':';
-                    }
-                }
-                i {
-                    @include margin-right(.2);
-                    font-size: .85em;
-                    vertical-align: text-top;
-                }
-            }
-            &__subitem  {
-                @include margin-top(1);
-                @include padding-top(1);
-
-                position: relative;
-
-                &:nth-child(odd) {
-                    background-color: var(--color-background);
-                }
-
-                .subitem__title {
-                    @include padding-y(2);
-                    @include margin-bottom(1);
-                }
-            }
-
-            &__details {
-                width: 100%;
-                text-align: center;
+            h4 {
+                @extend %font-size-m;
             }
 
             &--collection {
-                @include padding-y(2, 1);
+                @include margin-y(6);
+                @include padding-y(4);
 
-                .item__subitems {
-                    height: $item-height * .1;
-                    overflow: hidden;
-                    position: relative;
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        height: 100%;
-                        width: 100%;
-                        background: linear-gradient(rgba(0,0,0,0), var(--color-background-secondary));
-                        z-index: 100;
-                    }
-                    &.active {
-                        height: auto;
-                        &:after {
-                            display: none;
-                        }
-                    }
+                border-top: $border-width solid var(--color-text);
+
+                .collection-description {
+                    @extend %font-size-xl,
+                        %font-light;
+                }
+                .collection-tags {
+                    @extend %font-size-m,
+                        %font-extra-light;
                 }
             }
-        }
 
-        &--root {
-            > .item {
 
-                .item__subitems {
-                    height: $item-height * .2;
-                    overflow: hidden;
-                    position: relative;
-                    &:after {
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        left: 0;
-                        height: $item-height * .2;
-                        width: 100%;
-                        z-index: 100;
-                    }
-                    &.active {
-                        height: auto;
-                        &:after {
-                            display: none;
-                        }
-                    }
-                }
+            &__meta {
+                @extend %font-size-s,
+                    %font-light;
+                color: var(--color-text-secondary);
 
-                .button--activate {
-                    color: var(--color-primary);
-                    &.active {
-                        @include margin-top(6);
-                    }
+                i, strong {
+                    margin-right: .3em;
                 }
-                &:nth-child(odd) {
-                    .item__subitems:after {
-                        background: linear-gradient(rgba(0,0,0,0), var(--color-background-secondary));
-                    }
-                    background-color: var(--color-background-secondary);    
-                    .button--activate {
-                        background-color: var(--color-background-secondary);
-                    }
+                i {
+                    font-size: .8em;
+                    vertical-align: text-top;
                 }
-                &:nth-child(even) {
-                    background-color: var(--color-background-tertiary);
-                    .item__subitems:after {
-                        background: linear-gradient(rgba(0,0,0,0), var(--color-background-tertiary));
-                    }
-                    .button--activate {
-                        background-color: var(--color-background-tertiary);
-                    }
+                strong {
+                    @extend %font-medium;
+                    &:after { content: ':'; }
                 }
             }
-        }
-
-        &--subcollection {
-
-            .item {
+    
+            &__subitem {
+                @include margin-y(4);
+                .subitem__description {
+                    @extend %font-size-xl,
+                        %font-bold;
+                    
+                }
+            }
+            &--case {
+                height: 500px;
+                max-height: 33vh;
                 position: relative;
-                height: $item-height;
-                max-height: $item-max-height;
+            }
+            &__text {
+                @extend %flex,
+                    %flex--column,
+                    %flex--justify-space-between,
+                    %flex--align-flex-start;
+                @include position-absolute($top: 0, $left: 0);
+                @include padding(2);
 
-                &:first-child:last-child {
-                    width: 100%;
-                    flex-basis: 100%;
-                }
-                &__text {
-                    @include position-absolute(0, 0);
-                    @include padding(1);
+                width: 100%;
+                height: 100%;
+                background-color: var(--color-background-overlay);
+
+                .button--reveal {
                     @extend %flex,
                         %flex--column,
-                        %flex--justify-space-between,
-                        %flex--align-flex-start;
+                        %font-medium,
+                        %font-size-xl;
+                    @include position-absolute($top: 0, $left: 0);
                     width: 100%;
                     height: 100%;
-                    background-color: var(--color-background-overlay);
+                    color: var(--color-primary);
+                    background-color: transparent;
+
+                    > i, > span {
+                        display: block;
+                    }
+                    > i {
+                        transform: scale(3);
+                    }
+                    > span {
+                        height: 0;
+                        overflow: hidden;
+                    }
                 }
-                &:nth-child(even) .item__text {
-                    background-color: var(--color-background-secondary-overlay);
+            }
+        }
+    }
+}
+
+@include non-critical {
+    .item-list, .details-view {
+        .item {
+            &__text {
+                .button--reveal {
+                    > i {
+                        @include margin-bottom(0);
+                    }
+                    > span {
+                        transition: height .3s;
+                        white-space: pre;
+                    }
+                    &:hover {
+                        color: var(--color-secondary);
+                        border-color: var(--color-secondary);
+                        background-color: var(--color-background-secondary-overlay);
+
+                        > i {
+                            @include margin-bottom(3);
+                        }
+                        > span {
+                            height: 3em;
+                        }
+                    }    
                 }
             }
         }

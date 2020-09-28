@@ -1,4 +1,12 @@
 @include non-critical {
+    @keyframes grow-width {
+        0% {
+            width: 0;
+        }
+        100% {
+            width: 100%;
+        }
+    }
     @keyframes appear {
         0% {
             filter: blur(25px) brightness(0.5);

@@ -1,16 +1,11 @@
 @include critical {
-    .page-headline {
-        @extend %font-size-xxxl;
-        @extend %font-black;
-        transform-origin: 50% 50%;
-        transform: rotate(90deg);
-        @include mobile-only {
-            font-size: 2.5rem;
-        }
+    .page-header {
+        position: relative;
     }
+ 
     .page-heading {
-        @extend %font-size-xl;
-        @extend %font-thin;
+        @extend %font-size-xxxl,
+            %font-medium;
     }
     .page-intro {
         @include margin-y(2);

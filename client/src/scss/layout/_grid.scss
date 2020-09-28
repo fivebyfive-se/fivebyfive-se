@@ -1,8 +1,9 @@
 @include critical {
     .grid {
         $self: &;
-        max-width: 96vw;    
+        max-width: 96vw;
         width: 100%;
+
         @include desktop-only {
             width: breakpoint(desktop);
         }
@@ -13,68 +14,42 @@
             @extend %flex--wrap;
             @extend %flex--justify-flex-start;
             @extend %flex--align-flex-start;
-    
+
             width: 100%;
         }
 
-        @include desktop-only {
-            .col {
+        .col {
+            @include mobile-only {
+                width: 100%;
+                flex-basis: 100%;
+                flex-shrink: 1;
+            }
+
+            @include desktop-only {
                 width: $col-width;
                 flex-basis: $col-width;
-    
-                @for $c from $grid-columns through 1 {
-                    $curr-col-width: $c * $col-width;
-                    $curr-col-ratio: $col-width / $curr-col-width;
-    
-                    &--push-#{$c} {
-                        margin-left: $c * $col-width;
-                    }
-    
-                    &--#{$c} {
-                        flex-basis: $curr-col-width;
-                        width: $curr-col-width;
-    
-                        @for $n from $c through 1 {
-                            $sub-col-width: percentage($curr-col-ratio * $n);
-                            .col--#{$n} {
-                                flex-basis: $sub-col-width;
-                                width: $sub-col-width;
-                            }
-                        }  
-                    }
-    
-                }
             }
-        }
-        @include mobile-only {
-            .col-m {
-                width: $mobile-col-width;
-                flex-basis: $mobile-col-width;
 
-                @for $c from $mobile-grid-columns through 1 {
-                    $curr-col-width: $c * $mobile-col-width;
-                    @if $c % 2 != 0 {
-                        $curr-col-width: $mobile-col-width * ($c + 1);
+            @for $c from $grid-columns through 1 {
+                @include mobile-only {
+                    &--push-#{$c} {
+                        @include margin-left($c);
+                        width: 90%;
+                        flex-basis: 90%;
                     }
-                    $curr-col-ratio: $mobile-col-width / $curr-col-width;
-    
+                }
+
+                @include desktop-only {
+                    $curr-col-width: $c * $col-width;
+
                     &--push-#{$c} {
                         margin-left: $curr-col-width;
                     }
-    
+
                     &--#{$c} {
                         flex-basis: $curr-col-width;
                         width: $curr-col-width;
-    
-                        @for $n from $c through 1 {
-                            $sub-col-width: percentage($curr-col-ratio * $n);
-                            .col-m--#{$n} {
-                                flex-basis: $sub-col-width;
-                                width: $sub-col-width;
-                            }
-                        }  
                     }
-    
                 }
             }
         }

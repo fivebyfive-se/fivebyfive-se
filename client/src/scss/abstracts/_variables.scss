@@ -23,6 +23,7 @@ $font-body: 'Spartan', 'Futura', sans-serif;
 $font-heading: $font-body;
 $base-size: 10px;
 $base-font-size: 20px;
+$border-width: 2px;
 $border-radius: 2px;
 
 $base-font-size-mobile: 16px;
@@ -35,5 +36,5 @@ $mobile-grid-columns: $grid-columns;
 $mobile-gutter-width: 10px;
 $mobile-col-width: percentage(1/$mobile-grid-columns);
 
-$menu-height: 150px;
-$mobile-menu-height: 75px;
+$menu-height: 80px;
+$mobile-menu-height: 60px;

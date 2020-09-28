@@ -1,91 +1,104 @@
 extends _layout.pug
 
-mixin list_items(items, listType)
-    div.item-list.row(class=`item-list--${listType}`)
+mixin item-meta(value, className, icon=null, label=null, isLink=false)
+    if value
+        p.item__meta(class=className)
+            if icon
+                i(class=`ri-${icon}-line`)
+            if label
+                strong= label
+            if isLink
+                a(href=value, rel='noopener', target='_blank')
+                    = value
+            else
+                = value
+
+mixin item-tags(tags, ...classes)
+    if tags && tags.length > 0
+        +item-meta(tags.join(','), ['item__tags', ...classes].join(' '), 'price-tag-3', __('work.tags'))
+
+mixin item-text(tag, item, alias, ...classes)
+    - const text = item.getStructuredText(alias)
+    if text
+        - const className = classes.join(' ')
+        - const html = `<${tag} class="${className}">${text.asText()}</${tag}>`;
+        != html
+
+mixin case-collection(item)
+    - const caseItem = item.item;
+    - const subItems = item.sub_items;
+    .item.item--collection.grid
+        .row
+            .col.col--6
+                //- p.superheadline.item__title= __('work.casecollection')
+                +item-text('h2', caseItem, 'casecollection.title', 'item__title')
+                +item-text('p', caseItem, 'casecollection.description', 'collection-description')
+                +item-tags(caseItem.tags, 'collection-tags')
+
+        for subItem in subItems
+            .item__subitem
+                .row
+                    .col.col--5.col--push-1
+                        p.subitem__description= subItem.text
+                .row
+                    .col.col--10.col--push-2
+                        +list-items(subItem.items, 'subcollection')(class='row')
+
+
+
+mixin case-item(item)
+    - const image = item.getImage('case.image')
+    - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
+    - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
+
+    .item.item--case(style=`background-image: url(${image.url})`).col.col--4
+        .item__text(data-details-view=`${item.uid}`)
+            .item__section
+                - const date = dateFmt.format(item.getDate('case.release_date'))
+                +item-meta(date, 'item__release-date', 'calendar')
+
+                +item-text('h3', item, 'case.title', 'item__title')
+                +item-text('h4', item, 'case.subtitle', 'item__title', 'item__title--subtitle')
+
+
+            .item__section.item__details
+                a.button.button--reveal.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+                    i.ri-fullscreen-line
+                    span= __('button.open')
+
+            .item__section
+                +item-tags(item.tags)
+                +item-meta(item.getText('case.client_name'), 'item__client-name', 'user-2', __('work.client'))
+                if item.getLink('case.link')
+                    - const linkUrl = item.getLink('case.link').url(ctx.linkResolver);
+                    +item-meta(linkUrl, 'details-view__details', 'external-link', __('work.link'), true)
+                +item-meta(detailsImage, 'details-view__details', 'image', __('work.fullimage'), true)
+
+            .item__section.details-view__details
+                if (item.getStructuredText('case.description'))
+                    p.item__description= item.getStructuredText('case.description').asText()
+                if (item.get('case.embed_media'))
+                    p.item__embed
+                        != item.get('case.embed_media').asHtml()
+
+
+mixin list-items(items, listType)
+    div.item-list(class=`item-list--${listType}`)&attributes(attributes)
         for item in items
             case item.type
                 when 'casecollection'
-                    - const caseItem = item.item;
-                    - const subItems = item.sub_items;
-                    .item.item--collection.col.col--12
-                        .item__section.col.col--9.col--push-3
-                            //- p.superheadline.item__title= __('work.casecollection')
-                            h3.headline.item__title= caseItem.getStructuredText('casecollection.title').asText()
-                            h4.subheadline.item__title.item__description= caseItem.getStructuredText('casecollection.description').asText()
-                            p.item__meta.item__tags
-                                i.ri-price-tag-3-line
-                                != caseItem.tags.join(', ')
-                        .item__section.item__subitems.row(data-activate-target=caseItem.uid)
-                            //- - const subCollectionClass = subItems.length === 1 ? 'col--12' : 'col--6';
-                            for subItem in subItems
-                                .item__subitem.col.col--12
-                                    .col.col--push-1.col--5
-                                        p.item__title.subitem__title= subItem.text
-                                    +list_items(subItem.items, 'subcollection')
-                        a.button.button--activate(data-activate=caseItem.uid, data-toggle-label=__('button.readless'))
-                            i.col--push-1.ri-arrow-down-s-line
-                            span.button__label= __('button.readmore')
-
+                    +case-collection(item)
                 when 'case'
-                    - const image = item.getImage('case.image')
-                    - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
-                    .item.item--case(style=`background-image: url(${image.url})`).col.col--3.col-m.col-m--12
-                        .item__text(data-details-view=`${item.uid}`)
-                            .item__section
-                                p.item__meta
-                                    i.ri-calendar-line
-                                    = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' }).format(item.getDate('case.release_date'))
-                                h3.item__title= item.getStructuredText('case.title').asText()
-                                h4.item__title.item__title--subtitle= item.getStructuredText('case.subtitle').asText()
-
-                            .item__section.item__details
-                                a.button.button--border.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
-                                    i.ri-fullscreen-line
-                                    = __('button.open')
-
-                            .item__section
-                                if item.tags.length > 0
-                                    - const tags = item.tags.join(', '); 
-                                    p.item__meta
-                                        i.ri-price-tag-3-line
-                                        strong= __('work.tags')
-                                        = tags
-                                if item.getText('case.client_name')
-                                    p.item__meta
-                                        i.ri-user-2-line
-                                        strong= __('work.client')
-                                        = item.getText('case.client_name')
-                                if item.getLink('case.link')
-                                    - const linkUrl = item.getLink('case.link').url(ctx.linkResolver);
-                                    p.item__meta.details-view__details
-                                        i.ri-external-link-line
-                                        strong= __('work.link')
-                                        a(href=linkUrl,rel='noopener',target='_blank')
-                                            = linkUrl
-                                p.item__meta.details-view__details
-                                    i.ri-image-line
-                                    strong= __('work.fullimage') 
-                                    a(href=detailsImage,rel='noopener',target='_blank')
-                                        = detailsImage
-
-                            .item__section.details-view__details
-                                if (item.getStructuredText('case.description'))
-                                    p.item__description= item.getStructuredText('case.description').asText()
-                                if (item.get('case.embed_media'))
-                                    p.item__embed
-                                        != item.get('case.embed_media').asHtml()
+                    +case-item(item)
 block content
-    .grid
-        .row
-            .col.col--1.col-m.col-m--2
-                .page-headline(class=`page-headline--${page.uid}`)= page.uid
-            .col.col--11.col-m.col-m--10
-                h1.page-heading
-                    != page.heading
-                div.page-intro
+    .page-header
+        h1.page-heading= page.heading
+        .grid
+            .row
+                .col.col--10.col--push-2.page-intro
                     != page.intro
 
-    .page-body.grid
-        +list_items(page.items, 'root')
+    .page-body
+        +list-items(page.items, 'root')
 
 
