@@ -18,26 +18,42 @@
         }
 
         .col {
-            @include mobile-only {
-                width: auto;
-                flex-grow: 1;
-                flex-shrink: 1;
+            &--push-0 {
+                margin-left: 0;
             }
 
             @include desktop-only {
-                width: $col-width;
-                flex-basis: $col-width;
+                @include flex-item-width($col-width);
+            }
 
-                @for $c from $grid-columns through 1 {
-                    $curr-col-width: $c * $col-width;
+            @include mobile-only {
+                &--m {
+                    @include flex-item-width($col-width);
+                }
+            }
 
+            @for $c from 1 through $grid-columns {
+                $curr-col-width: $c * $col-width;
+
+                @include desktop-only {
                     &--push-#{$c} {
                         margin-left: $curr-col-width;
                     }
-
+    
                     &--#{$c} {
-                        flex-basis: $curr-col-width;
-                        width: $curr-col-width;
+                        @include flex-item-width($curr-col-width);
+                    }
+                }
+
+                @include mobile-only {    
+                    &--m {
+                        &--#{$c} {
+                            @include flex-item-width($curr-col-width);
+                        }
+    
+                        &--push-#{$c} {
+                            margin-left: $curr-col-width;
+                        }                            
                     }
                 }
             }

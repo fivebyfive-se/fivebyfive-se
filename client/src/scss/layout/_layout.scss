@@ -43,10 +43,8 @@
 
             
             @include mobile-only {
-                &.col--4.col {
-                    width: 0;
-                    overflow: hidden;    
-                }
+                width: 0;
+                overflow: hidden;    
             }
         }
 
@@ -189,17 +187,6 @@
             }    
         }
     }
-
-    @include mobile-only {
-        .header__logo {
-            flex-basis: 75%;
-            width: 75%;
-        }
-        .header__menu-button {
-            flex-basis: 20%;
-            width: 20%;
-        }    
-    }
 }
 
 @include non-critical {
@@ -238,16 +225,16 @@
                                 top: 50%;
                             }
                             &:before {
-                                transform: rotate(225deg);
+                                transform: rotate(315deg);
                             }
                             &:after {
-                                transform: rotate(-225deg);
+                                transform: rotate(-315deg);
                             }
                         }
                     }
                 }
             }
-            &__menues.col.col--4 {
+            &__menues {
                 @include position-fixed($top: $menu-height, $left: 0, $bottom: 0, $z-index: $z-index-menu);
                 flex-direction: column-reverse;
                 justify-content: space-between;

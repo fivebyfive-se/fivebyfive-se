@@ -29,7 +29,7 @@ mixin case-collection(item)
     - const subItems = item.sub_items;
     .item.item--collection.grid
         .row
-            .col.col--6
+            .col.col--6.col--m--12
                 //- p.superheadline.item__title= __('work.casecollection')
                 +item-text('h2', caseItem, 'casecollection.title', 'item__title')
                 +item-text('p', caseItem, 'casecollection.description', 'collection-description')
@@ -38,10 +38,10 @@ mixin case-collection(item)
         for subItem in subItems
             .item__subitem
                 .row
-                    .col.col--5.col--push-1
+                    .col.col--5.col--push-1.col--m--push-1.col--m--6
                         h3.subitem__description= subItem.text
                 .row
-                    .col.col--10.col--push-2
+                    .col.col--10.col--push-2.col--m--push-1.col--m--11
                         +list-items(subItem.items, 'subcollection')(class='row')
 
 
@@ -51,7 +51,7 @@ mixin case-item(item, colClass='col--4')
     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
     - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
 
-    .item.item--case(style=`background-image: url(${image.url})`, class=colClass).col
+    .item.item--case(style=`background-image: url(${image.url})`, class=colClass).col.col--m--12
         .item__text(data-details-view=`${item.uid}`)
             .item__section
                 - const date = dateFmt.format(item.getDate('case.release_date'))
@@ -101,7 +101,7 @@ block content
         h1.page-heading= page.heading
         .grid
             .row
-                .col.col--10.col--push-2.page-intro
+                .col.col--10.col--push-2.col--m--11.col--m--push-1.page-intro
                     != page.intro
 
     .page-body

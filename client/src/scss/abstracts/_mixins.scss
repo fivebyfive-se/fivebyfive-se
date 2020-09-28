@@ -170,6 +170,16 @@
     @include prop-if-set(flex-wrap, $wrap);
 }
 
+@mixin flex-item-width($width: auto, $is-max: false) {
+    width: $width;
+    @if $width != auto {
+        flex-basis: $width;
+    }
+    @if $is-max {
+        max-width: $width;
+    }
+}
+
 @mixin font($size: default, $font-weight: unset, $letter-spacing: unset) {
     @if map-has-key($font-sizes, $size) {
         font-size: map-get($font-sizes, $size);
