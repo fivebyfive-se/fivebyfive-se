@@ -44,21 +44,35 @@
         });
     });
 
-    document.querySelectorAll('[data-activate]').forEach((button) => {
-        button.addEventListener('click', (ev) => {
-            ev.preventDefault();
-            const { activate, toggleLabel } = button.dataset;
-            const label = button.querySelector('.button__label');
-            const activateEl = document.querySelector(`[data-activate-target=${activate}`);
-            if (button.classList.contains('active')) {
-                activateEl.classList.remove('active');
-                button.classList.remove('active');
+    (() => {
+        const header = document.querySelector('.header');
+        const limit = header.getBoundingClientRect().height * 2;
+        console.log(header.getBoundingClientRect())
+        window.addEventListener('scroll', (ev) => {
+            if (window.scrollY > limit) {
+                document.body.classList.add('sticky-header');
             } else {
-                activateEl.classList.add('active');
-                button.classList.add('active');
+                document.body.classList.remove('sticky-header');
             }
-            button.dataset.toggleLabel = label.innerText;
-            label.innerText = toggleLabel;
-        });
-    })
+        });    
+    })();
+
+
+    // document.querySelectorAll('[data-activate]').forEach((button) => {
+    //     button.addEventListener('click', (ev) => {
+    //         ev.preventDefault();
+    //         const { activate, toggleLabel } = button.dataset;
+    //         const label = button.querySelector('.button__label');
+    //         const activateEl = document.querySelector(`[data-activate-target=${activate}`);
+    //         if (button.classList.contains('active')) {
+    //             activateEl.classList.remove('active');
+    //             button.classList.remove('active');
+    //         } else {
+    //             activateEl.classList.add('active');
+    //             button.classList.add('active');
+    //         }
+    //         button.dataset.toggleLabel = label.innerText;
+    //         label.innerText = toggleLabel;
+    //     });
+    // })
 })();

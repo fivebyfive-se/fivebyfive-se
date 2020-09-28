@@ -145,8 +145,8 @@
             height: $border-width;
             background-color: var(--color-text);
             z-index: -1;
-
-            animation: grow-width 1s ease-in-out 1.5s 1 forwards;
+            transition: width 1s ease-in-out;
+            //animation: grow-width 1s ease-in-out 1.5s 1 forwards;
         }
 
         &__menu {
@@ -181,5 +181,23 @@
     footer {
         @include margin-top(3);
         @include padding-y(2);
+    }
+
+    body.sticky-header {
+        .header {
+            @include position-fixed($top: 0, $left: 50%, $z-index: 1000);
+            background-color: var(--color-background);
+            transform: translateX(-50%);
+
+            transition: background-color .5s;
+            
+            &:after {
+                width: 100%;
+            }
+        }
+        main {
+            @include margin-top(5);
+            padding-top: $menu-height;
+        }
     }
 }
