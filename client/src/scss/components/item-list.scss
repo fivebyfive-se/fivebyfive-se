@@ -6,9 +6,12 @@
                 @include font(xx-large, 900);
             }
             h3 {
-                @include font(large, 500);
+                @include font(x-large, 700);
             }
             h4 {
+                @include font(large, 700);
+            }
+            h5 {
                 @include font(default, 500);
             }
 
@@ -48,11 +51,13 @@
             &__subitem {
                 @include margin-y(4);
                 .subitem__description {
-                    @include font(x-large, 700);
                     @include margin-bottom(3);
                 }
             }
             &--case {
+                background-position: center center;
+                background-size: cover;
+                background-repeat: no-repeat;
                 height: 500px;
                 max-height: 33vh;
                 position: relative;
@@ -97,6 +102,11 @@
                         height: 0;
                         overflow: hidden;
                     }
+                }
+            }
+            &--case:nth-child(even) {
+                .item__text {
+                    background-color: var(--color-background-secondary-overlay);
                 }
             }
         }

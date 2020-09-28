@@ -39,26 +39,26 @@ mixin case-collection(item)
             .item__subitem
                 .row
                     .col.col--5.col--push-1
-                        p.subitem__description= subItem.text
+                        h3.subitem__description= subItem.text
                 .row
                     .col.col--10.col--push-2
                         +list-items(subItem.items, 'subcollection')(class='row')
 
 
 
-mixin case-item(item)
+mixin case-item(item, colClass='col--4')
     - const image = item.getImage('case.image')
     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
     - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
 
-    .item.item--case(style=`background-image: url(${image.url})`).col.col--4
+    .item.item--case(style=`background-image: url(${image.url})`, class=colClass).col
         .item__text(data-details-view=`${item.uid}`)
             .item__section
                 - const date = dateFmt.format(item.getDate('case.release_date'))
                 +item-meta(date, 'item__release-date', 'calendar')
 
-                +item-text('h3', item, 'case.title', 'item__title')
-                +item-text('h4', item, 'case.subtitle', 'item__title', 'item__title--subtitle')
+                +item-text('h4', item, 'case.title', 'item__title')
+                +item-text('h5', item, 'case.subtitle', 'item__title', 'item__title--subtitle')
 
 
             .item__section.item__details
@@ -83,13 +83,19 @@ mixin case-item(item)
 
 
 mixin list-items(items, listType)
+    - let i = 0
     div.item-list(class=`item-list--${listType}`)&attributes(attributes)
         for item in items
+            - i++
             case item.type
                 when 'casecollection'
                     +case-collection(item)
                 when 'case'
-                    +case-item(item)
+                    - let colClass = 'col--4'
+                    if ((i === 1 && items.length > 0 && items.length % 3 !== 0) || (i === items.length && items.length % 3 === 1))
+                        - colClass = 'col--8'
+                        
+                    +case-item(item, colClass)
 block content
     .page-header
         h1.page-heading= page.heading

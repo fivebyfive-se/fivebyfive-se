@@ -105,21 +105,31 @@
     })();
 
 
-    // document.querySelectorAll('[data-activate]').forEach((button) => {
-    //     button.addEventListener('click', (ev) => {
-    //         ev.preventDefault();
-    //         const { activate, toggleLabel } = button.dataset;
-    //         const label = button.querySelector('.button__label');
-    //         const activateEl = document.querySelector(`[data-activate-target=${activate}`);
-    //         if (button.classList.contains('active')) {
-    //             activateEl.classList.remove('active');
-    //             button.classList.remove('active');
-    //         } else {
-    //             activateEl.classList.add('active');
-    //             button.classList.add('active');
-    //         }
-    //         button.dataset.toggleLabel = label.innerText;
-    //         label.innerText = toggleLabel;
+    // (() => {
+    //     const toc = document.createElement('div');
+    //     const tocList = document.createElement('nav');
+    //     toc.classList.add('table-of-contents');
+    //     toc.innerHTML = '<div class="toc__header"><i class="ri-list-unordered"></i></div>';
+    //     tocList.classList.add('toc__list');
+
+    //     const scrollTo = (elm) => {
+    //         const targetY = elm.getBoundingClientRect().top;
+    //         window.scrollTo({x: targetY, behavior: 'smooth'});
+    //     };
+
+    //     document.querySelectorAll('h1,h2,h3').forEach((header) => {
+    //         const link = document.createElement('a');
+    //         link.innerText = header.innerText;
+    //         link.classList.add('level--' + header.tagName.toLocaleLowerCase());
+    //         link.addEventListener('click', (ev) => {
+    //             ev.preventDefault();
+    //             scrollTo(header);
+    //         });
+    //         tocList.append(link);
     //     });
-    // })
+    //     toc.append(tocList);
+    //     document.body.append(toc);
+
+    //     document.querySelector('.toc__header').addEventListener('click', (ev) => toc.classList.toggle('active'));
+    // })();
 })();
