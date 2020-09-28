@@ -2,6 +2,30 @@ $breakpoints: (
     desktop: 1440px,
     mobile: 900px
 );
+$font-sizes: (
+    default: 1rem,
+    small: .75rem,
+    x-small: .6rem,
+    xx-small: .5rem,
+
+    large: 1.5rem,
+    x-large: 2rem,
+    xx-large: 3rem,
+    xxx-large: 8rem,
+    xxx-large-mobile: 5rem
+);
+$font-spacings: (
+    default: .01em,
+    small: .02em,
+    x-small: .04,
+    xx-small: .06em,
+
+    large: -.04em,
+    x-large: -.06em,
+    xx-large: -.08em,
+    xxx-large: -.1em
+);
+
 /* Color Theme Swatches in Hex */
 $color-black: #060B0D;
 $color-blackish: #0D171A;
@@ -38,3 +62,6 @@ $mobile-col-width: percentage(1/$mobile-grid-columns);
 
 $menu-height: 80px;
 $mobile-menu-height: 60px;
+
+$z-index-menu: 1000;
+$z-index-top: 2000;

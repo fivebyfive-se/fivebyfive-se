@@ -170,8 +170,14 @@
     @include prop-if-set(flex-wrap, $wrap);
 }
 
-@mixin font-size($size: 1rem, $letter-spacing: unset) {
-    font-size: $size;
+@mixin font($size: default, $font-weight: unset, $letter-spacing: unset) {
+    @if map-has-key($font-sizes, $size) {
+        font-size: map-get($font-sizes, $size);
+        @if ($letter-spacing == unset and map-has-key($font-spacings, $size)) {
+            letter-spacing: map-get($font-spacings, $size);
+        }
+    }
+    @include prop-if-set(font-weight, $font-weight);
     @include prop-if-set(letter-spacing, $letter-spacing);
 }
 

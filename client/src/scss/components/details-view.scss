@@ -8,7 +8,7 @@
     .details-view {
         @extend %flex,
             %flex--justify-flex-start;
-        @include position-fixed(0, 0);
+        @include position-fixed($top: 0, $left: 0, $z-index: $z-index-top);
 
         $self: &;
 
@@ -48,21 +48,21 @@
                 max-width: 100vw;
             }
             &__text {
-                height: 40vh;
-                max-height: 40vh;
-                flex-basis: 40%;
+                height: 50vh;
+                max-height: 50vh;
+                flex-basis: 50%;
             }
             &__image {
-                height: 60vh;
-                max-height: 60vh;
-                flex-basis: 60%;
+                height: 50vh;
+                max-height: 50vh;
+                flex-basis: 50%;
             }
         }
         &__text {
             @extend %flex,
                 %flex--column,
                 %flex--align-flex-start;
-            @include padding(6);
+            @include padding(6, 4);
             overflow-y: auto;
 
             .page-item__section {

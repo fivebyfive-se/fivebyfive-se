@@ -4,8 +4,11 @@
     }
  
     .page-heading {
-        @extend %font-size-xxxl,
-            %font-medium;
+        @include font(xxx-large, 500);
+        @include mobile-only {
+            @include font(xxx-large-mobile);
+        }
+        word-wrap: break-word;
     }
     .page-intro {
         @include margin-y(2);

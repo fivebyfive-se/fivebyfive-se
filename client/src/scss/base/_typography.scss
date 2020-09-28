@@ -11,70 +11,19 @@
     }
 
     body {
-        @extend %font-regular;
-        @extend %font-size-default;
+        @include font(default, $font-weight: 400);
+        font-family: $font-body;
         background-color: var(--color-background);
         color: var(--color-text);
         line-height: 1.2;
+        &, * {
+            font-family: $font-body;
+        }
     }
 
     h1, h2, h3, h4, h5, p {
         margin: 0;
         padding: 0;
-    }
-
-    h1 {
-        @extend %font-size-xxxl;
-        @extend %font-black;
-    }
-    h2 {
-        @extend %font-size-xl;
-        @extend %font-extra-bold;
-    }
-    h3 {
-        @extend %font-size-l;
-        @extend %font-bold;
-    }
-    h4 {
-        @extend %font-size-m;
-        @extend %font-semi-bold;
-    }
-    h5 {
-        @extend %font-size-m;
-        @extend %font-medium;
-    }
-
-    .small {
-        @extend %font-size-s;
-    }
-    .smaller {
-        @extend %font-size-xs;
-    }
-    .smallest {
-        @extend %font-size-xxs;
-    }
-
-    .headline {
-        @extend %font-extra-light;
-        @extend %font-size-xxxl;
-
-        @include mobile-only {
-            font-size: 3rem;
-        }
-    }
-    .subheadline {
-        @extend %font-thin;
-        @extend %font-size-xl;
-        @include mobile-only {
-            font-size: 2rem;
-        }
-    }
-    .superheadline {
-        @extend %font-light;
-        @extend %font-size-l;
-        @include mobile-only {
-            font-size: 1.5rem;
-        }
     }
 }
 

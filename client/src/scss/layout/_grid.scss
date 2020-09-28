@@ -1,7 +1,6 @@
 @include critical {
     .grid {
         $self: &;
-        max-width: 96vw;
         width: 100%;
 
         @include desktop-only {
@@ -9,37 +8,27 @@
         }
 
         .row {
-            @extend %flex;
-            @extend %flex--row;
-            @extend %flex--wrap;
-            @extend %flex--justify-flex-start;
-            @extend %flex--align-flex-start;
+            @extend %flex,
+            %flex--row,
+            %flex--wrap,
+            %flex--justify-flex-start,
+            %flex--align-flex-start;
 
             width: 100%;
         }
 
         .col {
             @include mobile-only {
-                width: 100%;
-                flex-basis: 100%;
+                width: auto;
+                flex-grow: 1;
                 flex-shrink: 1;
             }
 
             @include desktop-only {
                 width: $col-width;
                 flex-basis: $col-width;
-            }
 
-            @for $c from $grid-columns through 1 {
-                @include mobile-only {
-                    &--push-#{$c} {
-                        @include margin-left($c);
-                        width: 90%;
-                        flex-basis: 90%;
-                    }
-                }
-
-                @include desktop-only {
+                @for $c from $grid-columns through 1 {
                     $curr-col-width: $c * $col-width;
 
                     &--push-#{$c} {
@@ -52,6 +41,8 @@
                     }
                 }
             }
+
+
         }
     }
 }

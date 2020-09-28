@@ -1,4 +1,33 @@
 (() => {
+    let lockToScrollPos = [];
+
+
+    const handleScroll = () => {
+        window.scrollTo(...lockToScrollPos); 
+    };
+    const handleWheel = (e) => {
+        e.preventDefault();
+    };
+
+    const disableScroll = () => {
+        if (lockToScrollPos.length > 0) {
+            return;
+        }
+        lockToScrollPos = [
+            window.scrollLeft || window.scrollX,
+            window.scrollTop || window.scrollY
+        ];
+        document.addEventListener('scroll', handleScroll, { passive: false });
+        document.addEventListener('wheel', handleWheel, { passive: false });
+        document.addEventListener('touchmove', handleWheel, { passive: false });
+    };
+    const enableScroll = () => {
+        lockToScrollPos = [];
+        document.removeEventListener('scroll', handleScroll, { passive: false });
+        document.removeEventListener('wheel', handleWheel, { passive: false });
+        document.removeEventListener('touchmove', handleWheel, { passive: false });
+    };
+
     const getDetailsView = (button) => {
         const detailsId = button.dataset.showDetails;
         const background = button.dataset.backgroundImage;
@@ -28,6 +57,7 @@
             detailsView.appendChild(detailsContent);
 
             closeButton.addEventListener('click', (evt) => {
+                enableScroll();
                 evt.preventDefault();
                 detailsView.classList.remove('details-view--active');
             });
@@ -40,6 +70,7 @@
     document.querySelectorAll('[data-show-details]').forEach((button) => {
         button.addEventListener('click', (ev) => {
             ev.preventDefault();
+            disableScroll();
             getDetailsView(button).classList.add('details-view--active');
         });
     });
@@ -47,7 +78,6 @@
     (() => {
         const header = document.querySelector('.header');
         const limit = header.getBoundingClientRect().height * 2;
-        console.log(header.getBoundingClientRect())
         window.addEventListener('scroll', (ev) => {
             if (window.scrollY > limit) {
                 document.body.classList.add('sticky-header');
@@ -55,6 +85,23 @@
                 document.body.classList.remove('sticky-header');
             }
         });    
+    })();
+
+    (() => {
+        const menubutton = document.querySelector('.header__menu-button .button');
+        const menu = document.querySelector('.header__menues');
+        menubutton.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            menu.classList.toggle('active');
+            menubutton.classList.toggle('active');
+            document.body.classList.toggle('showing-menu');
+            
+            if (menu.classList.contains('active')) {
+                disableScroll();
+            } else {
+                enableScroll();
+            }
+        });
     })();
 
 

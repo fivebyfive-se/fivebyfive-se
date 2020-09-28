@@ -3,14 +3,13 @@
     .item-list, .details-view {
         .item {
             h2 {
-                @extend %font-size-xxl,
-                %font-black;            
+                @include font(xx-large, 900);
             }
             h3 {
-                @extend %font-size-l;
+                @include font(large, 500);
             }
             h4 {
-                @extend %font-size-m;
+                @include font(default, 500);
             }
 
             &--collection {
@@ -20,20 +19,18 @@
                 border-top: $border-width solid var(--color-text);
 
                 .collection-description {
-                    @extend %font-size-xl,
-                        %font-light;
+                    @include font(x-large, 300);
                 }
                 .collection-tags {
-                    @extend %font-size-m,
-                        %font-extra-light;
+                    @include font(default, 200);
                 }
             }
 
 
             &__meta {
-                @extend %font-size-s,
-                    %font-light;
+                @include font(small, 300);
                 color: var(--color-text-secondary);
+                word-wrap: break-word;
 
                 i, strong {
                     margin-right: .3em;
@@ -43,7 +40,7 @@
                     vertical-align: text-top;
                 }
                 strong {
-                    @extend %font-medium;
+                    @include font($font-weight: 500);
                     &:after { content: ':'; }
                 }
             }
@@ -51,15 +48,22 @@
             &__subitem {
                 @include margin-y(4);
                 .subitem__description {
-                    @extend %font-size-xl,
-                        %font-bold;
-                    
+                    @include font(x-large, 700);
+                    @include margin-bottom(3);
                 }
             }
             &--case {
                 height: 500px;
                 max-height: 33vh;
                 position: relative;
+
+                @include mobile-only {
+                    &.col.col--4 {
+                        flex-basis: 90%;
+                        width: 90%;
+                        margin-left: 10%;
+                    }
+                }
             }
             &__text {
                 @extend %flex,
@@ -75,9 +79,8 @@
 
                 .button--reveal {
                     @extend %flex,
-                        %flex--column,
-                        %font-medium,
-                        %font-size-xl;
+                        %flex--column;
+                    @include font(x-large, 500);
                     @include position-absolute($top: 0, $left: 0);
                     width: 100%;
                     height: 100%;
