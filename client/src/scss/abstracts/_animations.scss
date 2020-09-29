@@ -7,15 +7,13 @@
             width: 100%;
         }
     }
-    @keyframes appear {
+    @keyframes unblur {
         0% {
-            filter: blur(25px) brightness(0.5);
-            opacity: 0;
+            filter: blur($base-size) brightness(0.5);
         }
     
         100% {
-            filter: blur(5px) brightness(1);
-            opacity: 1;
+            filter: blur(0) brightness(1);
         }
     }
     @keyframes shine {

@@ -23,7 +23,7 @@ module.exports = (grunt) => {
             },
             dist: {
                 files: {
-                    'public/js/main.js': 'client/src/js/main.js'
+                    'public/js/main.js': 'client/src/js/main.js',
                 }
             }
         },
