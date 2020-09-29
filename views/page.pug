@@ -35,16 +35,16 @@ mixin case-collection(item)
             .col.col--4.col--push-1.col--m-6
                 +item-tags(caseItem.tags, 'collection__tags')
         .row
-            .col.col--4.col--m--6
+            .col.col--4.col--m--8
                 +item-text('p', caseItem, 'casecollection.description', 'collection__description')
 
         -let i = 1
         for subItem in subItems
             .item__subitem
                 .row
-                    .col.col--2.col--push-1.col--m--4
+                    .col.col--2.col--push-1.col--m--3
                         .subitem__number= i++
-                    .col.col--9.col--m--8
+                    .col.col--9.col--m--9
                         h3.subitem__description= subItem.text
                 .row
                     .col.col--9.col--push-3.col--m--push-1.col--m--11

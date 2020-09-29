@@ -2,12 +2,12 @@
     let lockToScrollPos = [];
 
 
-    const handleScroll = () => {
+    const handleScroll = (e) => {
         window.scrollTo(...lockToScrollPos); 
     };
-    const handleWheel = (e) => {
-        e.preventDefault();
-    };
+    // const handleWheel = (e) => {
+    //     e.preventDefault();
+    // };
 
     const disableScroll = () => {
         if (lockToScrollPos.length > 0) {
@@ -18,14 +18,30 @@
             window.scrollTop || window.scrollY
         ];
         document.addEventListener('scroll', handleScroll, { passive: false });
-        document.addEventListener('wheel', handleWheel, { passive: false });
-        document.addEventListener('touchmove', handleWheel, { passive: false });
+        // document.addEventListener('wheel', handleWheel, { passive: false });
+        // document.addEventListener('touchmove', handleWheel, { passive: false });
     };
     const enableScroll = () => {
         lockToScrollPos = [];
         document.removeEventListener('scroll', handleScroll, { passive: false });
-        document.removeEventListener('wheel', handleWheel, { passive: false });
-        document.removeEventListener('touchmove', handleWheel, { passive: false });
+        // document.removeEventListener('wheel', handleWheel, { passive: false });
+        // document.removeEventListener('touchmove', handleWheel, { passive: false });
+    };
+
+    const textFrom = (query, root = document) => {
+        const el = root.querySelector(query);
+        return el ? el.innerText : ''
+    };
+    const createTag = (tagName, attributes = null, ...children) => {
+        const tag = document.createElement(tagName);
+        if (attributes) {
+            Object.keys(attributes).forEach((k) => tag.setAttribute(k, attributes[k]));
+        }
+        children.filter((c) => !!c).forEach((c) => {
+            tag.appendChild(typeof c === 'string' ? document.createTextNode(c) : c)
+        });
+
+        return tag;
     };
 
     const getDetailsView = (button) => {
@@ -37,41 +53,33 @@
 
         if (!detailsView) {
             const itemDiv = document.querySelector(`[data-details-view=${detailsId}]`);
-            detailsView = document.createElement('div');
-            const detailsImage = document.createElement('div');
-            const detailsContent = document.createElement('div');
-            const detailsTitle = document.createElement('h2');
-            const closeButton = document.createElement('a');
+            const closeButton = createTag('a', { 'class': 'button button--secondary close-button' },
+                createTag('i', { 'class': 'ri-fullscreen-exit-line' }),
+                closeButtonLabel
+            );
 
-            closeButton.classList.add('button', 'button--secondary', 'close-button');
-            closeButton.innerHTML = `<i class="ri-fullscreen-exit-line"></i> ${closeButtonLabel}`;
-
-            detailsView.dataset.detailsViewFor = detailsId;
-            detailsView.classList.add('details-view');
-            detailsImage.classList.add('details-view__image');
-            detailsImage.style.backgroundImage = `url(${background})`;
-            detailsContent.classList.add('details-view__text', 'page-item');
-            detailsTitle.innerHTML = itemDiv.querySelector('.item__title').innerText;
-
-
-            detailsContent.appendChild(detailsTitle);
-
-            const desc = itemDiv.querySelector('.item__description');
-            if (desc) {
-                detailsContent.appendChild(desc.cloneNode(true));
-            }
-            itemDiv.querySelectorAll('.item__meta').forEach((meta) => detailsContent.appendChild(meta.cloneNode(true)));
-
-            detailsContent.appendChild(closeButton);
-            detailsView.appendChild(detailsImage);
-            detailsView.appendChild(detailsContent);
+            detailsView = createTag('div', { 'class': 'details-view', 'data-details-view': detailsId },
+                createTag('div', { 
+                    'class': 'details-view__image', 
+                    'style': `background-image: url(${background});`
+                }),
+                createTag('div', {
+                    'class': 'details-view__text page-item'
+                },
+                    createTag('h2', null, textFrom('.item__title', itemDiv)),
+                    ...Array.from(itemDiv.querySelectorAll('.item__meta')).map((m) => m.cloneNode(true)),
+                    createTag('p', { 'class': 'item__description' }, textFrom('.item__description', itemDiv)),
+                    closeButton
+                )
+            );
 
             closeButton.addEventListener('click', (evt) => {
                 enableScroll();
                 evt.preventDefault();
+                document.body.classList.remove('showing-details');
                 detailsView.classList.remove('details-view--active');
             });
-
+            document.body.classList.add('showing-details');
             document.body.appendChild(detailsView);
         }
         return detailsView;

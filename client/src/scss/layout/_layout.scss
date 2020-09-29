@@ -34,7 +34,6 @@
             @include margin(0);
             background-color: var(--color-background);
             transform: translateX(-50%);
-
             transition: background-color .5s;
 
             &:after {
@@ -46,6 +45,14 @@
                 transform: none;
             }
         }
+    }
+    body.showing-menu,
+    body.showing-details {
+        overflow: hidden;
+    }
+
+    body.sticky-header {
+
 
         main {
             @include margin-top(5);

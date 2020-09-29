@@ -92,9 +92,9 @@
             }
 
             .close-button {
-                @include margin-top(5);
+                @include position-fixed($right: size(1), $bottom: size(1), $z-index: $z-index-top);
                 @include padding(.5);
-                margin-left: $col-width * 2;
+                margin: 0;
             }
         }
     }

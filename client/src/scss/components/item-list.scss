@@ -3,17 +3,25 @@
     .details-view {
         .item {
             &--collection {
-                @include margin-y(6);
-                @include padding-y(4);
+                @include desktop-only {
+                    @include margin-y(6);
+                    @include padding-y(4);    
+                }
+                @include mobile-only {
+                    @include margin-y(2);
+                    @include padding-y(1);
+                }
 
                 border-top: $border-width solid var(--color-text);
 
                 .collection__header {
                     align-items: flex-end;
                 }
-
                 .collection__description {
                     @include font(large, 400);
+                    @include mobile-only {
+                        @include font(default, 400);
+                    }
                 }
 
                 .collection__tags {
@@ -50,7 +58,12 @@
                 @include margin-y(2);
 
                 .subitem__number {
-                    @include font(xxx-large, 900);
+                    @include desktop-only {
+                        @include font(xxx-large, 900);
+                    }
+                    @include mobile-only {
+                        @include font(xxx-large-mobile, 900);
+                    }
                 }
 
                 .subitem__description {

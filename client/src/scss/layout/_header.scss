@@ -15,7 +15,7 @@
         }
 
         @include mobile-only {
-            @include margin-bottom(3);
+            @include margin-bottom(2);
     
             height: $mobile-menu-height;
             &__logo,

@@ -10,8 +10,9 @@
         }
         word-wrap: break-word;
     }
+
     .page-intro {
-        @include margin-y(2);
+        @include margin-top(2);
     }
 }
 
