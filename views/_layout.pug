@@ -1,6 +1,17 @@
 -
     const currLang = page.lang || 'en-US';
     const otherLang = currLang === 'en-US' ? 'sv-SE' : 'en-US';
+    const colClass = (width=6, push=0, mobileWidth=0, mobilePush=0) => {
+        const m_width = mobileWidth || Math.min(width * 2, 12 - mobilePush),
+        m_push = mobilePush || (push > 1 ? push / 2 : 0),
+        m_pushClass = m_push > 0 ? `col--m--push-${m_push}` : '',
+        pushClass = push > 0 ? `col--push-${push}` : '';
+        return `col col--${width} ${pushClass} col--m--${m_width} ${m_pushClass}`;
+    }
+
+mixin col(width=6, push=0, mobileWidth=0, mobilePush=0)
+    .col(class=colClass(width, push, mobileWidth, mobilePush))
+        block
 
 mixin nav-link(link, label, icon, ...classes)
     -
@@ -51,7 +62,6 @@ html(lang=lang, data-theme=theme)
         block head
     body
         .background
-            img(class='background__image' src='/images/bg/0.jpg' alt='background')
 
         header.header
             .grid
@@ -84,7 +94,7 @@ html(lang=lang, data-theme=theme)
 
         footer.grid
             .row
-                .col.col--6.col--push-6.col--m--6.col--m--push-6
+                +col(10, 2, 10, 2)
                     p !{site.footerText}
 
         script(src='/js/main.js')
