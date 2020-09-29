@@ -1,0 +1,40 @@
+@include critical {
+    .header__logo {
+        @extend %flex,
+            %flex--justify-space-between;
+        $logo-height: 150px;
+        $wordmark-width: 621px;
+        $wordmark-height: 150px;
+    
+        @include desktop-only {
+            height: $menu-height;
+            $logo-display-height: $menu-height - size(1);
+            $wordmark-display-height: grid-size($logo-display-height * .8);
+            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
+            &--logo {
+                @include margin-right(.5);
+                height: $logo-display-height;
+                width: $logo-display-height;
+            }
+            &--wordmark {
+                height: $wordmark-display-height;
+                width: $wordmark-display-width;
+            }    
+        }
+        @include mobile-only {
+            height: $mobile-menu-height;
+            $logo-display-height: $mobile-button-size;
+            $wordmark-display-height: grid-size-m($logo-display-height * .8);
+            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
+            &--logo {
+                @include margin-right(.5);
+                height: $logo-display-height;
+                width: $logo-display-height;
+            }
+            &--wordmark {
+                height: $wordmark-display-height;
+                width: $wordmark-display-width;
+            }    
+        }
+    }
+}

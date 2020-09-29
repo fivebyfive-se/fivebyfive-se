@@ -1,109 +1,94 @@
 @include critical {
-
-    .item-list, .details-view {
+    .item-list,
+    .details-view {
         .item {
-            h2 {
-                @include font(xx-large, 900);
-            }
-            h3 {
-                @include font(x-large, 700);
-            }
-            h4 {
-                @include font(large, 700);
-            }
-            h5 {
-                @include font(default, 500);
-            }
-
             &--collection {
                 @include margin-y(6);
                 @include padding-y(4);
 
                 border-top: $border-width solid var(--color-text);
 
-                .collection-description {
-                    @include font(x-large, 300);
+                .collection__header {
+                    align-items: flex-end;
                 }
-                .collection-tags {
-                    @include font(default, 200);
+
+                .collection__description {
+                    @include font(large, 400);
+                }
+
+                .collection__tags {
+                    @include font(default, 100);
                 }
             }
 
 
             &__meta {
-                @include font(small, 300);
+                @include font(small, 100);
                 color: var(--color-text-secondary);
                 word-wrap: break-word;
 
-                i, strong {
-                    margin-right: .3em;
-                }
-                i {
-                    font-size: .8em;
-                    vertical-align: text-top;
-                }
+                i,
                 strong {
-                    @include font($font-weight: 500);
-                    &:after { content: ':'; }
+                    margin-right: .2em;
+                }
+
+                i {
+                    vertical-align: middle;
+                    font-size: .8em;
+                }
+
+                strong {
+                    font-weight: 400;
+
+                    &:after {
+                        content: ':';
+                    }
                 }
             }
-    
+
             &__subitem {
                 @include margin-y(2);
+
                 .subitem__number {
-                    @include font(xx-large, 900);
+                    @include font(xxx-large, 900);
                 }
+
                 .subitem__description {
                     @include margin-bottom(2);
                 }
             }
+
             &--case {
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
                 height: grid-size(300px);
                 position: relative;
+
                 @include mobile-only {
-                    height:grid-size-m(300px);
+                    height: grid-size-m(300px);
                 }
             }
+
             &__text {
                 @extend %flex,
-                    %flex--column,
-                    %flex--justify-space-between,
-                    %flex--align-flex-start;
+                %flex--column,
+                %flex--justify-space-between,
+                %flex--align-flex-start;
                 @include position-absolute($top: 0, $left: 0);
-                @include padding(2);
+                @include padding(.5);
 
                 width: 100%;
                 height: 100%;
                 background-color: var(--color-background-overlay);
-
-                .button--reveal {
-                    @extend %flex,
-                        %flex--column;
-                    @include font(x-large, 500);
-                    @include position-absolute($top: 0, $left: 0);
-                    width: 100%;
-                    height: 100%;
-                    color: var(--color-primary);
-                    background-color: transparent;
-
-                    > i, > span {
-                        display: block;
-                    }
-                    > i {
-                        transform: scale(3);
-                    }
-                    > span {
-                        height: 0;
-                        overflow: hidden;
-                    }
-                }
             }
-            &--case:nth-child(even) {
-                .item__text {
-                    background-color: var(--color-background-secondary-overlay);
+
+            &__section {
+                width: 100%;
+
+                &--top {
+                    @extend %flex,
+                    %flex--justify-space-between;
                 }
             }
         }
@@ -111,31 +96,60 @@
 }
 
 @include non-critical {
-    .item-list, .details-view {
+    .item-list {
         .item {
-            &__text {
-                .button--reveal {
-                    > i {
-                        @include margin-bottom(0);
-                    }
-                    > span {
-                        transition: height .3s;
-                        white-space: pre;
-                    }
-                    &:hover {
-                        color: var(--color-secondary);
-                        border-color: var(--color-secondary);
+            &--case {
+                &:nth-child(even) {
+                    .item__text {
                         background-color: var(--color-background-secondary-overlay);
+                    }
+                }
+                &:before, &:after {
+                    @include position-absolute($left: 0, $top: 0, $z-index: $z-index-content);
+                    @include padding-left(.5);
+                    @include padding-top(3);
+                    box-sizing: border-box;
+                    opacity: 0;
+                    transition: all .3s ease-in-out;
+                    color: var(--color-primary);
+                }
+                &:before {
+                    @extend %flex,
+                        %flex--justify-flex-start,
+                        %flex--align-flex-start;
+                    @include font(x-large);
+                    content: "\ed9c";
+                    height: 100%;
+                    width: 100%;
+                    // background-color: var(--color-pale-red-overlay);
+                    font-family: 'remixicon' !important;
+                }
+                &:after {
+                    @include font(x-large, 700);
+                    content: attr(data-label);
+                    transform: translateX(100%);
+                }
 
-                        > i {
-                            @include margin-bottom(3);
-                        }
-                        > span {
-                            height: 3em;
-                        }
-                    }    
+                &:hover {
+                    cursor: pointer;
+                    &:before {
+                        backdrop-filter: brightness(50%) blur(4px);
+                    }
+                    &:before, &:after {
+                        opacity: 1;
+                    }
+                    &:after {
+                        transform: translateX(size(2));
+                    }
+
                 }
             }
+        }
+
+    }
+    [data-theme="default"] {
+        .item-list .item--case:hover:before {
+            backdrop-filter: brightness(120%)  blur(4px);
         }
     }
 }

@@ -11,8 +11,10 @@
     }
 
     body {
-        @include font(default, $font-weight: 400);
+        @include font($size: default, $font-weight: 400);
         font-family: $font-body;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
         background-color: var(--color-background);
         color: var(--color-text);
         line-height: 1.2;
@@ -24,6 +26,21 @@
     h1, h2, h3, h4, h5, p {
         margin: 0;
         padding: 0;
+    }
+    h2 {
+        @include font(xx-large, 700);
+    }
+
+    h3 {
+        @include font(x-large, 700);
+    }
+
+    h4 {
+        @include font(large, 700);
+    }
+
+    h5 {
+        @include font(default, 700);
     }
 }
 

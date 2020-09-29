@@ -1,0 +1,57 @@
+@include critical {
+    .header {
+        @extend %flex,
+            %flex--justify-space-between,
+            %flex--align-flex-end;
+
+        @include desktop-only {
+            @include margin-bottom(5);
+    
+            height: $menu-height;
+            &__logo,
+            &__menues {
+                height: $menu-height;
+            }
+        }
+
+        @include mobile-only {
+            @include margin-bottom(3);
+    
+            height: $mobile-menu-height;
+            &__logo,
+            &__menues {
+                height: auto;
+            }
+            &__menues {
+                width: 0;
+                overflow: hidden;    
+            }
+        }
+
+        &__menues {
+            @extend %flex,
+                %flex--column,
+                %flex--justify-flex-end,
+                %flex--align-flex-end;
+        }
+
+    }
+}
+
+@include non-critical {
+    .header {
+        position: relative;
+        &:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: $border-width;
+            background-color: var(--color-text);
+            z-index: -1;
+            transition: width 1s ease-in-out;
+            //animation: grow-width 1s ease-in-out 1.5s 1 forwards;
+        }
+    }
+}

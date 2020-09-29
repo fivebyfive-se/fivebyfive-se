@@ -10,8 +10,12 @@
     'base/typography';
 
 @import
+    'layout/grid',
     'layout/layout',
-    'layout/grid';
+    'layout/header',
+    'layout/menu',
+    'layout/logo',
+    'layout/menu-button';
 
 @import
     'views/page';

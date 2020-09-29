@@ -28,13 +28,15 @@ mixin case-collection(item)
     - const caseItem = item.item;
     - const subItems = item.sub_items;
     .item.item--collection.grid
-        .row
-            .col.col--3.col--m--12
+        .row.collection__header
+            .col.col--4.col--m--6
                 //- p.superheadline.item__title= __('work.casecollection')
-                +item-text('h2', caseItem, 'casecollection.title', 'item__title')
-                +item-tags(caseItem.tags, 'collection-tags')
-            .col.col--3.col--m-6
-                +item-text('p', caseItem, 'casecollection.description', 'collection-description')
+                +item-text('h2', caseItem, 'casecollection.title', 'item__title', 'collection__title')
+            .col.col--4.col--push-1.col--m-6
+                +item-tags(caseItem.tags, 'collection__tags')
+        .row
+            .col.col--4.col--m--6
+                +item-text('p', caseItem, 'casecollection.description', 'collection__description')
 
         -let i = 1
         for subItem in subItems
@@ -55,20 +57,15 @@ mixin case-item(item, colClass='col--4')
     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
     - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
 
-    .item.item--case(style=`background-image: url(${image.url})`, class=colClass).col.col--m--12
+    .item.item--case(style=`background-image: url(${image.url})`, class=colClass, data-label=__('button.open'), data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close')).col.col--m--12
         .item__text(data-details-view=`${item.uid}`)
-            .item__section
+            .item__section.item__section--top
                 - const date = dateFmt.format(item.getDate('case.release_date'))
                 +item-meta(date, 'item__release-date', 'calendar')
+                +item-meta(item.getStructuredText('case.subtitle').asText(), 'item__category', 'pantone')
 
+            .item_section
                 +item-text('h4', item, 'case.title', 'item__title')
-                +item-text('h5', item, 'case.subtitle', 'item__title', 'item__title--subtitle')
-
-
-            .item__section.item__details
-                a.button.button--reveal.details-view__button(data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
-                    i.ri-fullscreen-line
-                    span= __('button.open')
 
             .item__section
                 +item-tags(item.tags)

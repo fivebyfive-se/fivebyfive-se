@@ -40,6 +40,7 @@
             detailsView = document.createElement('div');
             const detailsImage = document.createElement('div');
             const detailsContent = document.createElement('div');
+            const detailsTitle = document.createElement('h2');
             const closeButton = document.createElement('a');
 
             closeButton.classList.add('button', 'button--secondary', 'close-button');
@@ -50,7 +51,16 @@
             detailsImage.classList.add('details-view__image');
             detailsImage.style.backgroundImage = `url(${background})`;
             detailsContent.classList.add('details-view__text', 'page-item');
-            detailsContent.innerHTML = itemDiv.innerHTML;
+            detailsTitle.innerHTML = itemDiv.querySelector('.item__title').innerText;
+
+
+            detailsContent.appendChild(detailsTitle);
+
+            const desc = itemDiv.querySelector('.item__description');
+            if (desc) {
+                detailsContent.appendChild(desc.cloneNode(true));
+            }
+            itemDiv.querySelectorAll('.item__meta').forEach((meta) => detailsContent.appendChild(meta.cloneNode(true)));
 
             detailsContent.appendChild(closeButton);
             detailsView.appendChild(detailsImage);

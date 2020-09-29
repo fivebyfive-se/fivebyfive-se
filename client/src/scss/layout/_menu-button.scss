@@ -1,0 +1,84 @@
+@include critical {
+    @include desktop-only {
+        .header__menu-button {
+            display: none;
+        }
+    }
+    @include mobile-only {
+        .header__menu-button {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: $mobile-menu-inner-height;
+            $button-size: $mobile-button-size;
+            
+            .button {
+                border: none;
+                background: transparent;
+                color: var(--color-text);
+                height: $button-size;
+                width: $button-size;
+                position: relative;
+                line-height: 0;
+                
+                .line {
+
+                    &, &:before, &:after {
+                        position: absolute;
+                        display: block;
+                        height: $border-width * 2;
+                        width: $button-size;
+                        left: 0;
+
+                        background-color: var(--color-text);    
+                    }
+                    &:before, &:after {
+                        content: '';
+                    }
+                    & {
+                        top: ($button-size / 2) - $border-width;
+                    }
+                    &:before {
+                        top: -($button-size / 3);
+                    }
+                    &:after {
+                        top: ($button-size / 3);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include non-critical {
+    @include mobile-only {
+        .header__menu-button {
+            .button {
+                .line {
+                    &, &:after, &:before {
+                        transition: all .3s ease-in-out;
+                    }
+                }
+                &:focus {
+                    outline: none;
+                }
+                &.active {
+                    .line {
+                        & {
+                            width: 0;
+                        }
+                        &:before, &:after {
+                            top: 50%;
+                        }
+                        &:before {
+                            transform: rotate(315deg);
+                        }
+                        &:after {
+                            transform: rotate(-315deg);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

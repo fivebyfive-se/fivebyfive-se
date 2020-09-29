@@ -31,14 +31,10 @@
                 flex-grow: 0;
             }
             &__text {
-                width: 40vw;
-                max-width: 40vw;
-                flex-basis: 40%;
+                @include flex-item-width($col-width * 5, true);
             }
             &__image {
-                width: 60vw;
-                max-width: 60vw;
-                flex-basis: 60%;
+                @include flex-item-width($col-width * 7, true);
             }
         }
         @include mobile-only {
@@ -61,18 +57,17 @@
         &__text {
             @extend %flex,
                 %flex--column,
-                %flex--align-flex-start;
-            @include padding(6, 4);
+                %flex--align-flex-start,
+                %flex--justify-flex-start;
+            @include padding(2);
             overflow-y: auto;
 
-            .page-item__section {
-                max-width: 100%;
-                @include margin-bottom(1);
-
-                .page-item__description {
-                    @include margin-y(3);
-                }
+            .item__description {
+                @include font(large, 400);
+                @include margin-y(1, 2);
+                margin-left: $col-width * 2;
             }
+
             iframe {
                 width: 100%;
                 height: 33vh;
@@ -98,6 +93,8 @@
 
             .close-button {
                 @include margin-top(5);
+                @include padding(.5);
+                margin-left: $col-width * 2;
             }
         }
     }

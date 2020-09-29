@@ -1,315 +1,27 @@
 @include critical {
-    header, main, footer {
+    header,
+    main,
+    footer {
         @include container();
     }
+
     @include mobile-only {
-        header, main, footer {
+        header,
+        main,
+        footer {
             max-width: 100vw;
             overflow-x: hidden;
+        }
+        header {
+            @include padding-x(.5);
+        }
+        main, footer {
             @include padding(1);
-        }    
-    }
-    .header {
-        @extend %flex,
-            %flex--justify-space-between,
-            %flex--align-flex-end;
-        @include margin-bottom(5);
-
-        @include desktop-only {
-            height: grid-size($menu-height);
-            &__logo,
-            &__menues {
-                height: grid-size($menu-height);
-            }
-            &__menu-button {
-                display: none;
-            }
-        }
-
-        @include mobile-only {
-            height: grid-size-m($menu-height);
-            &__logo,
-            &__menues {
-                height: grid-size-m($mobile-menu-height);
-            }
-        }
-
-        &__menues {
-            @extend %flex,
-                %flex--column,
-                %flex--justify-flex-end,
-                %flex--align-flex-end;
-
-
-            
-            @include mobile-only {
-                width: 0;
-                overflow: hidden;    
-            }
-        }
-
-
-
-        @include mobile-only {
-            &__menu-button {
-                display: flex;
-                justify-content: flex-end;
-                align-items: center;
-                height: grid-size($mobile-menu-height);
-                $button-size: grid-size($mobile-menu-height / 2);
-                
-                .button {
-                    border: none;
-                    background: transparent;
-                    color: var(--color-text);
-                    height: $button-size;
-                    width: $button-size;
-                    position: relative;
-                    line-height: 0;
-
-                    &:focus {
-                        outline: none;
-                    }
-                    
-                    .line {
-
-                        &, &:before, &:after {
-                            position: absolute;
-                            display: block;
-                            height: $border-width * 2;
-                            width: $button-size;
-                            left: 0;
-    
-                            background-color: var(--color-text);    
-                        }
-                        &:before, &:after {
-                            content: '';
-                        }
-                        & {
-                            top: ($button-size / 2) - $border-width;
-                        }
-                        &:before {
-                            top: -($button-size / 3);
-                        }
-                        &:after {
-                            top: ($button-size / 3);
-                        }
-                    }
-                }
-            }
-        }
-
-        &__menu {
-            @extend %flex,
-                %flex--row,
-                %flex--justify-flex-end;
-            width: 100%;
-
-            .navigation-item {
-                @extend %flex;
-
-
-                text-decoration: none;
-                text-transform: lowercase;
-                flex-grow: 0;
-                flex-shrink: 0;
-
-                > i {
-                    @include margin-right(.2);
-                }
-            }
-            &--top-menu {
-                @include margin-bottom(.5);
-                
-                .navigation-item {
-                    @include font(x-small, 300);
-                    color: var(--color-text-secondary);
-                }
-            }
-            &--main-menu {
-                .navigation-item {
-                    @include font(small, 500);
-                    @include padding-y(.5);
-                    color: var(--color-text);
-
-                    &--active {
-                        color: var(--color-primary);
-                        border-bottom-color: var(--color-primary);
-                    }
-                    &--highlight {
-                        @extend %button, %button--secondary;
-                        color: var(--color-background);
-                        background-color: var(--color-text);
-                    }
-                }
-            }
-        }
-    }
-    .header__logo {
-        @extend %flex,
-            %flex--justify-space-between;
-        $logo-height: 150px;
-        $wordmark-width: 621px;
-        $wordmark-height: 150px;
-    
-        @include desktop-only {
-            height: $menu-height;
-            $logo-display-height: grid-size($menu-height - size(2));
-            $wordmark-display-height: grid-size($logo-display-height * .9);
-            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
-            &--logo {
-                @include margin-right(1);
-                height: $logo-display-height;
-                width: $logo-display-height;
-            }
-            &--wordmark {
-                height: $wordmark-display-height;
-                width: $wordmark-display-width;
-            }    
-        }
-        @include mobile-only {
-            height: $mobile-menu-height;
-            $logo-display-height: grid-size-m($mobile-menu-height - size(2));
-            $wordmark-display-height: grid-size-m($logo-display-height * .8);
-            $wordmark-display-width: $wordmark-width * ($wordmark-display-height / $wordmark-height);
-            &--logo {
-                @include margin-right(.5);
-                height: $logo-display-height;
-                width: $logo-display-height;
-            }
-            &--wordmark {
-                height: $wordmark-display-height;
-                width: $wordmark-display-width;
-            }    
         }
     }
 }
 
 @include non-critical {
-    .header {
-        position: relative;
-        &:after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: $border-width;
-            background-color: var(--color-text);
-            z-index: -1;
-            transition: width 1s ease-in-out;
-            //animation: grow-width 1s ease-in-out 1.5s 1 forwards;
-        }
-
-        @include mobile-only {
-            &__menu-button {
-                .button {
-                    .line {
-                        &, &:after, &:before {
-                            transition: all .3s ease-in-out;
-                        }
-                    }
-                    &:focus {
-                        outline: none;
-                    }
-                    &.active {
-                        .line {
-                            & {
-                                width: 0;
-                            }
-                            &:before, &:after {
-                                top: 50%;
-                            }
-                            &:before {
-                                transform: rotate(315deg);
-                            }
-                            &:after {
-                                transform: rotate(-315deg);
-                            }
-                        }
-                    }
-                }
-            }
-            &__menues {
-                @include position-fixed($top: $menu-height, $left: 0, $bottom: 0, $z-index: $z-index-menu);
-                flex-direction: column-reverse;
-                justify-content: space-between;
-                align-items: center;
-                height: auto;
-                transition: all .4s ease-in-out;
-                transform: translateX(100%);
-                background-color: var(--color-background);
-
-                .header__menu {
-                    @include margin(0);
-                    width: 100%;
-
-                    .navigation-item {
-                        @include padding(2, 1);
-                    }
-
-                    &--main-menu {
-                        flex-direction: column;
-                        background-color: var(--color-background-secondary);
-
-                        .navigation-item {
-                            font-size: 1.5rem;
-                            font-weight: normal;
-
-                            flex-shrink: 1;
-                            justify-content: flex-start;
-                            width: 100%;   
-                        }
-                    }
-                    &--top-menu {
-                        bottom: $mobile-menu-height;
-                        height: $mobile-menu-height;
-                        background-color: var(--color-background-tertiary);
-                        .navigation-item {
-                            height: $mobile-menu-height;
-                            font-size: 1rem;
-                            flex-basis: 50%;
-                            width: 50%;
-                        }
-                    }
-                }
-
-                &.active {
-                    width: 100vw;
-                    transform: translateX(0);
-                }
-            }
-        }
-
-        &__menu {
-            .navigation-item {
-                transition: border-color .25s;
-                border: 0px solid transparent;
-                &:hover {
-                    color: var(--color-secondary);
-                    border-color: var(--color-secondary);
-                }
-            }
-            &--top-menu {
-                .navigation-item {
-                    border-width: $border-width 0;
-                }
-            }
-            &--main-menu {
-                .navigation-item {
-                    border-bottom-width: $border-width;
-
-                    &--highlight {
-                        &:hover {
-                            color: var(--color-background);
-                            border-color: transparent;
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     footer {
         @include margin-top(3);
         @include padding-y(2);
@@ -324,15 +36,17 @@
             transform: translateX(-50%);
 
             transition: background-color .5s;
-            
+
             &:after {
                 width: 100%;
             }
+
             @include mobile-only {
                 left: 0;
                 transform: none;
             }
         }
+
         main {
             @include margin-top(5);
             padding-top: $menu-height;
