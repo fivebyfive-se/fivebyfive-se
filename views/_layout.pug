@@ -19,17 +19,17 @@ html(lang=lang, data-theme=theme)
         meta(charset='utf-8')
         meta(http-equiv='X-UA-Compatible', content='IE=edge')
         meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name="description", content=homepage.description)
+        meta(name="description", content=site.description)
 
         meta(property="og:url", content="https://www.fivebyfive.se/")
         meta(property="og:type", content="website")
         meta(property="og:title", content=page.title)
-        meta(property="og:description", content=homepage.description)
+        meta(property="og:description", content=site.description)
         meta(property="og:image", content="/images/social-graph.png")
         meta(property="twitter:url", content="https://www.fivebyfive.se/")
         meta(name="twitter:card", content="/images/social-graph.png")
         meta(name="twitter:title", content=page.title)
-        meta(name="twitter:description", content=homepage.description)
+        meta(name="twitter:description", content=site.description)
         meta(name="twitter:image", content="/images/social-graph.png")
 
         link(rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png")
@@ -38,7 +38,9 @@ html(lang=lang, data-theme=theme)
 
         meta(name='application-name', content='Fivebyfive.se')
         meta(name='color-scheme', content='dark light')
-        meta(name='theme-color', content='#0D171A')
+
+        meta(name='background-color', content=(theme === 'dark' ? '#0d171a' : '#e6e9e4'))
+        meta(name='theme-color', content='#f26b5b')
 
         link(rel='manifest', href='/meta/manifest.json')
 
@@ -80,7 +82,7 @@ html(lang=lang, data-theme=theme)
         footer.grid
             .row
                 .col.col--6.col--push-6.col--m--6.col--m--push-6
-                    p Copyright &copy; 2020 Fivebyfive AB.
+                    p !{site.footerText}
 
         script(src='/js/main.js')
         link(rel='stylesheet', href='/css/non-critical.css')
