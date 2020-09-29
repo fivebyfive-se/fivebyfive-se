@@ -26,18 +26,17 @@
         }
         &:before {
             background: 
-                linear-gradient(to bottom, var(--color-background), transparent 66%),
-                linear-gradient(to right, var(--color-background), transparent);
-            mix-blend-mode: multiply;
+                linear-gradient(to bottom, var(--color-background), transparent 50%, var(--color-background)),
+                linear-gradient(to right, var(--color-background), transparent 75%);
             z-index: -5;
         }
         &:after {
             background: radial-gradient(ellipse at bottom left, 
-                    var(--color-background), 
-                    var(--color-primary) 35%,
-                    var(--color-pale-red)
+                    var(--color-background) ,
+                    var(--color-pale-red) 60%,
+                    var(--color-primary)
                 );
-            mix-blend-mode: overlay;
+            mix-blend-mode: hue;
             z-index: -1;
         }
     }
