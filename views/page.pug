@@ -24,41 +24,42 @@ mixin item-text(tag, item, alias, ...classes)
         - const html = `<${tag} class="${className}">${text.asText()}</${tag}>`;
         != html
 
+
 mixin case-collection(item)
     - const caseItem = item.item;
     - const subItems = item.sub_items;
     .item.item--collection.grid
         .row.collection__header
-            .col.col--4.col--m--6
+            +col(4, 0, 11, 1)
                 //- p.superheadline.item__title= __('work.casecollection')
                 +item-text('h2', caseItem, 'casecollection.title', 'item__title', 'collection__title')
-            .col.col--4.col--push-1.col--m-6
+            +col(4, 1, 10, 2)
                 +item-tags(caseItem.tags, 'collection__tags')
         .row
-            .col.col--4.col--m--8
+            +col(4, 0, 10, 2)
                 +item-text('p', caseItem, 'casecollection.description', 'collection__description')
 
         -let i = 1
         for subItem in subItems
             .item__subitem
                 .row
-                    .col.col--2.col--push-1.col--m--3
+                    +col(1,  1, 1, 1)
                         .subitem__number= i++
-                    .col.col--9.col--m--9
+                    +col(10, 0, 9, 1)
                         h3.subitem__title= subItem.title
                         p.subitem__description= subItem.text
                 .row
-                    .col.col--9.col--push-3.col--m--push-1.col--m--11
+                    +col(12, 0, 12)
                         +list-items(subItem.items, 'subcollection')(class='row')
 
 
 
-mixin case-item(item, colClass='col--4')
+mixin case-item(item, numCols)
     - const image = item.getImage('case.image')
     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
     - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
 
-    .item.item--case(style=`background-image: url(${image.url})`, class=colClass, data-label=__('button.open'), data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close')).col.col--m--12
+    .item.item--case.col.col--m--12(class=`col--${numCols}`, style=`background-image: url(${image.url})`, data-label=__('button.open'), data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
         .item__text(data-details-view=`${item.uid}`)
             .item__section.item__section--top
                 - const date = dateFmt.format(item.getDate('case.release_date'))
@@ -88,22 +89,20 @@ mixin list-items(items, listType)
     - let i = 0
     div.item-list(class=`item-list--${listType}`)&attributes(attributes)
         for item in items
-            - i++
             case item.type
                 when 'casecollection'
                     +case-collection(item)
                 when 'case'
-                    - let colClass = 'col--4'
-                    if ((i === 1 && items.length > 0 && items.length % 3 !== 0) || (i === items.length && items.length % 3 === 1))
-                        - colClass = 'col--8'
-                        
-                    +case-item(item, colClass)
+                    - const numCols = i++ % 3 == 0 ? '5' : (i % 2 == 0 ? '3' : '4')
+                    +case-item(item, numCols)
 block content
     .page-header
-        h1.page-heading= page.heading
         .grid
             .row
-                .col.col--9.col--push-3.col--m--11.col--m--push-1.page-intro
+                .col.col--12.col--m--12
+                    h1.page-heading= page.heading
+            .row
+                .col.col--9.col--push-3.col--m--10.col--m--push-2.page-intro
                     != page.intro
 
     .page-body

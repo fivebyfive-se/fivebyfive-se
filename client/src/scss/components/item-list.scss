@@ -4,15 +4,13 @@
         .item {
             &--collection {
                 @include desktop-only {
-                    @include margin-y(6);
-                    @include padding-y(4);    
+                    @include margin-y(4);
+                    @include padding-y(2);    
                 }
                 @include mobile-only {
                     @include margin-y(2);
                     @include padding-y(1);
                 }
-
-                border-top: $border-width solid var(--color-text);
 
                 .collection__header {
                     align-items: flex-end;
@@ -62,7 +60,7 @@
                         @include font(xxx-large, 900);
                     }
                     @include mobile-only {
-                        @include font(xxx-large-mobile, 900);
+                        @include font(xx-large, 900);
                     }
                 }
 
@@ -79,7 +77,7 @@
                 position: relative;
 
                 @include mobile-only {
-                    height: grid-size-m(300px);
+                    height: grid-size-m(200px);    
                 }
             }
 
@@ -94,6 +92,12 @@
                 width: 100%;
                 height: 100%;
                 background-color: var(--color-background-overlay);
+                @include mobile-only {
+                    @include padding-left(3);
+                }
+            }
+            &--case:nth-child(3n+1) .item__text {
+                @include padding-left(4);
             }
 
             &__section {
@@ -102,6 +106,9 @@
 
                 &--title {
                     @include margin-y(1);
+                    @include mobile-only {
+                        @include margin-y(.5);
+                    }
                 }
                 &--top {
                     @extend %flex,

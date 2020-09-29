@@ -8,6 +8,10 @@
         @include mobile-only {
             @include font(xxx-large-mobile);
         }
+        background: linear-gradient(45deg, var(--color-text), var(--color-text-secondary));
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
         word-wrap: break-word;
     }
 

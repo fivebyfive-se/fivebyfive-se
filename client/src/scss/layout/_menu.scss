@@ -16,6 +16,7 @@
 
             >i {
                 margin-right: .25em;
+                vertical-align: text-bottom;
             }
         }
 
@@ -37,13 +38,28 @@
                 &--active {
                     color: var(--color-primary);
                     border-bottom-color: var(--color-primary);
+                    @include mobile-only {
+                        span {
+                            text-decoration: line-through;
+                        }
+                    }
                 }
 
                 &--highlight {
                     @extend %button,
                     %button--secondary;
-                    color: var(--color-background);
-                    background-color: var(--color-text);
+
+                    @include desktop-only {
+                        color: var(--color-background);
+                        background-color: var(--color-text);    
+                    }
+                    @include mobile-only {
+                        color: var(--color-secondary);
+                        background-color: transparent;
+                        span {
+                            font-weight: 700;
+                        }
+                    }
                 }
             }
         }
