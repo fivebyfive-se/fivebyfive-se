@@ -52,10 +52,13 @@
     }
 
     body.sticky-header {
-
-
         main {
-            @include margin-top(5);
+            @include desktop-only {
+                @include margin-top(5);
+            }
+            @include mobile-only {
+                @include margin-top(2);
+            }
             padding-top: $menu-height;
         }
     }
