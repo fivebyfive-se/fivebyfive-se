@@ -30,13 +30,12 @@ mixin case-collection(item)
     - const subItems = item.sub_items;
     .item.item--collection.grid
         .row.collection__header
-            +col(4, 0, 11, 1)
-                //- p.superheadline.item__title= __('work.casecollection')
+            +col(4, 0, 10, 1)
                 +item-text('h2', caseItem, 'casecollection.title', 'item__title', 'collection__title')
-            +col(4, 1, 10, 2)
+            +col(4, 1, 8, 2)
                 +item-tags(caseItem.tags, 'collection__tags')
         .row
-            +col(4, 0, 10, 2)
+            +col(4, 0, 8, 2)
                 +item-text('p', caseItem, 'casecollection.description', 'collection__description')
 
         -let i = 1
@@ -45,7 +44,7 @@ mixin case-collection(item)
                 .row
                     +col(1,  1, 1, 1)
                         .subitem__number= i++
-                    +col(10, 0, 9, 1)
+                    +col(10, 0, 8, 1)
                         h3.subitem__title= subItem.title
                         p.subitem__description= subItem.text
                 .row
@@ -99,11 +98,12 @@ block content
     .page-header
         .grid
             .row
-                .col.col--12.col--m--12
-                    h1.page-heading= page.heading
+                +col(8, 0, 10, 1)
+                    h1.page-heading(class=`page-heading--${page.uid}`)= page.heading
             .row
-                .col.col--9.col--push-3.col--m--10.col--m--push-2.page-intro
-                    != page.intro
+                +col(9, 3, 10, 1)
+                    .page-intro
+                        != page.intro
 
     .page-body
         +list-items(page.items, 'root')

@@ -2,16 +2,14 @@
     .page-header {
         position: relative;
     }
- 
+
     .page-heading {
         @include font(xxx-large, 500);
+
         @include mobile-only {
             @include font(xxx-large-mobile);
         }
-        background: linear-gradient(45deg, var(--color-text), var(--color-text-secondary));
-        background-clip: text;
-        -webkit-background-clip: text;
-        color: transparent;
+
         word-wrap: break-word;
     }
 
@@ -21,10 +19,33 @@
 }
 
 @include non-critical {
-    .page-headline {
-        &--start { color: var(--color-pale-red); }
-        &--work  { color: var(--color-pink); }
-        &--services { color: var(--color-dark-red); }
-        &--contact { color: var(--color-teal); }
+    .page-heading {
+        &--start {
+            background: url(/images/bg/0.jpg);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &--work {
+            background: url(/images/bg/1.jpg);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &--services {
+            background: url(/images/bg/2.jpg);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        &--contact {
+            background: url(/images/bg/3.jpg);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
     }
 }

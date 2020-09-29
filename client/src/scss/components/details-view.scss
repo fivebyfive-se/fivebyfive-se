@@ -92,7 +92,7 @@
             }
 
             .close-button {
-                @include position-fixed($right: size(1), $bottom: size(1), $z-index: $z-index-top);
+                @include position-fixed($right: size(2), $bottom: size(2), $z-index: $z-index-top);
                 @include padding(.5);
                 margin: 0;
             }
