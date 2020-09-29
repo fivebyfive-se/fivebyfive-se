@@ -45,7 +45,8 @@ mixin case-collection(item)
                     .col.col--2.col--push-1.col--m--3
                         .subitem__number= i++
                     .col.col--9.col--m--9
-                        h3.subitem__description= subItem.text
+                        h3.subitem__title= subItem.title
+                        p.subitem__description= subItem.text
                 .row
                     .col.col--9.col--push-3.col--m--push-1.col--m--11
                         +list-items(subItem.items, 'subcollection')(class='row')
@@ -64,7 +65,7 @@ mixin case-item(item, colClass='col--4')
                 +item-meta(date, 'item__release-date', 'calendar')
                 +item-meta(item.getStructuredText('case.subtitle').asText(), 'item__category', 'pantone')
 
-            .item_section
+            .item_section.item__section--title
                 +item-text('h4', item, 'case.title', 'item__title')
 
             .item__section
