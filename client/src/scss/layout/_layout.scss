@@ -5,6 +5,41 @@
         @include container();
     }
 
+    .background {
+        @include position-fixed($top: $menu-height, $right: 0, $bottom: 0, $z-index: -1);
+        height: auto;
+        width: 100vw;
+        overflow: hidden;
+
+        &__image {
+            @include position-absolute($right: 0, $left: 0, $z-index: -10);
+            height: auto;
+            width: 100%;
+
+            animation: unblur 5s ease-in-out 0s 1 forwards;
+        }
+        &:before, &:after {
+            content: '';
+            @include position-absolute($bottom: 0, $left: 0);
+            width: 100%;
+            height: 100%;
+        }
+        &:before {
+            background: 
+                linear-gradient(to bottom, var(--color-background), transparent 50%, var(--color-background)),
+                linear-gradient(to right, var(--color-background), transparent 75%);
+            z-index: -5;
+        }
+        &:after {
+            background: radial-gradient(ellipse at bottom left, 
+                    var(--color-background) ,
+                    var(--color-pale-red) 60%,
+                    var(--color-primary)
+                );
+            mix-blend-mode: hue;
+            z-index: -1;
+        }
+    }
     @include mobile-only {
         header,
         main,
