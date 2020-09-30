@@ -5,8 +5,6 @@
 
 %flex {
     display: flex;
-    justify-content: center;
-    align-items: center;
 
     &--inline {
         display: inline-flex;
@@ -19,6 +17,12 @@
     }
     &--wrap {
         flex-wrap: wrap;
+    }
+    &--justify-center {
+        justify-content: center;
+    }
+    &--align-center {
+        align-items: center;
     }
     &--justify-space-between {
         justify-content: space-between;

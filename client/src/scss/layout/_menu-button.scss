@@ -9,15 +9,15 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            height: $mobile-menu-inner-height;
-            $button-size: $mobile-button-size;
+            height: $mobile-menu-height;
             
             .button {
+                @include margin-bottom(0.5);
                 border: none;
                 background: transparent;
                 color: var(--color-text);
-                height: $button-size;
-                width: $button-size;
+                height: $mobile-button-size;
+                width: $mobile-button-size;
                 position: relative;
                 line-height: 0;
                 
@@ -27,7 +27,7 @@
                         position: absolute;
                         display: block;
                         height: $border-width * 2;
-                        width: $button-size;
+                        width: $mobile-button-size;
                         left: 0;
 
                         background-color: var(--color-text);    
@@ -36,13 +36,13 @@
                         content: '';
                     }
                     & {
-                        top: ($button-size / 2) - $border-width;
+                        top: ($mobile-button-size / 2) - $border-width;
                     }
                     &:before {
-                        top: -($button-size / 3);
+                        top: -($mobile-button-size / 3);
                     }
                     &:after {
-                        top: ($button-size / 3);
+                        top: ($mobile-button-size / 3);
                     }
                 }
             }
@@ -64,17 +64,18 @@
                 }
                 &.active {
                     .line {
-                        & {
-                            width: 0;
-                        }
+                        width: $mobile-button-size * 1.1;
+                        left: $mobile-button-size * -.25;
+
                         &:before, &:after {
-                            top: 50%;
+                            width: $mobile-button-size * .6;
+                            left: $mobile-button-size * .8;
                         }
                         &:before {
-                            transform: rotate(315deg);
+                            transform: rotate(-315deg) translateY($mobile-button-size * .2);
                         }
                         &:after {
-                            transform: rotate(-315deg);
+                            transform: rotate(315deg) translateY($mobile-button-size * -.2);
                         }
                     }
                 }

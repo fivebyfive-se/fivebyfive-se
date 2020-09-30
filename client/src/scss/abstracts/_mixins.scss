@@ -1,5 +1,5 @@
 @mixin prop-if-set($property, $value: unset) {
-    @if $value !=unset {
+    @if $value !=unset and $value!=null {
         #{$property}: $value;
     }
 }
@@ -142,35 +142,45 @@
 }
 
 @mixin media-max($breakpoint) {
-    @if map-has($breakpoints, $breakpoint) {
-        @media only screen and (max-width: map-get($breakpoints, $breakpoint)) {
+    @if map-has($fivebyfive-breakpoints, $breakpoint) {
+        @media only screen and (max-width: map-get($fivebyfive-breakpoints, $breakpoint)) {
             @content;
         }
     }
 }
 @mixin media-min($breakpoint) {
-    @if map-has($breakpoints, $breakpoint) {
-        @media only screen and (min-width: map-get($breakpoints, $breakpoint) + 1) {
+    @if map-has($fivebyfive-breakpoints, $breakpoint) {
+        @media only screen and (min-width: map-get($fivebyfive-breakpoints, $breakpoint) + 1) {
             @content;
         }
     }
 }
 
+
+@mixin breakpoint($device) {
+    $dims: map-get($dimensions, $device);
+    $sizes: map-get($dims, breakpoints);
+    $min: nth($sizes, 1);
+    $max: nth($sizes, 2);
+    @if $max != null and $max > 0 {
+        @media only screen and (min-width: $min * 1px) and (max-width: $max * 1px) {
+            @content;    
+        }
+    } @else if $min > 0 {
+        @media only screen and (min-width: $min * 1px) {
+            @content;
+        }
+    }
+}
 @mixin mobile-only() {
-    @include media-max(mobile) {
+    @include breakpoint(mobile) {
         @content;
     }
 }
 @mixin desktop-only() {
-    @include media-min(mobile) {
+    @include breakpoint(desktop) {
         @content;
     }
-}
-
-@mixin container($margin-top: 0, $margin-bottom: $margin-top) {
-    width: breakpoint(desktop);
-    max-width: 96%;
-    margin: $margin-top auto $margin-bottom;
 }
 
 @mixin position($position: unset, $top: unset, $right: unset, $bottom: unset, $left: unset, $z-index: unset) {
@@ -220,21 +230,35 @@
     }
 }
 
-@mixin font($size: default, $font-weight: unset, $letter-spacing: unset) {
-    @if map-has-key($font-sizes, $size) {
-        font-size: map-get($font-sizes, $size);
-        @include desktop-only {
-            line-height: $base-line-height * map-get($line-heights, $size);
-        }
-        @include mobile-only() {
-            line-height: $base-line-height-mobile * map-get($line-heights, $size);
-        }
-        @if ($letter-spacing == unset and map-has-key($font-spacings, $size)) {
-            letter-spacing: map-get($font-spacings, $size);
+@mixin rem-dimensions($key, $base-unit: 1rem) {
+    @each $breakpoint, $sizes in $dimensions {
+        @include breakpoint($breakpoint) {
+            @each $prop, $value in map-get($sizes, $key) {
+                @if ($value != null) {
+                    #{$prop}: $value * $base-unit;
+                }
+            }
         }
     }
+}
+
+$breakpoints: map-get($settings, breakpoints);
+$font-sizes: map-get($settings, font-size);
+$line-heights: map-get($settings, line-height);
+
+@mixin font($size: default, $font-weight: 400, $letter-spacing: unset) {
+    @for $i from 1 through length($breakpoints) {
+        @include breakpoint(nth($breakpoints, $i)) {
+            $sizes: nth($font-sizes, $i);
+            $font-size: 1rem * map-get($sizes, $size);
+            $heights: nth($line-heights, $i);
+            line-height: 1rem * map-get($heights, $size);
+            font-size: $font-size;
+        }
+    }
+    font-family: $font-body;
+    letter-spacing: map-get($font-spacings, $size);
     @include prop-if-set(font-weight, $font-weight);
-    @include prop-if-set(letter-spacing, $letter-spacing);
 }
 
 @mixin critical {

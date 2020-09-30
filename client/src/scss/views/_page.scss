@@ -1,20 +1,17 @@
 @include critical {
     .page-header {
-        position: relative;
+        @include rem-dimensions(page-header);
     }
-
     .page-heading {
         @include font(xxx-large, 500);
-
-        @include mobile-only {
-            @include font(xxx-large-mobile);
-        }
-
+        @include rem-dimensions(page-heading);
         word-wrap: break-word;
     }
-
-    .page-intro {
-        @include margin-top(2);
+    .page-intro  {
+        @include rem-dimensions(page-intro);
+        & > p {
+            @include rem-dimensions(page-intro-paragraph);
+        }
     }
 }
 

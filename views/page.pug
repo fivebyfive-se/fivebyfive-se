@@ -28,20 +28,19 @@ mixin item-text(tag, item, alias, ...classes)
 mixin case-collection(item)
     - const caseItem = item.item;
     - const subItems = item.sub_items;
-    .item.item--collection.grid
+    - const tags = caseItem.tags || [];
+    .item.item--collection.grid(data-collection-tags=(tags.join('|')))
         .row.collection__header
             +col(4, 0, 10, 1)
                 +item-text('h2', caseItem, 'casecollection.title', 'item__title', 'collection__title')
-            +col(4, 1, 8, 2)
-                +item-tags(caseItem.tags, 'collection__tags')
-        .row
-            +col(4, 0, 8, 2)
                 +item-text('p', caseItem, 'casecollection.description', 'collection__description')
+            +col(4, 1, 8, 2)
+                +item-tags(tags, 'collection__tags')
 
         -let i = 1
         for subItem in subItems
             .item__subitem
-                .row
+                .row.subitem__header
                     +col(1,  1, 1, 1)
                         .subitem__number= i++
                     +col(10, 0, 8, 1)
@@ -57,19 +56,20 @@ mixin case-item(item, numCols)
     - const image = item.getImage('case.image')
     - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
     - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
+    - const tags = item.tags || [];
 
-    .item.item--case.col.col--m--12(class=`col--${numCols}`, style=`background-image: url(${image.url})`, data-label=__('button.open'), data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+    .item.item--case.col.col--m--12(class=`col--${numCols}`, style=`background-image: url(${image.url})`, data-tags=(tags.join('|')) data-label=__('button.open'), data-show-details=`${item.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
         .item__text(data-details-view=`${item.uid}`)
-            .item__section.item__section--top
+            .item__section.item__section
                 - const date = dateFmt.format(item.getDate('case.release_date'))
                 +item-meta(date, 'item__release-date', 'calendar')
-                +item-meta(item.getStructuredText('case.subtitle').asText(), 'item__category', 'pantone')
 
             .item_section.item__section--title
                 +item-text('h4', item, 'case.title', 'item__title')
 
             .item__section
-                +item-tags(item.tags)
+                +item-meta(item.getStructuredText('case.subtitle').asText(), 'item__category', 'pantone', __('work.type'))
+                +item-tags(tags)
                 +item-meta(item.getText('case.client_name'), 'item__client-name', 'user-2', __('work.client'))
                 if item.getLink('case.link')
                     - const linkUrl = item.getLink('case.link').url(ctx.linkResolver);
@@ -98,14 +98,15 @@ block content
     .page-header
         .grid
             .row
-                +col(8, 0, 10, 1)
+                +col(6, 0, 10, 1)
                     h1.page-heading(class=`page-heading--${page.uid}`)= page.heading
-            .row
-                +col(9, 3, 10, 1)
+                +col(6, 0, 10, 1)
                     .page-intro
                         != page.intro
 
     .page-body
         +list-items(page.items, 'root')
 
-
+block scripts
+    script(src='/js/details-view.js')
+    script(src='/js/filter.js')

@@ -1,13 +1,15 @@
 @include critical {
     .header__menu {
         @extend %flex,
-        %flex--row,
-        %flex--justify-flex-end;
+            %flex--row,
+            %flex--justify-flex-end,
+            %flex--align-flex-end;
         width: 100%;
 
         .navigation-item {
-            @extend %flex;
-
+            @extend %flex,
+                %flex--justify-center,
+                %flex--align-flex-end;
 
             text-decoration: none;
             text-transform: lowercase;
@@ -21,18 +23,24 @@
         }
 
         &--top-menu {
+            @include rem-dimensions(top-menu);
             @include margin-bottom(.5);
 
             .navigation-item {
                 @include font(x-small, 400);
+                @include padding-y(.5);
+                @include margin-bottom(-.5);
+
                 color: var(--color-text-secondary);
             }
         }
 
         &--main-menu {
+            @include rem-dimensions(main-menu);
+
+            @include padding-y(.5);
             .navigation-item {
                 @include font(small, 500);
-                @include padding-y(.5);
                 color: var(--color-text);
 
                 &--active {
@@ -46,19 +54,9 @@
                 }
 
                 &--highlight {
-                    @extend %button,
-                    %button--secondary;
-
-                    @include desktop-only {
-                        color: var(--color-background);
-                        background-color: var(--color-text);    
-                    }
-                    @include mobile-only {
-                        color: var(--color-secondary);
-                        background-color: transparent;
-                        span {
-                            font-weight: 700;
-                        }
+                    color: var(--color-secondary);
+                    span {
+                        font-weight: 700;
                     }
                 }
             }
@@ -75,7 +73,7 @@
             align-items: center;
             height: auto;
             transition: all .4s ease-in-out;
-            transform: translateX(100%);
+            transform: translateX(200%);
             background-color: var(--color-background-overlay);
 
             .header__menu {
@@ -91,9 +89,6 @@
                     background-color: var(--color-background-secondary);
 
                     .navigation-item {
-                        font-size: 1.5rem;
-                        font-weight: normal;
-
                         flex-shrink: 1;
                         justify-content: flex-start;
                         width: 100%;
@@ -107,7 +102,6 @@
 
                     .navigation-item {
                         height: $mobile-menu-height;
-                        font-size: 1rem;
                         flex-basis: 50%;
                         width: 50%;
                     }
@@ -138,12 +132,14 @@
             }
         }
         &--main-menu {
+            margin-bottom: -$border-width;
             .navigation-item {
                 border-bottom-width: $border-width;
 
                 &--highlight {
                     &:hover {
-                        color: var(--color-background);
+                        background-color: var(--color-secondary);
+                        color: var(--color-text);
                         border-color: transparent;
                     }
                 }

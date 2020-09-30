@@ -1,49 +1,40 @@
+
 @include critical {
-    @include desktop-only {
-        html {
-            font-size: $base-font-size;
-        }    
-    }
-    @include mobile-only {
-        html {
-            font-size: $base-font-size-mobile;
+    html {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+        font-size: map-get($grid-settings, font-size);
+        @include desktop-only {
+            font-size: map-get($grid-settings, font-size-desktop);
         }
     }
-
+      
+      // Site-wide base styles.
     body {
-        @include font($size: default, $font-weight: 400);
-        font-family: $font-body;
-        text-rendering: optimizeLegibility;
-        -webkit-font-smoothing: antialiased;
+        @include font();
         background-color: var(--color-background);
         color: var(--color-text);
-        line-height: 1.2;
-        &, * {
-            font-family: $font-body;
-        }
     }
 
     h1, h2, h3, h4, h5, p {
         margin: 0;
         padding: 0;
-        vertical-align: text-bottom;
     }
 
-    @include desktop-only {
         h1, .heading1 { @include font(xxx-large, 500); }
         h2, .heading2 { @include font(xx-large, 700); }
         h3, .heading3 { @include font(x-large, 700); }
         h4, .heading4 { @include font(large, 700); }
         h5, .heading5 { @include font(default, 700); }
-    }
-    @include mobile-only {
-        h1, .heading1 { @include font(xxx-large-mobile, 500); }
-        h2, .heading2 { @include font(xx-large, 700); }
-        h3, .heading3 { @include font(large, 900); }
-        h4, .heading4 { @include font(large, 700); }
-        h5, .heading5 { @include font(default, 700); }
-    }
+
+
     p, .paragraph { @include font(default, 400); }
+
+    .wordmark {
+        font-weight: 900;
+        letter-spacing: -.1em;
+        word-spacing: -.2em;
+    }
 }
 
 @include non-critical {

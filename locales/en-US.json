@@ -23,6 +23,7 @@
 		"link": "Link",
 		"tags": "Tags",
 		"casecollection": "Collection",
-		"fullimage": "Original image"
+		"fullimage": "Original image",
+		"type": "Type"
 	}
 }
