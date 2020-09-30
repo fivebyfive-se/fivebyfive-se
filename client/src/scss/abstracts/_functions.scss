@@ -1,5 +1,5 @@
 @function size($factor, $base: $base-line-height) {
-    @if $factor==auto {
+    @if $factor==0 or $factor==auto {
         @return $factor;
     }
 
@@ -16,14 +16,10 @@
     @return grid-size($pixel-height, $base-size-mobile);
 }
 
-@function relative-size($factor) {
-    @return size(1em);
-}
-
 @function breakpoint($breakpoint: desktop) {
-    @if map-has($breakpoints, $breakpoint) {
-        @return map-get($breakpoints, $breakpoint);
+    @if map-has($fivebyfive-breakpoints, $breakpoint) {
+        @return map-get($fivebyfive-breakpoints, $breakpoint);
     }
 
-    @return map-get($breakpoints, desktop);
+    @return map-get($fivebyfive-breakpoints, desktop);
 }

@@ -2,14 +2,10 @@
     .grid {
         $self: &;
         width: 100%;
-
         .row {
             @extend %flex,
-            %flex--row,
-            %flex--wrap,
-            %flex--justify-flex-start,
-            %flex--align-flex-start;
-
+                %flex--row,
+                %flex--wrap;
             width: 100%;
         }
 

@@ -23,7 +23,11 @@ module.exports = (grunt) => {
             },
             dist: {
                 files: {
-                    'public/js/main.js': 'client/src/js/main.js',
+                    'public/js/util.js': 'client/src/js/util.js',
+                    'public/js/details-view.js': 'client/src/js/details-view.js',
+                    'public/js/filter.js': 'client/src/js/filter.js',
+                    'public/js/header.js': 'client/src/js/header.js',
+                    'public/js/wordmark.js': 'client/src/js/wordmark.js',
                 }
             }
         },

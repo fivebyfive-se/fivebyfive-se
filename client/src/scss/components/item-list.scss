@@ -23,15 +23,19 @@
                 }
 
                 .collection__tags {
-                    @include font(default, 100);
+                    @include font(default, 200);
                 }
             }
 
 
             &__meta {
-                @include font(small, 100);
-                color: var(--color-text-secondary);
+                @include font(small, 200);
                 word-wrap: break-word;
+                text-transform: lowercase;
+
+                &.item__release-date {
+                    font-weight: 400;
+                }
 
                 i,
                 strong {
@@ -97,7 +101,7 @@
                 }
             }
             &--case:nth-child(3n+1) .item__text {
-                @include padding-left(4);
+                @include padding-left(2, $col-width);
             }
 
             &__section {
@@ -127,6 +131,8 @@
     .item-list {
         .item {
             &--case {
+                overflow: hidden;
+
                 &:nth-child(even) {
                     .item__text {
                         background-color: var(--color-background-secondary-overlay);
@@ -135,17 +141,26 @@
                 &:before, &:after {
                     @include position-absolute($left: 0, $top: 0, $z-index: $z-index-content);
                     @include padding-left(.5);
-                    @include padding-top(3);
+                    @include padding-top(1);
                     box-sizing: border-box;
                     opacity: 0;
                     transition: all .3s ease-in-out;
                     color: var(--color-primary);
                 }
+                &:nth-child(3n+1) {
+                    &:before {
+                        @include padding-left(4);
+                    }
+                    &:after {
+                        left: $col-width * 2;
+                        padding-left: 0;
+                    }
+                }
                 &:before {
                     @extend %flex,
                         %flex--justify-flex-start,
                         %flex--align-flex-start;
-                    @include font(x-large);
+                    @include font(large);
                     content: "\ed9c";
                     height: 100%;
                     width: 100%;
@@ -153,7 +168,7 @@
                     font-family: 'remixicon' !important;
                 }
                 &:after {
-                    @include font(x-large, 700);
+                    @include font(large, 700);
                     content: attr(data-label);
                     transform: translateX(100%);
                 }

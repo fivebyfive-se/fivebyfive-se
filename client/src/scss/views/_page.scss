@@ -6,9 +6,7 @@
     .page-heading {
         @include font(xxx-large, 500);
 
-        @include mobile-only {
-            @include font(xxx-large-mobile);
-        }
+
 
         word-wrap: break-word;
     }

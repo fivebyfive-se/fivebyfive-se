@@ -2,30 +2,17 @@
     .header {
         @extend %flex,
             %flex--justify-space-between,
-            %flex--align-flex-end;
+            %flex--align-center;
+
+        @include rem-dimensions(header);
 
         @include desktop-only {
             @include margin-bottom(5);
-    
-            height: $menu-height;
-            &__logo,
-            &__menues {
-                height: $menu-height;
-            }
         }
 
         @include mobile-only {
+            @include padding-x(.5);
             @include margin-bottom(2);
-    
-            height: $mobile-menu-height;
-            &__logo,
-            &__menues {
-                height: auto;
-            }
-            &__menues {
-                width: 0;
-                overflow: hidden;    
-            }
         }
 
         &__menues {
@@ -33,6 +20,7 @@
                 %flex--column,
                 %flex--justify-flex-end,
                 %flex--align-flex-end;
+            @include rem-dimensions(menues);
         }
 
     }
@@ -44,7 +32,7 @@
         &:after {
             content: '';
             position: absolute;
-            bottom: 0;
+            bottom: -$border-width;
             right: 0;
             width: 0;
             height: $border-width;

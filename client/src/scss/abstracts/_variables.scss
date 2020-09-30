@@ -1,37 +1,26 @@
-$breakpoints: (
+$grid-settings: (
+    font-size: 9px,
+    font-size-desktop: 11px,
+    baseline: .2,
+    grid-height: 1rem,
+    leading-top: 2,
+    leading-bottom: 0,
+    line-height: 2
+);
+$fivebyfive-breakpoints: (
     desktop: 1440px,
     mobile: 900px
 );
-$font-sizes: (
-    default: 1rem,
-    small: .8rem,
-    x-small: .6rem,
-    xx-small: .5rem,
-
-    large: 1.5rem,
-    x-large: 2rem,
-    xx-large: 3rem,
-    xxx-large: 7rem,
-    xxx-large-mobile: 4.5rem
+$max-width: (
+    desktop: 1254px,
+    mobile: 100vw
 );
 
-$line-heights: (
-    default: 1,
-    small: 1,
-    x-small: 1,
-    xx-small: 1,
-
-    large: 2,
-    x-large: 2,
-    xx-large: 2,
-    xxx-large: 5,
-    xxx-large-mobile: 3
-);
 
 $font-spacings: (
     default: .01em,
     small: .02em,
-    x-small: .04,
+    x-small: .04em,
     xx-small: .06em,
 
     large: -.04em,
@@ -63,26 +52,91 @@ $font-heading: $font-body;
 $border-width: 2px;
 $border-radius: 2px;
 
-$base-font-size: 20px;
-$base-line-height: 28px;
+$base-size: map-get($grid-settings, font-size-desktop);
+$base-size-mobile: map-get($grid-settings, font-size);
 
-$base-font-size-mobile: 16px;
-$base-line-height-mobile: 24px;
-
-$base-size: 14px;
-$base-size-mobile: 12px;
+$base-line-height: $base-size * map-get($grid-settings, line-height);
+$base-line-height-mobile: $base-size-mobile * map-get($grid-settings, line-height);
 
 $grid-columns: 12;
-$gutter-width: $base-line-height;
+$gutter-width: 2rem;
 $col-width: percentage(1/$grid-columns);
 
-$mobile-grid-columns: $grid-columns;
-$mobile-gutter-width: $base-line-height-mobile;
-$mobile-col-width: percentage(1/$mobile-grid-columns);
+$settings: (
+    breakpoints: (desktop, mobile),
+    grid-height: (11px, 9px),
+    font-size: (
+        (
+            default: 2, // * $grid-height
+            small: 1.5,
+            x-small: 1.2,
+            xx-small: 1,
+        
+            large: 3,
+            x-large: 4,
+            xx-large: 6,
+            xxx-large: 11
+        ),
+        ( 
+            default: 2, // * $grid-height
+            small: 1.8,
+            x-small: 1.6,
+            xx-small: 1.4,
 
-$menu-height: 112px;
-$mobile-menu-height: 72px;
-$mobile-menu-inner-height: 60px;
+            large: 3,
+            x-large: 4,
+            xx-large: 6,
+            xxx-large: 8,    
+        )
+    ),
+    line-height: (
+        (
+            default: 3,
+            small: 3,
+            x-small: 1,
+            xx-small: 2,
+
+            large: 4,
+            x-large: 4,
+            xx-large: 6,
+            xxx-large: 11
+        ),
+        (
+            default: 2.5,
+            small: 2,
+            x-small: 2,
+            xx-small: 2,
+
+            large: 4,
+            x-large: 4,
+            xx-large: 6,
+            xxx-large: 8,
+        )
+    ),
+);
+
+$dimensions: (
+    desktop: (
+        breakpoints: (701, null),
+        header: (null, 12),
+        menues: (null, 12),
+        top-menu: (null, 4),
+        main-menu: (null, 4.5),
+        logo: (9, 9),
+        wordmark: (24.84, 6)
+    ),
+    mobile: (
+        breakpoints: (0, 700),
+        header: (null, 8),
+        logo: (4, 4),
+        wordmark: (12.42, 3),
+    )
+);
+
+
+$menu-height: 121px;
+$logo-display-height: 99px;
+$mobile-menu-height: 73px;
 $mobile-button-size: 36px;
 
 $z-index-content: 500;
