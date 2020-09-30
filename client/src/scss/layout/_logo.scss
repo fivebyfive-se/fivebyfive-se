@@ -1,12 +1,15 @@
 @include critical {
     .header__logo {
-        @extend %flex,
-            %flex--justify-space-between,
-            %flex--align-center;
-        @include rem-dimensions(header);
+        &, &--link {
+            @include rem-dimensions(logo-container);
 
-        a {
             line-height: 0;
+        }
+
+        &--link {
+            @extend %flex,
+                %flex--justify-flex-start,
+                %flex--align-flex-end;
         }
         &--logo {
             @include rem-dimensions(logo);
@@ -14,9 +17,6 @@
         &--wordmark {
             @include rem-dimensions(wordmark);
         }
-
-        $wordmark-width: 621px;
-        $wordmark-height: 150px;
     
         @include desktop-only {
             &--logo {

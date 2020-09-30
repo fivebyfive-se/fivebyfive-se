@@ -6,15 +6,6 @@
 
         @include rem-dimensions(header);
 
-        @include desktop-only {
-            @include margin-bottom(5);
-        }
-
-        @include mobile-only {
-            @include padding-x(.5);
-            @include margin-bottom(2);
-        }
-
         &__menues {
             @extend %flex,
                 %flex--column,

@@ -72,10 +72,10 @@ $settings: (
             x-small: 1.2,
             xx-small: 1,
         
-            large: 3,
+            large: 3.1,
             x-large: 4,
-            xx-large: 6,
-            xxx-large: 11
+            xx-large: 5.7,
+            xxx-large: 10.5
         ),
         ( 
             default: 2, // * $grid-height
@@ -85,21 +85,21 @@ $settings: (
 
             large: 3,
             x-large: 4,
-            xx-large: 6,
+            xx-large: 5.9,
             xxx-large: 8,    
         )
     ),
     line-height: (
         (
-            default: 3,
-            small: 3,
+            default: 4,
+            small: 2,
             x-small: 1,
             xx-small: 2,
 
             large: 4,
             x-large: 4,
             xx-large: 6,
-            xxx-large: 11
+            xxx-large: 12
         ),
         (
             default: 2.5,
@@ -110,26 +110,57 @@ $settings: (
             large: 4,
             x-large: 4,
             xx-large: 6,
-            xxx-large: 8,
+            xxx-large: 10,
         )
     ),
 );
-
 $dimensions: (
     desktop: (
         breakpoints: (701, null),
-        header: (null, 12),
-        menues: (null, 12),
-        top-menu: (null, 4),
-        main-menu: (null, 4.5),
-        logo: (9, 9),
-        wordmark: (24.84, 6)
+        header: (height: 12, margin-bottom: 5),
+        menues: (height: 11.5),
+        top-menu: (height: 4),
+        main-menu: (height: 4.5),
+        logo-container: (height: 10),
+        logo: (width: 9, height: 9),
+        wordmark: (width: 7 * 4.14, height: 7, margin-bottom: .25), // 4.14,
+
+        main: (margin-top: 3, margin-bottom: 3.2),
+        main-sticky: (margin-top: 18),
+
+        page-header: (margin-top: 1, margin-bottom: 4.5),
+        page-heading: (margin-top: 0, margin-bottom: 0),
+        page-intro: (margin-top: 7),
+        page-intro-paragraph: (line-height: 2.2),
+
+        collection: (margin-top: 0, margin-bottom: 11.5),
+        collection-header: (margin-bottom: 0),
+        collection-title: (margin-top: 0),
+        collection-description: (margin-top: -0.5, margin-bottom: 2, line-height: 4),
+        collection-tags: (margin-top: 2),
+
+        subitem: (margin-top: 5, margin-bottom: 10),
+        subitem-header: (min-height: 13),
+        subitem-number: (margin-top: 1),
+        subitem-title: (margin-top: 3),
+        subitem-description: (margin-top: .5),
+
+        subcollection: (margin-top: 1),
+        item: (height: 28),
+        item-text: (padding-top: 2, padding-bottom: 2),
+        item-meta: (margin-top: 0, margin-bottom: 0),
+        item-meta-date: (margin-top: .5, margin-bottom: 0),
+        item-meta-icon: (margin-right: .5, line-height: 1),
+        item-meta-title: (),
+        item-title: (margin-top: 0.5, margin-bottom: 1.5),
+        item-overlay-bg: (padding-top: 3),
+        item-overlay-fg: (padding-top: 3)
     ),
     mobile: (
         breakpoints: (0, 700),
-        header: (null, 8),
-        logo: (4, 4),
-        wordmark: (12.42, 3),
+        header: (height: 8),
+        logo: (width: 4, height: 4),
+        wordmark: (width: 3 * 4.14, height: 3),
     )
 );
 

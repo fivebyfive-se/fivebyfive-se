@@ -33,16 +33,14 @@ mixin case-collection(item)
         .row.collection__header
             +col(4, 0, 10, 1)
                 +item-text('h2', caseItem, 'casecollection.title', 'item__title', 'collection__title')
+                +item-text('p', caseItem, 'casecollection.description', 'collection__description')
             +col(4, 1, 8, 2)
                 +item-tags(tags, 'collection__tags')
-        .row
-            +col(4, 0, 8, 2)
-                +item-text('p', caseItem, 'casecollection.description', 'collection__description')
 
         -let i = 1
         for subItem in subItems
             .item__subitem
-                .row
+                .row.subitem__header
                     +col(1,  1, 1, 1)
                         .subitem__number= i++
                     +col(10, 0, 8, 1)
@@ -100,10 +98,9 @@ block content
     .page-header
         .grid
             .row
-                +col(8, 0, 10, 1)
+                +col(6, 0, 10, 1)
                     h1.page-heading(class=`page-heading--${page.uid}`)= page.heading
-            .row
-                +col(9, 3, 10, 1)
+                +col(6, 0, 10, 1)
                     .page-intro
                         != page.intro
 

@@ -21,14 +21,14 @@
         padding: 0;
     }
 
-        h1, .heading1 { @include font(xxx-large, 500); @include padding-top(.5); }
+        h1, .heading1 { @include font(xxx-large, 500); }
         h2, .heading2 { @include font(xx-large, 700); }
         h3, .heading3 { @include font(x-large, 700); }
         h4, .heading4 { @include font(large, 700); }
         h5, .heading5 { @include font(default, 700); }
 
 
-    p, .paragraph { @include font(default, 400);  @include padding-top(.5); }
+    p, .paragraph { @include font(default, 400); }
 
     .wordmark {
         font-weight: 900;

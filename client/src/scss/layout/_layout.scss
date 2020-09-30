@@ -13,8 +13,18 @@
         overflow: hidden;
 
         &.show-grid {
-            background: linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
-            linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y;
+            background:
+                linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
+                linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
+                #666;
+
+            .item--case {
+                opacity: .5 !important;
+            }
+        }
+
+        main {
+            @include rem-dimensions(main);
         }
 
         @include desktop-only {
@@ -84,13 +94,7 @@
 
     body.sticky-header {
         main {
-            @include desktop-only {
-                @include margin-top(5);
-            }
-            @include mobile-only {
-                @include margin-top(2);
-            }
-            padding-top: $menu-height;
+            @include rem-dimensions(main-sticky);
         }
     }
 }

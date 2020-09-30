@@ -233,16 +233,10 @@
 @mixin rem-dimensions($key, $base-unit: 1rem) {
     @each $breakpoint, $sizes in $dimensions {
         @include breakpoint($breakpoint) {
-            $dims: map-get($sizes, $key);
-            $width: nth($dims, 1);
-            @if $width != null {
-                width: $width * $base-unit;
-            }
-            @if (length($dims) > 1) {
-                $height: nth($dims, 2);
-                @if $height != null {
-                    height: $height * $base-unit;
-                }    
+            @each $prop, $value in map-get($sizes, $key) {
+                @if ($value != null) {
+                    #{$prop}: $value * $base-unit;
+                }
             }
         }
     }
