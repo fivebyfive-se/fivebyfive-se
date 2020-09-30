@@ -8,6 +8,19 @@
             &--collection {
                 @include rem-dimensions(collection);
 
+                position: relative;
+
+                &:before {
+                    @include position-absolute($top: -4rem, $left: 0, $right: 0, $z-index: -1);
+                    content: '';
+                    width: auto;
+                    height: 2rem;
+        
+                    background-color: var(--color-pale-red);
+                }
+
+                
+
                 .collection__header {
                     @extend %flex--align-flex-start,
                         %flex--justify-flex-start;
@@ -25,7 +38,7 @@
                 }
 
                 .collection__tags {
-                    @include font(default, 200);
+                    @include font(default, 100);
                     @include rem-dimensions(collection-tags);
                 }
             }
@@ -33,7 +46,7 @@
 
             &__meta {
                 @include rem-dimensions(item-meta);
-                @include font(small, 200);
+                @include font(small, 100);
                 word-wrap: break-word;
                 text-transform: lowercase;
 
@@ -61,6 +74,15 @@
 
             &__subitem {
                 @include rem-dimensions(subitem);
+                position: relative;
+                &:before {
+                    @include position-absolute($top: -2rem, $left: $col-width, $right: $col-width * 3, $z-index: -1);
+                    content: '';
+                    width: auto;
+                    height: 1rem;
+        
+                    background-color: var(--color-teal);
+                }
 
                 .subitem__header {
                     @include rem-dimensions(subitem-header);

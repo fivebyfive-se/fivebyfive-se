@@ -49,8 +49,9 @@
                 color: var(--color-text);
 
                 &--active {
-                    color: var(--color-primary);
-                    border-bottom-color: var(--color-primary);
+                    color: var(--color-background);
+                    background-color: var(--color-text);
+                    border-bottom-color: var(--color-text);
                     @include mobile-only {
                         span {
                             text-decoration: line-through;

@@ -92,10 +92,11 @@ html(lang=lang, data-theme=theme)
             main
                 block content
 
-            footer.grid
-                .row
-                    +col(10, 2, 10, 2)
-                        p !{site.footerText}
+            footer
+                .grid
+                    .row
+                        +col(8, 0, 10, 2)
+                            p !{site.footerText}
 
         link(rel='stylesheet', href='/css/non-critical.css')
         link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')

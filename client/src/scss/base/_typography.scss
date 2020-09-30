@@ -21,10 +21,10 @@
         padding: 0;
     }
 
-        h1, .heading1 { @include font(xxx-large, 500); }
-        h2, .heading2 { @include font(xx-large, 700); }
-        h3, .heading3 { @include font(x-large, 700); }
-        h4, .heading4 { @include font(large, 700); }
+        h1, .heading1 { @include font(xxx-large, 400); }
+        h2, .heading2 { @include font(xx-large, 900); }
+        h3, .heading3 { @include font(x-large, 900); }
+        h4, .heading4 { @include font(large, 900); }
         h5, .heading5 { @include font(default, 700); }
 
 
