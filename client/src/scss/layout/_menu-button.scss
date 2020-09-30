@@ -6,29 +6,23 @@
     }
     @include mobile-only {
         .header__menu-button {
+            @include rem-dimensions(menu-button-container);
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            height: $mobile-menu-height;
             
             .button {
-                @include margin-bottom(0.5);
+                @include rem-dimensions(menu-button);
                 border: none;
                 background: transparent;
                 color: var(--color-text);
-                height: $mobile-button-size;
-                width: $mobile-button-size;
                 position: relative;
-                line-height: 0;
                 
                 .line {
-
                     &, &:before, &:after {
+                        @include rem-dimensions(menu-button-line);
                         position: absolute;
                         display: block;
-                        height: $border-width * 2;
-                        width: $mobile-button-size;
-                        left: 0;
 
                         background-color: var(--color-text);    
                     }
@@ -36,13 +30,13 @@
                         content: '';
                     }
                     & {
-                        top: ($mobile-button-size / 2) - $border-width;
+                        @include rem-dimensions(menu-button-line-middle);
                     }
                     &:before {
-                        top: -($mobile-button-size / 3);
+                        @include rem-dimensions(menu-button-line-top);
                     }
                     &:after {
-                        top: ($mobile-button-size / 3);
+                        @include rem-dimensions(menu-button-line-bottom);
                     }
                 }
             }
@@ -64,18 +58,14 @@
                 }
                 &.active {
                     .line {
-                        width: $mobile-button-size * 1.1;
-                        left: $mobile-button-size * -.25;
-
-                        &:before, &:after {
-                            width: $mobile-button-size * .6;
-                            left: $mobile-button-size * .8;
-                        }
+                        @include rem-dimensions(menu-button-line-middle-active);
                         &:before {
-                            transform: rotate(-315deg) translateY($mobile-button-size * .2);
+                            @include rem-dimensions(menu-button-line-top-active);
+                            transform: rotate(-315deg);
                         }
                         &:after {
-                            transform: rotate(315deg) translateY($mobile-button-size * -.2);
+                            @include rem-dimensions(menu-button-line-bottom-active);
+                            transform: rotate(315deg);
                         }
                     }
                 }

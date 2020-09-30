@@ -79,19 +79,19 @@ $settings: (
         ),
         ( 
             default: 2, // * $grid-height
-            small: 1.8,
+            small: 1.7,
             x-small: 1.6,
             xx-small: 1.4,
 
-            large: 3,
+            large: 3.7,
             x-large: 4,
             xx-large: 5.9,
-            xxx-large: 8,    
+            xxx-large: 10,    
         )
     ),
     line-height: (
         (
-            default: 4,
+            default: 3,
             small: 2,
             x-small: 1,
             xx-small: 2,
@@ -102,8 +102,8 @@ $settings: (
             xxx-large: 12
         ),
         (
-            default: 2.5,
-            small: 2,
+            default: 4,
+            small: 3,
             x-small: 2,
             xx-small: 2,
 
@@ -118,12 +118,14 @@ $dimensions: (
     desktop: (
         breakpoints: (701, null),
         header: (height: 12, margin-bottom: 5),
-        menues: (height: 11.5),
-        top-menu: (height: 4),
-        main-menu: (height: 4.5),
-        logo-container: (height: 10),
+        logo-container: (height: 10, line-height: 0),
         logo: (width: 9, height: 9),
         wordmark: (width: 7 * 4.14, height: 7, margin-bottom: .25), // 4.14,
+        menues: (height: 11.5),
+        top-menu: (height: 4, margin-bottom: .5),
+        top-menu-item: (height: 4, padding-top: .5, padding-bottom: .5, margin-bottom: -.5),
+        main-menu: (height: 4.5, padding-top: .5, padding-bottom: .5),
+        main-menu-item: (height: 4),
 
         main: (margin-top: 3, margin-bottom: 3.2),
         main-sticky: (margin-top: 18),
@@ -158,9 +160,60 @@ $dimensions: (
     ),
     mobile: (
         breakpoints: (0, 700),
-        header: (height: 8),
-        logo: (width: 4, height: 4),
-        wordmark: (width: 3 * 4.14, height: 3),
+
+        header: (height: 10, margin-bottom: 5, padding-left: 1, padding-right: 1),
+
+        logo-container: (height: 8, line-height: 0),
+        logo: (width:7, height: 7),
+        wordmark: (width: 5 * 4.14, height: 5, margin-top: 1), // 4.14,
+
+        menu-button-container: (width: 8, height: 8),
+        menu-button: (width: 5, height: 6),
+        menu-button-line: (width: 5, height: .75, left: 0),
+        menu-button-line-middle: (top: 2),
+        menu-button-line-top: (top: -2),
+        menu-button-line-bottom: (top: 2),
+        menu-button-line-middle-active: (width: 5.5, left: -1.5),
+        menu-button-line-top-active: (left: 2.5, width: 3.5, top: -1),
+        menu-button-line-bottom-active: (left: 2.5, width: 3.5, top: 1),
+
+        menues: (top: 10),
+        top-menu: (margin-bottom: 5),
+        top-menu-item: (padding-top: 3, padding-bottom: 3),
+        main-menu: (padding-top: 2, padding-bottom: 2, padding-left: 1, padding-right: 1),
+        main-menu-item: (padding-top: 2, padding-bottom: 2, padding-left: 1, padding-right: 1, margin-bottom: 1),
+
+        main: (margin-top: 3, margin-bottom: 3.2),
+        main-sticky: (margin-top: 18),
+        main-showing-menu: (margin-top: 18),
+
+        page-header: (margin-top: 2, margin-bottom: 8),
+        page-heading: (margin-top: 0, margin-bottom: 0),
+        page-intro: (margin-top: 1.5),
+        page-intro-paragraph: (),
+
+        collection: (margin-top: 0, margin-bottom: 8),
+        collection-header: (margin-bottom: 0),
+        collection-title: (margin-top: 0),
+        collection-description: (margin-top: 0, margin-bottom: 2, line-height: 4),
+        collection-tags: (margin-top: 0, line-height: 4),
+
+        subitem: (margin-top: 5, margin-bottom: 9.5),
+        subitem-header: (margin-bottom: 3.5),
+        subitem-number: (margin-top: .5),
+        subitem-title: (margin-top: 1.5),
+        subitem-description: (margin-top: .5),
+
+        subcollection: (margin-top: 1),
+        item: (height: 30),
+        item-text: (padding-top: 3),
+        item-meta: (margin-top: 0, margin-bottom: 1),
+        item-meta-date: (margin-top: 1, margin-bottom: 0),
+        item-meta-icon: (margin-right: .5, line-height: 1),
+        item-meta-title: (),
+        item-title: (margin-top: 2, margin-bottom: 1),
+        item-overlay-bg: (display: none),
+        item-overlay-fg: (display: none)
     )
 );
 

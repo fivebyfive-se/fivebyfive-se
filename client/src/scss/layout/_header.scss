@@ -5,15 +5,6 @@
             %flex--align-center;
 
         @include rem-dimensions(header);
-
-        &__menues {
-            @extend %flex,
-                %flex--column,
-                %flex--justify-flex-end,
-                %flex--align-flex-end;
-            @include rem-dimensions(menues);
-        }
-
     }
 }
 
