@@ -43,7 +43,7 @@ mixin case-collection(item)
                 .row.subitem__header
                     +col(1,  1, 1, 1)
                         .subitem__number= i++
-                    +col(10, 0, 8, 1)
+                    +col(7, 0, 8, 1)
                         h3.subitem__title= subItem.title
                         p.subitem__description= subItem.text
                 .row
@@ -98,9 +98,9 @@ block content
     .page-header
         .grid
             .row
-                +col(6, 0, 10, 1)
+                +col(8, 0, 10, 1)
                     h1.page-heading(class=`page-heading--${page.uid}`)= page.heading
-                +col(6, 0, 10, 1)
+                +col(4, 0, 10, 1)
                     .page-intro
                         != page.intro
 

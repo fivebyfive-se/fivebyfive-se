@@ -7,6 +7,7 @@
         --color-text-secondary: #{$color-blackish};
         --color-primary: #{$color-pink};
         --color-secondary: #{$color-teal};
+        --color-tertiary: #{$color-pale-red};
         --color-logo: #{$color-pale-red};
 
         --color-background-overlay: #{rgba($color-white, .8)};
@@ -41,7 +42,7 @@
         --color-background-secondary-overlay: #{rgba($color-blackish, .8)};
         --color-background-tertiary-overlay: #{rgba($color-greyish, .8)};
         --color-primary: #{$color-pale-red};
-
+        --color-tertiary: #{$color-pink};
     }
     html body {
         padding: 0;

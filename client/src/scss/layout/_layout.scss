@@ -36,25 +36,26 @@
 }
 
 @include non-critical {
-    .background {
-        @include position-fixed($top: $menu-height, $right: 0, $bottom: 0, $z-index: -1);
-        height: auto;
-        width: 100vw;
-        overflow: hidden;
-        &:before {
-            content: '';
-            @include position-absolute($bottom: 0, $left: 0);
-            width: 100%;
-            height: 100%;
-            background: 
-                linear-gradient(to bottom, var(--color-background), transparent 50%, var(--color-background-secondary)),
-                linear-gradient(to right, var(--color-background), transparent 75%, var(--color-background-secondary));
-        }
+    body {
+        background-color: var(--color-background);
+        background-image: 
+            linear-gradient(to bottom, var(--color-background), transparent 50%, var(--color-background-secondary)),
+            linear-gradient(to right, var(--color-background), transparent 75%, var(--color-background-secondary));
+        background-attachment: fixed, fixed;
+        background-size: cover, cover;
     }
 
     footer {
         @include margin-top(3);
         @include padding-y(2);
+        position: relative;
+        &:before {
+            @include position-absolute($top: -1rem, $left: 0, $right: 4 * $col-width, $z-index: 0);
+            content: '';
+            height: 3rem;
+            width: auto;
+            background-color: var(--color-dark-teal);
+        }
     }
 
     body.sticky-header,
@@ -91,14 +92,12 @@
             @include rem-dimensions(main-showing-menu);
         }
     }
-    article.show-grid {
-        background:
-            linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
-            linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
-            #666;
-
-        .item--case {
-            opacity: .5 !important;
+    article {
+        &.show-grid {
+            background:
+                linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
+                linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
+                #666;    
         }
     }
 }
