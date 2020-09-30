@@ -1,4 +1,11 @@
 @include critical {
+    .header__menues {
+        @extend %flex,
+            %flex--column,
+            %flex--justify-flex-end,
+            %flex--align-flex-end;
+        @include rem-dimensions(menues);
+    }
     .header__menu {
         @extend %flex,
             %flex--row,
@@ -24,12 +31,10 @@
 
         &--top-menu {
             @include rem-dimensions(top-menu);
-            @include margin-bottom(.5);
 
             .navigation-item {
                 @include font(x-small, 400);
-                @include padding-y(.5);
-                @include margin-bottom(-.5);
+                @include rem-dimensions(top-menu-item);
 
                 color: var(--color-text-secondary);
             }
@@ -37,10 +42,10 @@
 
         &--main-menu {
             @include rem-dimensions(main-menu);
-
-            @include padding-y(.5);
             .navigation-item {
                 @include font(small, 500);
+                @include rem-dimensions(main-menu-item);
+
                 color: var(--color-text);
 
                 &--active {
@@ -67,22 +72,19 @@
 @include non-critical {
     @include mobile-only {
         .header__menues {
-            @include position-fixed($top: $mobile-menu-height, $left: 0, $bottom: 0, $z-index: $z-index-menu);
+            @include position-fixed($left: 100%, $bottom: 0, $z-index: $z-index-menu);
             flex-direction: column-reverse;
             justify-content: space-between;
             align-items: center;
             height: auto;
+            width: 0; 
+            overflow: hidden;
             transition: all .4s ease-in-out;
-            transform: translateX(200%);
             background-color: var(--color-background-overlay);
 
             .header__menu {
                 @include margin(0);
                 width: 100%;
-
-                .navigation-item {
-                    @include padding(1, .5);
-                }
 
                 &--main-menu {
                     flex-direction: column;
@@ -96,12 +98,9 @@
                 }
 
                 &--top-menu {
-                    bottom: $mobile-menu-height;
-                    height: $mobile-menu-height;
                     background-color: var(--color-background);
 
                     .navigation-item {
-                        height: $mobile-menu-height;
                         flex-basis: 50%;
                         width: 50%;
                     }
@@ -110,7 +109,7 @@
 
             &.active {
                 width: 100vw;
-                transform: translateX(0);
+                left: 0;
             }
             
         }

@@ -12,17 +12,6 @@
         max-width: 100%;
         overflow: hidden;
 
-        &.show-grid {
-            background:
-                linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
-                linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
-                #666;
-
-            .item--case {
-                opacity: .5 !important;
-            }
-        }
-
         main {
             @include rem-dimensions(main);
         }
@@ -95,6 +84,21 @@
     body.sticky-header {
         main {
             @include rem-dimensions(main-sticky);
+        }
+    }
+    body.showing-menu {
+        main {
+            @include rem-dimensions(main-showing-menu);
+        }
+    }
+    article.show-grid {
+        background:
+            linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
+            linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
+            #666;
+
+        .item--case {
+            opacity: .5 !important;
         }
     }
 }

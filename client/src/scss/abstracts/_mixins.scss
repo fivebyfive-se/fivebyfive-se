@@ -235,7 +235,11 @@
         @include breakpoint($breakpoint) {
             @each $prop, $value in map-get($sizes, $key) {
                 @if ($value != null) {
-                    #{$prop}: $value * $base-unit;
+                    @if (type-of($value) == "number" and unitless($value)) {
+                        #{$prop}: $value * $base-unit;
+                    } @else {
+                        #{$prop}: #{$value};
+                    }
                 }
             }
         }
