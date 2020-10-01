@@ -1,0 +1,11 @@
+@include non-critical {
+    .lazyload {
+        transition: filter ease 1s;
+        &--loading {
+            filter: blur($base-size);
+        }
+        &--loaded {
+            filter: blur(0);
+        }
+    }
+}
