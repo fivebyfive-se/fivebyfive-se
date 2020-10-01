@@ -275,3 +275,27 @@ $line-heights: map-get($settings, line-height);
         @content;
     }
 }
+
+@mixin line($above: true, $width: auto, $color: var(--color-primary), $height: 3em, $distance: -3rem, $left: 0, $right: 0) {
+    position: relative;
+
+    &:before {
+        @include position-absolute($left: $left, $right: $right, $z-index: -1);
+        content: '';
+        width: auto;
+        height: $height;
+
+        @if $above == true {
+            top: $distance;
+        } @else {
+            bottom: $distance;
+        }
+
+        background-color: $color;
+        transition: transform 3s ease-in-out;
+        transform: scaleY(.75);
+    }
+    &.highlight-line:before {
+        transform: scaleY(1);
+    }
+}

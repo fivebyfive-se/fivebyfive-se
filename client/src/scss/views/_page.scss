@@ -1,15 +1,7 @@
 @include critical {
     .page-header {
         @include rem-dimensions(page-header);
-        position: relative;
-        &:before {
-            @include position-absolute($top: 2rem, $left: 8 * $col-width, $right: 0, $z-index: -1);
-            content: '';
-            width: auto;
-            height: 3rem;
-
-            background-color: var(--color-pink);
-        }
+        @include line($left: 8 * $col-width, $color: var(--color-primary), $distance: 0);
     }
     .page-heading {
         @include rem-dimensions(page-heading);
@@ -51,6 +43,11 @@
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+        }
+    }
+    [data-theme="light"] {
+        .page-heading {
+            filter: invert(100%);
         }
     }
 }

@@ -19,14 +19,18 @@ module.exports = (grunt) => {
         babel: {
             options: {
                 sourceMap: false,
+                minified: true,
                 presets: ['@babel/preset-env']
             },
             dist: {
                 files: {
                     'public/js/util.js': 'client/src/js/util.js',
+                    'public/js/animation.js': 'client/src/js/animation.js',
                     'public/js/details-view.js': 'client/src/js/details-view.js',
+                    'public/js/draw-logo.js': 'client/src/js/draw-logo.js',
                     'public/js/filter.js': 'client/src/js/filter.js',
                     'public/js/header.js': 'client/src/js/header.js',
+                    'public/js/lazyload.js': 'client/src/js/lazyload.js',
                     'public/js/wordmark.js': 'client/src/js/wordmark.js',
                 }
             }

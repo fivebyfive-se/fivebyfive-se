@@ -36,7 +36,10 @@
         return tag;
     };
 
+
+
     window.five = {
+        ...(window.five || {}),
         disableScroll,
         enableScroll,
         textFrom,

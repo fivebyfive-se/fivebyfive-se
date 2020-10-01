@@ -1,0 +1,14 @@
+@include non-critical {
+    .background-animation {
+        @include position-fixed($top: 0, $left: 0, $z-index: -100);
+        width: 100vw;
+        height: 100vh;
+        opacity: .66;
+        animation: blur-pulse 15s ease 0s infinite forwards;
+        svg path {
+            fill: var(--color-background-secondary-overlay);
+            stroke: none;
+            mix-blend-mode: multiply;
+        }
+    }
+}

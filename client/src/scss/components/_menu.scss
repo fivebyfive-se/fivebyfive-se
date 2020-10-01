@@ -43,7 +43,7 @@
         &--main-menu {
             @include rem-dimensions(main-menu);
             .navigation-item {
-                @include font(small, 500);
+                @include font(small, 400);
                 @include rem-dimensions(main-menu-item);
 
                 color: var(--color-text);
@@ -137,6 +137,8 @@
                 border-bottom-width: $border-width;
 
                 &--highlight {
+                    position: relative;
+                    overflow: hidden;
                     &:hover {
                         background-color: var(--color-secondary);
                         color: var(--color-text);

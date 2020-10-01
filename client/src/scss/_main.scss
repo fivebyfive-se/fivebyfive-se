@@ -12,17 +12,19 @@
 @import
     'layout/grid',
     'layout/layout',
-    'layout/header',
-    'layout/menu',
-    'layout/logo',
-    'layout/menu-button';
+    'layout/header';
 
 @import
     'views/page';
 
 @import
+    'components/background-animation',
     'components/button',
     'components/details-view',
     'components/item-list',
+    'components/lazyload',
+    'components/logo',
+    'components/menu',
+    'components/menu-button',
     'components/table-of-contents';
     

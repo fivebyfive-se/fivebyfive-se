@@ -7,19 +7,7 @@
         .item {
             &--collection {
                 @include rem-dimensions(collection);
-
-                position: relative;
-
-                &:before {
-                    @include position-absolute($top: -4rem, $left: 0, $right: 0, $z-index: -1);
-                    content: '';
-                    width: auto;
-                    height: 2rem;
-        
-                    background-color: var(--color-pale-red);
-                }
-
-                
+                @include line($color: var(--color-secondary), $height: 2rem, $distance: -4rem);
 
                 .collection__header {
                     @extend %flex--align-flex-start,
@@ -74,15 +62,7 @@
 
             &__subitem {
                 @include rem-dimensions(subitem);
-                position: relative;
-                &:before {
-                    @include position-absolute($top: -2rem, $left: $col-width, $right: $col-width * 3, $z-index: -1);
-                    content: '';
-                    width: auto;
-                    height: 1rem;
-        
-                    background-color: var(--color-teal);
-                }
+                @include line($left: $col-width, $right: $col-width * 3, $color: var(--color-tertiary), $height: 1rem, $distance: -2rem);
 
                 .subitem__header {
                     @include rem-dimensions(subitem-header);
