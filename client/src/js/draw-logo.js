@@ -1,8 +1,11 @@
 (() => {
     const drawLogo = (targetElement) => {
-        const { width, height } = targetElement.getBoundingClientRect();
+        let { width, height } = targetElement.getBoundingClientRect();
+        width = width || 130;
+        height = height || 130;
+
         const scale = Math.min(width, height) / 130;
-        const two = new Two({ width, height }).appendTo(el);
+        const two = new Two({ width, height }).appendTo(targetElement);
         const path = two.makePath(
             -5, 45,
             0, 45,
@@ -32,8 +35,28 @@
     
         logo_group.translation.set(two.width / 2, two.height / 2);
         logo_group.scale = scale;
-    
-        two.update();    
+        const origin = { x: -150, y: 0 };
+        path.vertices.slice(1, -1).forEach((v, i) => {
+            const { x, y } = v;
+            const fromX = Math.random() * (v.x < 0 ? -20 : 20);
+            const fromY = Math.random() * (v.y < 0 ? 5 : -5);
+            new TWEEN.Tween({x: fromX, y: fromY})
+                .to({ x, y }, 500)
+                .easing(TWEEN.Easing.Quadratic.InOut)
+                .onUpdate((pos) => {
+                    v.x = pos.x;
+                    v.y = pos.y;
+                })
+                .start(Math.random() * 1500);
+            v.x = fromX;
+            v.y = fromY;
+        });
+        const animate = (time) => {
+            requestAnimationFrame(animate);
+            TWEEN.update(time);
+            two.update();
+        };
+        requestAnimationFrame(animate);
     };
 
     window.five = {

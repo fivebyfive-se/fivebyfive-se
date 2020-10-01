@@ -94,9 +94,6 @@ mixin list-items(items, listType)
                     +case-item(item, numCols)
 
 
-.page-body
-    +list-items(page.items, 'root')
-
-block scripts
-    script(src='/js/details-view.js')
-    script(src='/js/filter.js')
++list-items(page.items, 'root')
++script('/js/details-view.js')
++script('/js/filter.js')

@@ -49,6 +49,11 @@
                 color: var(--color-text);
 
                 &--active {
+                    @include desktop-only {
+                        &.navigation-item--start {
+                            display: none;
+                        }    
+                    }
                     color: var(--color-background);
                     background-color: var(--color-text);
                     border-bottom-color: var(--color-text);

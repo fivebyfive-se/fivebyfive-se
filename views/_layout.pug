@@ -1,92 +1,18 @@
 -
     const currLang = page.lang || 'en-US';
     const otherLang = currLang === 'en-US' ? 'sv-SE' : 'en-US';
-    const colClass = (width=6, push=0, mobileWidth=0, mobilePush=0) => {
-        const m_width = mobileWidth || Math.min(width * 2, 12 - mobilePush),
-        m_push = mobilePush || (push > 1 ? push / 2 : 0),
-        m_pushClass = m_push > 0 ? `col--m--push-${m_push}` : '',
-        pushClass = push > 0 ? `col--push-${push}` : '';
-        return `col col--${width} ${pushClass} col--m--${m_width} ${m_pushClass}`;
-    }
 
-mixin col(width=6, push=0, mobileWidth=0, mobilePush=0)
-    .col(class=colClass(width, push, mobileWidth, mobilePush))
-        block
-
-mixin nav-link(link, label, icon, ...classes)
-    -
-        const currLink = `page/${page.uid}`;
-        const className = [...classes, link === currLink || (link === '' && page.uid === 'start') ? 'active' : null]
-            .filter((v) => !!v)
-            .map((v) => `navigation-item--${v}`)
-            .join(' ');
-    a.navigation-item.col.col--3(href='/' + link, class=className)&attributes(attributes)
-        i.navigation-item__icon(class=`ri-${icon}-line`)
-        span.navigation-item__text= label
+include mixins/_grid.pug
+include mixins/_scripts.pug
 
 doctype html
 html(lang=lang, data-theme=theme)
     head
-        meta(charset='utf-8')
-        meta(http-equiv='X-UA-Compatible', content='IE=edge')
-        meta(name='viewport', content='width=device-width, initial-scale=1')
-        meta(name="description", content=site.description)
-
-        meta(property="og:url", content="https://www.fivebyfive.se/")
-        meta(property="og:type", content="website")
-        meta(property="og:title", content=page.title)
-        meta(property="og:description", content=site.description)
-        meta(property="og:image", content="/images/social-graph.png")
-        meta(property="twitter:url", content="https://www.fivebyfive.se/")
-        meta(name="twitter:card", content="/images/social-graph.png")
-        meta(name="twitter:title", content=page.title)
-        meta(name="twitter:description", content=site.description)
-        meta(name="twitter:image", content="/images/social-graph.png")
-
-        link(rel="apple-touch-icon" sizes="180x180" href="/images/icons/apple-touch-icon.png")
-        link(rel="icon" type="image/png" sizes="32x32" href="/images/icons/favicon-32x32.png")
-        link(rel="icon" type="image/png" sizes="16x16" href="/images/icons/favicon-16x16.png")
-
-        meta(name='application-name', content='Fivebyfive.se')
-        meta(name='color-scheme', content='dark light')
-
-        meta(name='background-color', content=(theme === 'dark' ? '#0d171a' : '#e6e9e4'))
-        meta(name='theme-color', content='#f26b5b')
-
-        link(rel='manifest', href='/meta/manifest.json')
-
-        link(rel='stylesheet', href='/css/critical.css')
-
-        title= page.title
-
+        include partials/_head.pug
         block head
     body
         article(class=`page--${page.uid}`)
-            header.header
-                .grid
-                    .row
-                        .header__logo.col.col--6.col--m--10
-                            a.header__logo--link(href='/')
-                                include partials/_logo-svg.pug
-                                include partials/_wordmark-svg.pug
-                        
-                        .header__menu-button.col--m--2
-                            button.button.button--menu
-                                span.line
-
-                        .header__menues.col.col--4.col--push-2
-                            nav.header__menu.header__menu--top-menu.row
-                                +nav-link('languages/' + otherLang, __('menu.language'), 'flag-2')(class='col--push-6')
-                                if theme === 'dark'
-                                    +nav-link('themes/light', __('menu.themes.light'), 'contrast')
-                                else
-                                    +nav-link('themes/dark', __('menu.themes.dark'), 'contrast-2')
-
-                            nav.header__menu.header__menu--main-menu.row
-                                +nav-link('', __('menu.main-menu.home'), 'arrow-left')
-                                +nav-link('page/work', __('menu.main-menu.work'), 'lightbulb')
-                                +nav-link('page/services', __('menu.main-menu.services'), 'service')
-                                +nav-link('page/contact', __('menu.main-menu.contact'), 'chat-smile', 'highlight')
+            include partials/_header.pug
 
             main
                 block content
@@ -101,15 +27,18 @@ html(lang=lang, data-theme=theme)
         link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')
         link(rel='stylesheet', href='//fonts.googleapis.com/css2?family=Spartan:wght@100;400;700;900&display=swap')
 
-        script(src='/js/util.js')
-        script(src='/js/header.js')
-        script(src='/js/wordmark.js')
-        script(src='/js/lazyload.js')
+        +script('/js/util.js', 'beta')
+        +script('/js/header.js')
+        +script('/js/wordmark.js')
+        +script('/js/lazyload.js')
 
         include partials/_background-animation.pug
 
+        +renderScripts()
+        
         block styles
         block scripts
+
 
 
     
