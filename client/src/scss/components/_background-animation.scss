@@ -4,7 +4,10 @@
         width: 100vw;
         height: 100vh;
         opacity: .66;
-        animation: blur-pulse 15s ease 0s infinite forwards;
+        @include desktop-only {
+            // filter tends to slow down phones...
+            animation: blur-pulse 15s ease 0s infinite forwards;                
+        }
         svg path {
             fill: var(--color-background-secondary-overlay);
             stroke: none;
