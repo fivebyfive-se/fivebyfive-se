@@ -21,9 +21,9 @@ five.onReady(() => {
                 five.createTag('div', {
                     'class': 'details-view__text page-item'
                 },
-                    five.createTag('h2', null, five.textFrom('.item__title', itemDiv)),
-                    ...Array.from(itemDiv.querySelectorAll('.item__meta')).map((m) => m.cloneNode(true)),
-                    five.createTag('p', { 'class': 'item__description' }, five.textFrom('.item__description', itemDiv)),
+                    five.createTag('h2', null, five.textFrom('.caseitem__title', itemDiv)),
+                    ...Array.from(itemDiv.querySelectorAll('.caseitem__meta')).map((m) => m.cloneNode(true)),
+                    five.createTag('p', { 'class': 'caseitem__description' }, five.textFrom('.caseitem__description', itemDiv)),
                     closeButton
                 )
             );

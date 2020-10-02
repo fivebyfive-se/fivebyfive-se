@@ -1,22 +1,20 @@
 -
     const getAddressIcon = (address) => {
-        const label = address.getText('label').toLowerCase().replace(/[^a-z]/, g);
-        switch (label) {
-            case 'phone':
-            case 'telefon': return 'phone';
-            case 'email':
-            case 'epost': return 'mail-send';
-            case 'address': 
-            case 'adress': return 'building-4';
+        const icon = address.getText('icon');
+        if (icon === 'custom') {
+            return remixiconClass(address.getText('custom_icon'))
+        } else if (icon === 'address') {
+            return remixiconClass('building-4');
         }
-        return 'message';
+        return remixiconClass(icon);
     }
+    
 mixin list-addresses(addresses)
     .address-list
         each address in addresses
             .address__line
                 .address__icon
-                    i(class=`ri-${getAddressIcon(address)}-line`)
+                    i(class=getAddressIcon(address))
                 .address__text
                     != address.getStructuredText('content').asHtml()
 
