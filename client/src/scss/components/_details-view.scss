@@ -62,7 +62,7 @@
             @include padding(2);
             overflow-y: auto;
 
-            .item__description {
+            .caseitem__description {
                 @include font(large, 400);
                 @include margin-y(1, 2);
                 margin-left: $col-width * 2;
