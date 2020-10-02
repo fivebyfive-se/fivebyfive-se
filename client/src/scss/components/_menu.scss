@@ -48,6 +48,11 @@
 
                 color: var(--color-text);
 
+                @include desktop-only {
+                    &.navigation-item--us {
+                        display: none;
+                    }
+                }
                 &--active {
                     @include desktop-only {
                         &.navigation-item--start {
