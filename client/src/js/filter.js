@@ -1,4 +1,4 @@
-(() => {
+five.onReady(() => {
     const handleTags = (target, attribute) => {
         const targetElm = document.querySelector(target);
         const tags = [];
@@ -25,4 +25,4 @@
         const { filterAttribute, filterTarget } = f.dataset;
         handleTags(filterTarget, filterAttribute);
     });
-})();
+});

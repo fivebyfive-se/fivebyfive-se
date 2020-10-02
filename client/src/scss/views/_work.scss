@@ -1,10 +1,10 @@
 @include critical {
-    .item-list,
+    .caseitem-list,
     .details-view {
         &--subcollection {
             @include rem-dimensions(subcollection);
         }
-        .item {
+        .caseitem {
             &--collection {
                 @include rem-dimensions(collection);
                 @include line($color: var(--color-secondary), $height: 2rem, $distance: -4rem);
@@ -33,25 +33,25 @@
 
 
             &__meta {
-                @include rem-dimensions(item-meta);
+                @include rem-dimensions(caseitem-meta);
                 @include font(small, 100);
                 word-wrap: break-word;
                 text-transform: lowercase;
 
-                &.item__release-date {
-                    @include rem-dimensions(item-meta-date);
+                &.caseitem__release-date {
+                    @include rem-dimensions(caseitem-meta-date);
                     font-weight: 400;
                 }
 
 
                 i {
-                    @include rem-dimensions(item-meta-icon);
+                    @include rem-dimensions(caseitem-meta-icon);
                     vertical-align: baseline;
                     font-size: .8em;
                 }
 
                 strong {
-                    @include rem-dimensions(item-meta-title);
+                    @include rem-dimensions(caseitem-meta-title);
                     font-weight: 400;
 
                     &:after {
@@ -60,30 +60,30 @@
                 }
             }
 
-            &__subitem {
-                @include rem-dimensions(subitem);
+            &__subcaseitem {
+                @include rem-dimensions(subcaseitem);
                 @include line($left: $col-width, $right: $col-width * 3, $color: var(--color-tertiary), $height: 1rem, $distance: -2rem);
 
-                .subitem__header {
-                    @include rem-dimensions(subitem-header);
+                .subcaseitem__header {
+                    @include rem-dimensions(subcaseitem-header);
                 }
 
-                .subitem__number {
+                .subcaseitem__number {
                     @include font(xxx-large, 900);
-                    @include rem-dimensions(subitem-number);
+                    @include rem-dimensions(subcaseitem-number);
                 }
 
-                .subitem__title {
-                    @include rem-dimensions(subitem-title);
+                .subcaseitem__title {
+                    @include rem-dimensions(subcaseitem-title);
                 }
 
-                .subitem__description {
-                    @include rem-dimensions(subitem-description);
+                .subcaseitem__description {
+                    @include rem-dimensions(subcaseitem-description);
                 }
             }
 
             &--case {
-                @include rem-dimensions(item);
+                @include rem-dimensions(caseitem);
                 background-position: center center;
                 background-size: cover;
                 background-repeat: no-repeat;
@@ -99,7 +99,7 @@
                 @include position-absolute($top: 0, $left: 0);
                 @include padding-x(1);
 
-                @include rem-dimensions(item-text);
+                @include rem-dimensions(caseitem-text);
 
                 width: 100%;
                 height: 100%;
@@ -108,7 +108,7 @@
                     @include padding-left(3);
                 }
             }
-            &--case:nth-child(3n+1) .item__text {
+            &--case:nth-child(3n+1) .caseitem__text {
                 @include padding-left(2, $col-width);
             }
 
@@ -117,7 +117,7 @@
                 text-shadow: 1px 1px var(--color-background-overlay);
 
                 &--title {
-                    @include rem-dimensions(item-title);
+                    @include rem-dimensions(caseitem-title);
                 }
             }
         }
@@ -125,13 +125,13 @@
 }
 
 @include non-critical {
-    .item-list {
-        .item {
+    .caseitem-list {
+        .caseitem {
             &--case {
                 overflow: hidden;
 
                 &:nth-child(even) {
-                    .item__text {
+                    .caseitem__text {
                         background-color: var(--color-background-secondary-overlay);
                     }
                 }
@@ -156,7 +156,7 @@
                         %flex--justify-flex-start,
                         %flex--align-flex-start;
                     @include font(large);
-                    @include rem-dimensions(item-overlay-bg);
+                    @include rem-dimensions(caseitem-overlay-bg);
                     content: "\ed9c";
                     height: 100%;
                     width: 100%;
@@ -165,7 +165,7 @@
                 }
                 &:after {
                     @include font(large, 700);
-                    @include rem-dimensions(item-overlay-fg);
+                    @include rem-dimensions(caseitem-overlay-fg);
                     content: attr(data-label);
                     transform: translateX(100%);
                 }
@@ -188,7 +188,7 @@
 
     }
     [data-theme="light"] {
-        .item-list .item--case:hover:before {
+        .caseitem-list .caseitem--case:hover:before {
             backdrop-filter: brightness(120%)  blur(4px);
         }
     }

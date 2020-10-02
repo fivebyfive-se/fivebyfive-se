@@ -1,0 +1,31 @@
+- let currLetter = "\u03B1".codePointAt(0);
+- const getLetter = () => String.fromCodePoint(currLetter++);
+
+mixin service(slice)
+    .service-collection
+        .service-collection__header.row
+            +col(3, 0, 5, 0)
+                h2.collection__title= slice.nonRepeat.services_title.asText()
+            +col(7, 2, 7, 0)
+                .collection__description
+                    != slice.nonRepeat.services_text.asHtml(ctx.linkResolver)
+        .service-collection__list.row
+            +col(11, 1, 11, 1)
+                .row
+                    each service in slice.repeat.toArray()
+                        +col(4, 0, 6, 0, 'service-item')
+                            .row
+                                +col(3, 0, 4, 0)
+                                    .service-item__alpha= getLetter()
+                                +col(9, 0, 8, 0)
+                                    h4.service-item__title= service.getText('service_name')
+                                    .service-item__description
+                                        != service.getStructuredText('service_description').asHtml()
+
+mixin list-services(services)
+    .service-list.grid
+        for service in services
+            for slice in service.getSliceZone('servicecollection.body').slices
+                +service(slice)
+
++list-services(page.items)

@@ -1,61 +1,54 @@
-(() => {
+five.onReady(() => {
     const targetElement = five.createTag('div', { 'class': 'background-animation' });
     document.body.prepend(targetElement);
 
     const { width, height } = targetElement.getBoundingClientRect();
     const two = new Two({ width, height }).appendTo(targetElement);
 
-    const radius = width / 4;
-    const distance = radius / (4 * Math.PI);
+    const radius = Math.max(width, height) / Math.PI;
+    const distance = radius / (6 * Math.PI);
 
     const circleA = two.makeCircle(-distance, 0, radius);
     const circleB = two.makeCircle(distance, 0, radius);
 
     circleA.fill = circleB.fill = 'var(--color-background-secondary-overlay)';
-
     const group = two.makeGroup(circleA, circleB);
     group.translation.set(two.width / 2, two.height / 2);
     group.rotation = 0;
     group.scale = 1;
     group.noStroke();
 
-    const makeAnimation = (duration, startValue, endValue, direction = 1) => {
-        return {
-            duration,
-            startValue,
-            endValue,
-            currentValue: startValue,
-            currentFrame: 0,
-            direction
-        };
-    };
-    
-    const easeInOut = function (f, b, c, d) {
-        let t = f / (d/2);
-        if (t < 1) {
-            return c/2*t*t + b;
-        }
-        t--;
-        return -c/2 * (t*(t-2) - 1) + b;
-    };
+    const svg = targetElement.querySelector('svg');
+    svg.style.zIndex = '-15';
 
-    const updateAnimations = (...animations) => {
-        animations.forEach((a) => {
-            a.currentFrame += a.direction;
-            a.currentValue = easeInOut(a.currentFrame, a.startValue, a.endValue, a.duration);
-            if (a.currentFrame >= a.duration || a.currentFrame <= 0) {
-                a.direction = -a.direction;
-            }
-        });
-    };
+    const groupTween = new TWEEN.Tween({rotation: 0})
+        .to({rotation: 3}, 40000)
+        .onUpdate((o) => group.rotation = o.rotation)
+        .easing(TWEEN.Easing.Quadratic.InOut)
+        .repeat(Infinity)
+        .yoyo()
+        .start();   
+    const circleTween = new TWEEN.Tween({ distance })
+        .to({ distance: -distance }, 30000)
+        .onUpdate((o) => {
+            circleA.translation.set(0, o.distance);
+            circleB.translation.set(0, -o.distance);
+        })
+        .easing(TWEEN.Easing.Back.InOut)
+        .repeat(Infinity)
+        .yoyo()
+        .start();
+    // const opacityTween = new TWEEN.Tween({ opacity: .7})
+    //     .to({ opacity: .5 }, 3000)
+    //     .onUpdate((o) => group.opacity = o.opacity)
+    //     .repeat(Infinity)
+    //     .repeatDelay(5000)
+    //     .yoyo()
+    //     .start()
 
-    const groupRotation = makeAnimation(2500, 0, 2),
-        circleDistance = makeAnimation(1250, distance, distance * 2);
+    five.animate((time) => {
+        TWEEN.update(time);
+        two.update();
+    });
+});
 
-    two.bind('update', () => {
-        updateAnimations(groupRotation, circleDistance);
-        group.rotation = groupRotation.currentValue;
-        circleA.translation.set(-circleDistance.currentValue, 0);
-        circleB.translation.set(circleDistance.currentValue, 0);
-      }).play()
-})();

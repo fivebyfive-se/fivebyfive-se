@@ -141,22 +141,22 @@ $dimensions: (
         collection-description: (margin-top: -0.5, margin-bottom: 2, line-height: 4),
         collection-tags: (margin-top: 2),
 
-        subitem: (margin-top: 5, margin-bottom: 10),
-        subitem-header: (min-height: 13),
-        subitem-number: (margin-top: 1),
-        subitem-title: (margin-top: 3),
-        subitem-description: (margin-top: .5),
+        subcaseitem: (margin-top: 5, margin-bottom: 10),
+        subcaseitem-header: (min-height: 13),
+        subcaseitem-number: (margin-top: 1),
+        subcaseitem-title: (margin-top: 3),
+        subcaseitem-description: (margin-top: .5),
 
         subcollection: (margin-top: 1),
-        item: (height: 28),
-        item-text: (padding-top: 2, padding-bottom: 2),
-        item-meta: (margin-top: 0, margin-bottom: 0),
-        item-meta-date: (margin-top: .5, margin-bottom: 0),
-        item-meta-icon: (margin-right: .5, line-height: 1),
-        item-meta-title: (),
-        item-title: (margin-top: 0.5, margin-bottom: 1.5),
-        item-overlay-bg: (padding-top: 3, padding-left: 2),
-        item-overlay-fg: (padding-top: 3, padding-left: 2)
+        caseitem: (height: 28),
+        caseitem-text: (padding-top: 2, padding-bottom: 2),
+        caseitem-meta: (margin-top: 0, margin-bottom: 0),
+        caseitem-meta-date: (margin-top: .5, margin-bottom: 0),
+        caseitem-meta-icon: (margin-right: .5, line-height: 1),
+        caseitem-meta-title: (margin-right: 1),
+        caseitem-title: (margin-top: 0.5, margin-bottom: 1.5),
+        caseitem-overlay-bg: (padding-top: 3, padding-left: 2),
+        caseitem-overlay-fg: (padding-top: 3, padding-left: 2)
     ),
     mobile: (
         breakpoints: (0, 700),
@@ -198,22 +198,22 @@ $dimensions: (
         collection-description: (margin-top: 0, margin-bottom: 2, line-height: 4),
         collection-tags: (margin-top: 0, line-height: 4),
 
-        subitem: (margin-top: 5, margin-bottom: 9.5),
-        subitem-header: (margin-bottom: 3.5),
-        subitem-number: (margin-top: .5),
-        subitem-title: (margin-top: 1.5),
-        subitem-description: (margin-top: .5),
+        subcaseitem: (margin-top: 5, margin-bottom: 9.5),
+        subcaseitem-header: (margin-bottom: 3.5),
+        subcaseitem-number: (margin-top: .5),
+        subcaseitem-title: (margin-top: 1.5),
+        subcaseitem-description: (margin-top: .5),
 
         subcollection: (margin-top: 1),
-        item: (height: 30),
-        item-text: (padding-top: 3),
-        item-meta: (margin-top: 0, margin-bottom: 1),
-        item-meta-date: (margin-top: 1, margin-bottom: 0),
-        item-meta-icon: (margin-right: .5, line-height: 1),
-        item-meta-title: (),
-        item-title: (margin-top: 2, margin-bottom: 1),
-        item-overlay-bg: (display: none),
-        item-overlay-fg: (display: none)
+        caseitem: (height: 30),
+        caseitem-text: (padding-top: 3),
+        caseitem-meta: (margin-top: 0, margin-bottom: 1),
+        caseitem-meta-date: (margin-top: 1, margin-bottom: 0),
+        caseitem-meta-icon: (margin-right: .5, line-height: 1),
+        caseitem-meta-title: (margin-right: 1),
+        caseitem-title: (margin-top: 2, margin-bottom: 1),
+        caseitem-overlay-bg: (display: none),
+        caseitem-overlay-fg: (display: none)
     )
 );
 

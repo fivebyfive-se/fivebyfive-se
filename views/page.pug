@@ -15,7 +15,8 @@ block content
             when 'start'
                 include templates/_start.pug
             when 'work'
-            when 'case'
-                include templates/_case.pug
+                include templates/_work.pug
+            when 'services'
+                include templates/_services.pug
             default
-                p Couldn't find a template for &quot;#{page.uid}&quot;. 
+                include templates/_text.pug

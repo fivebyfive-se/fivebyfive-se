@@ -20,19 +20,38 @@
       from {
          filter: blur(0);
       }
-      6% {
-         filter: blur($base-size * 1.1);
-      }   
+      5% {
+         filter: blur($base-size * 1.5);
+      }
       7% {
+         filter: blur($base-size / 3);
+      }  
+      9% {
          filter: blur($base-size);
       }
-      10% {
+      12% {
          filter: blur($base-size / 2);
       }
-      20% {
+      18% {
+         filter: blur(0);
+      }
+      22% {
+         filter: blur(0);
+      }
+      30% {
+         filter:blur($base-size / 3);
+      }
+      50% {
+         filter: blur(0);
+      }
+      80% {
+         filter: blur($base-size/4);
+      }
+      100% {
          filter: blur(0);
       }
    }
+
 
     @keyframes shine {
         from {

@@ -1,4 +1,4 @@
-(() => {
+five.onReady(() => {
     const loadImage = (element) => {
         const { lazyBg, lazySrc } = element.dataset;
         if (lazyBg) {
@@ -23,4 +23,4 @@
         i.classList.add('lazyload', 'lazyload--loading');
         observer.observe(i);
     });
-})();
+});

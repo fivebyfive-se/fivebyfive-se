@@ -1,16 +1,11 @@
 @include non-critical {
     .background-animation {
-        @include position-fixed($top: 0, $left: 0, $z-index: -100);
+        @include position-fixed($top: 0, $left: 0, $z-index: -5);
         width: 100vw;
         height: 100vh;
-        opacity: .66;
-        @include desktop-only {
-            // filter tends to slow down phones...
-            animation: blur-pulse 15s ease 0s infinite forwards;                
-        }
+        opacity: .8;
+
         svg path {
-            fill: var(--color-background-secondary-overlay);
-            stroke: none;
             mix-blend-mode: multiply;
         }
     }

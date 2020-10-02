@@ -15,13 +15,15 @@
     'layout/header';
 
 @import
-    'views/page';
+    'views/page',
+    'views/services',
+    'views/start',
+    'views/work';
 
 @import
     'components/background-animation',
     'components/button',
     'components/details-view',
-    'components/item-list',
     'components/lazyload',
     'components/logo',
     'components/menu',
