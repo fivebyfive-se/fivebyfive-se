@@ -1,9 +1,10 @@
 footer
     .grid
         .row
-            +col(8, 0, 6, 0)
+            +col(8, 0, 3, 1, 'footer__text')
                 p !{site.footerText}
-            +col(2, 2, 6, 0)
+            +col(2, 2, 5, 2, 'footer_menues')
                 nav.footer-menu
                     include menu/_main.pug
+                    .footer-menu__separator
                     include menu/_top

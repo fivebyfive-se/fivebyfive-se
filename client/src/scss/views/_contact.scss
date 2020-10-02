@@ -12,6 +12,11 @@
         }
     }
     .form {
+        &__title {
+            @include mobile-only {
+                margin-bottom: 1rem;
+            }
+        }
         &__field {
             position: relative;
             width: 100%;
