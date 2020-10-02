@@ -1,4 +1,4 @@
-(() => {
+five.onReady(() => {
     const drawLogo = (targetElement) => {
         let { width, height } = targetElement.getBoundingClientRect();
         width = width || 130;
@@ -65,4 +65,4 @@
     };
 
     document.querySelectorAll('.generate-logo').forEach((targ) => drawLogo(targ));
-})();
+});

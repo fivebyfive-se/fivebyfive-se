@@ -1,14 +1,16 @@
-(() => {
+five.onReady(() => {
     (() => {
         const header = document.querySelector('.header');
         const limit = header.getBoundingClientRect().height * 2;
-        window.addEventListener('scroll', (ev) => {
+        const handleScroll = () => {
             if (window.scrollY > limit) {
                 document.body.classList.add('sticky-header');
             } else {
                 document.body.classList.remove('sticky-header');
             }
-        });    
+        };
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();    
     })();
 
     (() => {
@@ -27,4 +29,4 @@
             }
         });
     })();
-})();
+});

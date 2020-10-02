@@ -24,7 +24,7 @@ module.exports = (grunt) => {
             },
             dist: {
                 files: {
-                    'public/js/util.js': 'client/src/js/util.js',
+                    'public/js/five.js': 'client/src/js/five.js',
                     'public/js/animation.js': 'client/src/js/animation.js',
                     'public/js/details-view.js': 'client/src/js/details-view.js',
                     'public/js/draw-logo.js': 'client/src/js/draw-logo.js',

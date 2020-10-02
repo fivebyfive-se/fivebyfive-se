@@ -1,4 +1,4 @@
-(() => {
+five.onReady(() => {
     const getDetailsView = (button) => {
         const detailsId = button.dataset.showDetails;
         const background = button.dataset.backgroundImage;
@@ -47,4 +47,4 @@
             getDetailsView(button).classList.add('details-view--active');
         });
     });
-})();
+});

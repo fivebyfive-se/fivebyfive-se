@@ -16,13 +16,14 @@
 
 @import
     'views/page',
-    'views/start';
+    'views/services',
+    'views/start',
+    'views/work';
 
 @import
     'components/background-animation',
     'components/button',
     'components/details-view',
-    'components/item-list',
     'components/lazyload',
     'components/logo',
     'components/menu',

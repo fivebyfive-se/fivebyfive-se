@@ -1,0 +1,54 @@
+@include critical {
+    .service-list {
+        .service-collection {
+            @include rem-dimensions(collection);
+            @include line($color: var(--color-secondary), $height: 2rem, $distance: -4rem);
+
+            .collection__header {
+                @extend %flex--align-flex-start,
+                    %flex--justify-flex-start;
+                @include rem-dimensions(collection-header);
+            }
+            .collection__title {
+                @include rem-dimensions(collection-title);
+            }
+            .collection__description {
+                @include font(large, 400);
+                @include rem-dimensions(collection-description);
+                @include mobile-only {
+                    @include font(default, 400);
+                }
+            }
+            &__list {
+                @include rem-dimensions(subcaseitem);
+                @include line($left: $col-width, $right: $col-width * 3, $color: var(--color-tertiary), $height: 1rem, $distance: -2rem);
+            }
+            .service-item {
+                &__alpha {
+                    @include font(xxx-large, 900);
+                    margin-top: -3.5rem;
+                }
+                &__description {
+                    &, & > p {
+                        @include font(small, 400);
+                    }
+                    > ul {
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        li {
+                            margin: 1rem 0 1rem 2rem;
+                            &:before {
+                                content: "\eb7b";
+                                font-family: "remixicon";
+                                margin-left: -2rem;
+                                margin-right: .5rem;
+                                vertical-align: text-bottom;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

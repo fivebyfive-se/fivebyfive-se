@@ -48,24 +48,19 @@
     footer {
         @include margin-top(3);
         @include padding-y(2);
-        position: relative;
-        &:before {
-            @include position-absolute($top: -1rem, $left: 0, $right: 4 * $col-width, $z-index: 0);
-            content: '';
-            height: 3rem;
-            width: auto;
-            background-color: var(--color-dark-teal);
-        }
+        @include line($right: 4 * $col-width, $height: 3rem, $distance: -1em, $color: var(--color-dark-teal));
     }
 
     body.sticky-header,
     body.showing-menu {
         .header {
             @include position-fixed($top: 0, $left: 50%, $z-index: $z-index-menu);
+            @include rem-dimensions(header-sticky);
             @include margin(0);
-            background-color: var(--color-background);
+            background-color: var(--color-background-overlay);
             transform: translateX(-50%);
             transition: background-color .5s;
+
 
             &:after {
                 width: 100%;
@@ -93,6 +88,7 @@
         }
     }
     article {
+        z-index: 1;
         &.show-grid {
             background:
                 linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,

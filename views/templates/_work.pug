@@ -1,0 +1,99 @@
+mixin caseitem-meta(value, className, icon=null, label=null, isLink=false)
+    if value
+        p.caseitem__meta(class=className)
+            if icon
+                i(class=`ri-${icon}-line`)
+            if label
+                strong= label
+            if isLink
+                a(href=value, rel='noopener', target='_blank')
+                    = value
+            else
+                = value
+
+mixin caseitem-tags(tags, ...classes)
+    if tags && tags.length > 0
+        +caseitem-meta(tags.join(', '), ['caseitem__tags', ...classes].join(' '), 'price-tag-3', __('work.tags'))
+
+mixin caseitem-text(tag, caseitem, alias, ...classes)
+    - const text = caseitem.getStructuredText(alias)
+    if text
+        - const className = classes.join(' ')
+        - const html = `<${tag} class="${className}">${text.asText()}</${tag}>`;
+        != html
+
+
+mixin case-collection(item)
+    - const caseitem = item.item;
+    - const subcaseitems = item.sub_items;
+    - const tags = caseitem.tags || [];
+    .caseitem.caseitem--collection.grid(data-collection-tags=(tags.join('|')))
+        .row.collection__header
+            +col(4, 0, 10, 1)
+                +caseitem-text('h2', caseitem, 'casecollection.title', 'caseitem__title', 'collection__title')
+                +caseitem-text('p', caseitem, 'casecollection.description', 'collection__description')
+            +col(4, 1, 6, 3)
+                +caseitem-tags(tags, 'collection__tags')
+
+        -let i = 1
+        for subcaseitem in subcaseitems
+            .caseitem__subcaseitem
+                .row.subcaseitem__header
+                    +col(1,  1, 1, 1)
+                        .subcaseitem__number= i++
+                    +col(7, 0, 8, 1)
+                        h3.subcaseitem__title= subcaseitem.title
+                        p.subcaseitem__description= subcaseitem.text
+                .row
+                    +col(12, 0, 12)
+                        +list-caseitems(subcaseitem.items, 'subcollection')(class='row')
+
+
+
+mixin case-caseitem(caseitem, numCols)
+    - const image = caseitem.getImage('case.image')
+    - const detailsImage = (image.getView('details') || image).url.replace(/\?.*$/, '')
+    - const dateFmt = Intl.DateTimeFormat(lang,{ year: 'numeric', month: '2-digit', day: '2-digit' })
+    - const tags = caseitem.tags || [];
+
+    .caseitem.caseitem--case.col.col--m--12(class=`col--${numCols}`, data-lazy-bg=image.url, data-tags=(tags.join('|')) data-label=__('button.open'), data-show-details=`${caseitem.uid}`, data-background-image=detailsImage, data-close-button=__('button.close'))
+        .caseitem__text(data-details-view=`${caseitem.uid}`)
+            .caseitem__section.caseitem__section
+                - const date = dateFmt.format(caseitem.getDate('case.release_date'))
+                +caseitem-meta(date, 'caseitem__release-date', 'calendar')
+
+            .caseitem_section.caseitem__section--title
+                +caseitem-text('h4', caseitem, 'case.title', 'caseitem__title')
+
+            .caseitem__section
+                +caseitem-meta(caseitem.getStructuredText('case.subtitle').asText(), 'caseitem__category', 'pantone', __('work.type'))
+                +caseitem-tags(tags)
+                +caseitem-meta(caseitem.getText('case.client_name'), 'caseitem__client-name', 'user-2', __('work.client'))
+                if caseitem.getLink('case.link')
+                    - const linkUrl = caseitem.getLink('case.link').url(ctx.linkResolver);
+                    +caseitem-meta(linkUrl, 'details-view__details', 'external-link', __('work.link'), true)
+                +caseitem-meta(detailsImage, 'details-view__details', 'image', __('work.fullimage'), true)
+
+            .caseitem__section.details-view__details
+                if (caseitem.getStructuredText('case.description'))
+                    p.caseitem__description= caseitem.getStructuredText('case.description').asText()
+                //- if (caseitem.get('case.embed_media'))
+                //-     p.caseitem__embed
+                //-         != caseitem.get('case.embed_media').asHtml()
+
+
+mixin list-caseitems(items, listType)
+    - let i = 0
+    div.caseitem-list(class=`caseitem-list--${listType}`)&attributes(attributes)
+        for caseitem in items
+            case caseitem.type
+                when 'casecollection'
+                    +case-collection(caseitem)
+                when 'case'
+                    - const numCols = i++ % 3 == 0 ? '5' : (i % 2 == 0 ? '3' : '4')
+                    +case-caseitem(caseitem, numCols)
+
+
++list-caseitems(page.items, 'root')
++script('/js/details-view.js')
++script('/js/filter.js')

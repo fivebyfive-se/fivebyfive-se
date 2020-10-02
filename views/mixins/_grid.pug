@@ -7,7 +7,8 @@
         return `col col--${width} ${pushClass} col--m--${m_width} ${m_pushClass}`;
     }
 
-mixin col(width=6, push=0, mobileWidth=0, mobilePush=0)
-    .col(class=colClass(width, push, mobileWidth, mobilePush))
+mixin col(width=6, push=0, mobileWidth=0, mobilePush=0, ...classes)
+    - className = [colClass(width, push, mobileWidth, mobilePush), ...classes].join(' ');
+    .col(class=className)
         block
     
