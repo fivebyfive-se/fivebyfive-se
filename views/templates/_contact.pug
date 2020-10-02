@@ -2,18 +2,19 @@
     const getAddressIcon = (address) => {
         const icon = address.getText('icon');
         if (icon === 'custom') {
-            return address.getText('custom_icon')
+            return remixiconClass(address.getText('custom_icon'))
         } else if (icon === 'address') {
-            return 'building-4';
+            return remixiconClass('building-4');
         }
-        return icon;
+        return remixiconClass(icon);
     }
+    
 mixin list-addresses(addresses)
     .address-list
         each address in addresses
             .address__line
                 .address__icon
-                    i(class=`ri-${getAddressIcon(address)}-line`)
+                    i(class=getAddressIcon(address))
                 .address__text
                     != address.getStructuredText('content').asHtml()
 
