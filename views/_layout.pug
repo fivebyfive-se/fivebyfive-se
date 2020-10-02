@@ -2,6 +2,7 @@
     const currLang = page.lang || 'en-US';
     const otherLang = currLang === 'en-US' ? 'sv-SE' : 'en-US';
 
+include mixins/_nav-link.pug
 include mixins/_grid.pug
 include mixins/_scripts.pug
 
@@ -17,11 +18,7 @@ html(lang=lang, data-theme=theme)
             main
                 block content
 
-            footer
-                .grid
-                    .row
-                        +col(8, 0, 10, 2)
-                            p !{site.footerText}
+            include partials/_footer.pug
 
         link(rel='stylesheet', href='/css/non-critical.css')
         link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')

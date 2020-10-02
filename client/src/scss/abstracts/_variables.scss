@@ -156,7 +156,9 @@ $dimensions: (
         caseitem-meta-title: (margin-right: 1),
         caseitem-title: (margin-top: 0.5, margin-bottom: 1.5),
         caseitem-overlay-bg: (padding-top: 3, padding-left: 2),
-        caseitem-overlay-fg: (padding-top: 3, padding-left: 2)
+        caseitem-overlay-fg: (padding-top: 3, padding-left: 2),
+
+        person: (height: 30, padding-top: 2, padding-bottom: 3, padding-left: 2, padding-right: 2)
     ),
     mobile: (
         breakpoints: (0, 700),
@@ -213,7 +215,9 @@ $dimensions: (
         caseitem-meta-title: (margin-right: 1),
         caseitem-title: (margin-top: 2, margin-bottom: 1),
         caseitem-overlay-bg: (display: none),
-        caseitem-overlay-fg: (display: none)
+        caseitem-overlay-fg: (display: none),
+
+        person: (height: 33)
     )
 );
 

@@ -1,0 +1,48 @@
+-
+    const getAddressIcon = (address) => {
+        const label = address.getText('label').toLowerCase().replace(/[^a-z]/, g);
+        switch (label) {
+            case 'phone':
+            case 'telefon': return 'phone';
+            case 'email':
+            case 'epost': return 'mail-send';
+            case 'address': 
+            case 'adress': return 'building-4';
+        }
+        return 'message';
+    }
+mixin list-addresses(addresses)
+    .address-list
+        each address in addresses
+            .address__line
+                .address__icon
+                    i(class=`ri-${getAddressIcon(address)}-line`)
+                .address__text
+                    != address.getStructuredText('content').asHtml()
+
+mixin render-form-fields(fields)
+    .form
+        each field in fields
+            - const fieldId = field.getText('label').toLowerCase().replace(/[^a-z]/, '')
+            .form__field
+                input(id=fieldId, type=field.getText('type'), required)
+                label(for=fieldId, data-short-label=field.getText('label'))= field.getText('placeholder')
+
+mixin render-form(formItem)
+    .row
+        +col(5, 3, 10, 2)
+            h3= formItem.getText('form.form_title')
+    .row
+        +col(5, 3, 4, 2)
+            if formItem.getGroup('form.addresses')
+                +list-addresses(formItem.getGroup('form.addresses').toArray())
+        +col(4, 0, 6, 0)
+            if formItem.getGroup('form.form_fields')
+                +render-form-fields(formItem.getGroup('form.form_fields').toArray())
+
+
+.grid
+    each item in page.items
+        +render-form(item)
+
++script('/js/form.js')
