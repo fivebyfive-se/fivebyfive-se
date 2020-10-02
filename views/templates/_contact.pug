@@ -1,15 +1,12 @@
 -
     const getAddressIcon = (address) => {
-        const label = address.getText('label').toLowerCase().replace(/[^a-z]/, g);
-        switch (label) {
-            case 'phone':
-            case 'telefon': return 'phone';
-            case 'email':
-            case 'epost': return 'mail-send';
-            case 'address': 
-            case 'adress': return 'building-4';
+        const icon = address.getText('icon');
+        if (icon === 'custom') {
+            return address.getText('custom_icon')
+        } else if (icon === 'address') {
+            return 'building-4';
         }
-        return 'message';
+        return icon;
     }
 mixin list-addresses(addresses)
     .address-list
