@@ -45,12 +45,6 @@
         background-size: cover, cover;
     }
 
-    footer {
-        @include margin-top(3);
-        @include padding-y(2);
-        @include line($right: 4 * $col-width, $height: 3rem, $distance: -1em, $color: var(--color-dark-teal));
-    }
-
     body.sticky-header,
     body.showing-menu {
         .header {
@@ -94,6 +88,37 @@
                 linear-gradient(to bottom, var(--color-primary), transparent 2px) 0 0 / 100% 2rem repeat-y,
                 linear-gradient(to bottom, var(--color-secondary), transparent 1px) 0 1rem / 100% 2rem repeat-y,
                 #666;    
+        }
+    }
+
+
+    footer {
+        @include margin-top(3);
+        @include padding-y(2);
+        @include line($right: 4 * $col-width, $height: 3rem, $distance: -1em, $color: var(--color-dark-teal));
+        .footer-menu {
+            @extend %flex,
+                %flex--column,
+                %flex--justify-flex-start,
+                %flex--align-flex-end;
+            a.navigation-item {
+                @extend %flex,
+                    %flex--row,
+                    %flex--justify-flex-start,
+                    %flex--align-flex-start;
+
+                @include font(small, 400);
+                color: var(--color-text-secondary);
+                text-decoration: none;
+                margin-bottom: .5rem;
+                i {
+                    margin-right: .5rem;
+                }
+                &--top {
+                    color: var(--color-text-tertiary);
+                    font-weight: 100;
+                }
+            }
         }
     }
 }

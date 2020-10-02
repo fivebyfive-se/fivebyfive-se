@@ -1,0 +1,13 @@
+.grid
+    each item in page.items
+        .row.person
+            +col(4, 3, 5, 1)
+                img(data-lazy-src=item.getImage('person.image').url)
+            +col(4, 1, 4, 0)
+                h3.person__name= item.getText('person.name')
+                h4.person__job-title= item.getText('person.title')
+                p.person__email
+                    - const email = item.getText('person.email')
+                    a(href=`mailto:${email}`)= email
+                .person__description
+                    != item.getStructuredText('person.description').asHtml()

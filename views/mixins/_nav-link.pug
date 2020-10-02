@@ -1,0 +1,10 @@
+mixin nav-link(link, label, icon, ...classes)
+    -
+        const currLink = `page/${page.uid}`;
+        const className = [...classes, link === currLink || (link === '' && page.uid === 'start') ? 'active' : null]
+            .filter((v) => !!v)
+            .map((v) => `navigation-item--${v}`)
+            .join(' ');
+    a.navigation-item.col.col--2(href='/' + link, class=className)&attributes(attributes)
+        i.navigation-item__icon(class=`ri-${icon}-line`)
+        span.navigation-item__text= label

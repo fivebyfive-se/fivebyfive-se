@@ -1,14 +1,3 @@
-mixin nav-link(link, label, icon, ...classes)
-    -
-        const currLink = `page/${page.uid}`;
-        const className = [...classes, link === currLink || (link === '' && page.uid === 'start') ? 'active' : null]
-            .filter((v) => !!v)
-            .map((v) => `navigation-item--${v}`)
-            .join(' ');
-    a.navigation-item.col.col--2(href='/' + link, class=className)&attributes(attributes)
-        i.navigation-item__icon(class=`ri-${icon}-line`)
-        span.navigation-item__text= label
-
 header.header
     .grid
         .row
@@ -23,15 +12,7 @@ header.header
 
             .header__menues.col.col--6
                 nav.header__menu.header__menu--top-menu.row
-                    +nav-link('languages/' + otherLang, __('menu.language'), 'flag-2')(class='col--push-6')
-                    if theme === 'dark'
-                        +nav-link('themes/light', __('menu.themes.light'), 'contrast')
-                    else
-                        +nav-link('themes/dark', __('menu.themes.dark'), 'contrast-2')
+                    include menu/_top.pug
 
                 nav.header__menu.header__menu--main-menu.row
-                    +nav-link('', __('menu.main-menu.home'), 'arrow-left', 'start')
-                    +nav-link('page/work', __('menu.main-menu.work'), 'lightbulb', 'work')
-                    +nav-link('page/services', __('menu.main-menu.services'), 'service', 'services')
-                    +nav-link('page/culture', __('menu.main-menu.culture'), 'user-smile', 'culture')
-                    +nav-link('page/contact', __('menu.main-menu.contact'), 'chat-smile', 'highlight', 'contact')
+                    include menu/_main.pug
