@@ -95,12 +95,27 @@
     footer {
         @include margin-top(3);
         @include padding-y(2);
-        @include line($right: 4 * $col-width, $height: 3rem, $distance: -1em, $color: var(--color-dark-teal));
+
+
+       .footer {
+            &__text {
+                @include line($height: 3rem, $distance: -3em, $color: var(--color-tertiary));
+            }
+        }
         .footer-menu {
             @extend %flex,
                 %flex--column,
                 %flex--justify-flex-start,
                 %flex--align-flex-end;
+
+
+            @include line($left: -100%, $height: 3rem, $distance: -3em, $color: var(--color-secondary));
+
+            .footer-menu__separator {
+                height: .5rem;
+                width: 100%;
+                border-top: 1px solid var(--color-text);
+            }
             a.navigation-item {
                 @extend %flex,
                     %flex--row,
@@ -111,6 +126,8 @@
                 color: var(--color-text-secondary);
                 text-decoration: none;
                 margin-bottom: .5rem;
+                width: 100%;
+
                 i {
                     margin-right: .5rem;
                 }

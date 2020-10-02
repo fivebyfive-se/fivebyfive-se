@@ -4,20 +4,20 @@
 mixin service(slice)
     .service-collection
         .service-collection__header.row
-            +col(3, 0, 5, 0)
+            +col(3, 0, 10, 1)
                 h2.collection__title= slice.nonRepeat.services_title.asText()
-            +col(7, 2, 7, 0)
+            +col(7, 2, 10, 1)
                 .collection__description
                     != slice.nonRepeat.services_text.asHtml(ctx.linkResolver)
         .service-collection__list.row
-            +col(11, 1, 11, 1)
+            +col(11, 1, 9, 2)
                 .row
                     each service in slice.repeat.toArray()
-                        +col(4, 0, 6, 0, 'service-item')
+                        +col(4, 0, 12, 0, 'service-item')
                             .row
-                                +col(3, 0, 4, 0)
+                                +col(3, 0, 3, 0)
                                     .service-item__alpha= getLetter()
-                                +col(9, 0, 8, 0)
+                                +col(9, 0, 9, 0)
                                     h4.service-item__title= service.getText('service_name')
                                     .service-item__description
                                         != service.getStructuredText('service_description').asHtml()

@@ -1,9 +1,9 @@
 .grid
     each item in page.items
         .row.person
-            +col(4, 3, 5, 1)
+            +col(4, 3, 4, 0)
                 img(data-lazy-src=item.getImage('person.image').url)
-            +col(4, 1, 4, 0)
+            +col(4, 1, 6)
                 h3.person__name= item.getText('person.name')
                 h4.person__job-title= item.getText('person.title')
                 p.person__email

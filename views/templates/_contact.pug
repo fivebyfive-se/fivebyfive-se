@@ -30,15 +30,15 @@ mixin render-form-fields(fields)
 
 mixin render-form(formItem)
     .row
-        +col(5, 3, 10, 2)
+        +col(5, 3, 9, 2)
             h3= formItem.getText('form.form_title')
     .row
-        +col(5, 3, 4, 2)
+        +col(5, 3, 9, 2)
             if formItem.getGroup('form.addresses')
                 +list-addresses(formItem.getGroup('form.addresses').toArray())
-        +col(4, 0, 6, 0)
-            if formItem.getGroup('form.form_fields')
-                +render-form-fields(formItem.getGroup('form.form_fields').toArray())
+        //- +col(4, 0, 9, 2)
+        //-     if formItem.getGroup('form.form_fields')
+        //-         +render-form-fields(formItem.getGroup('form.form_fields').toArray())
 
 
 .grid
