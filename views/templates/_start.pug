@@ -1,7 +1,22 @@
+
+mixin splash(splash)
+    - const url = splash.getLink('splash.link').url(ctx.linkResolver);
+    a(href=url).splash.row
+        +col(8, 2, 10, 1)
+            h2.splash__title= splash.getText('splash.title')
+        +col(10, 1, 10, 1)
+            p.splash__intro= splash.getText('splash.intro')
+        +col(8, 4, 8, 4)
+            p.splash__link 
+                = splash.getText('splash.link_label')
+
 .grid
-    .row
-        +col(4, 8, 10, 1)
-            
+    .row.splashes
+        +col(4, 0)
+        each splash in page.items
+            +col(4, 0, 10, 2, 'splash__column')
+                +splash(splash)
+            //- != JSON.stringify(page.items, null, 2)
 //- +script('/js/Tween.js', 'alpha')
 //- +script('/js/two.min.js', 'alpha')
 //- +script('/js/draw-logo.js')
