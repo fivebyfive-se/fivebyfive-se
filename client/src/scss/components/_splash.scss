@@ -1,0 +1,43 @@
+@include critical {
+    .splash {
+        @extend %flex,
+            %flex--column,
+            %flex--justify-flex-start;
+        min-height: 24rem;
+        color: var(--color-text);
+        text-decoration: none;
+
+        @include mobile-only {
+            margin-bottom: 4rem;
+        }
+
+        &__column {
+            &:nth-child(1) {
+                @include line($distance: -3rem, $color: var(--color-primary));
+
+                .splash:hover {
+                    color: var(--color-secondary);
+                }
+            }
+
+            &:nth-child(2) {
+                @include line($distance: -3rem, $color: var(--color-secondary));
+
+                .splash:hover {
+                    color: var(--color-tertiary);
+                }
+            }
+
+            &:nth-child(3) {
+                @include line($distance: -3rem, $color: var(--color-tertiary));
+
+                .splash:hover {
+                    color: var(--color-primary);
+                }
+            }
+        }
+        &__link {
+            font-weight: 700;
+        }
+    }
+}

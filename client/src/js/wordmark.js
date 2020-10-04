@@ -1,11 +1,18 @@
 five.onReady(() => {
     // U+0131
-    const rex = /(f)ive\s*by\s*five/i;
+    const fiveRex = /(f)ive\s*by\s*five/i;
+    const iconRex = /:([a-z\-]+?):/;
     const findText = (node) => {
-        if (node.nodeType === Node.TEXT_NODE && rex.test(node.textContent)) {
-            const tag = document.createElement('span');
-            tag.innerHTML = node.textContent.replace(/(f)ive\s*by\s*five/i, "<span class=\"wordmark\">$1\u0131ve by f\u0131ve</span>");
-            node.parentNode.replaceChild(tag, node)
+        if (node.nodeType === Node.TEXT_NODE) {
+            if (fiveRex.test(node.textContent)) {
+                const tag = document.createElement('span');
+                tag.innerHTML = node.textContent.replace(fiveRex, "<span class=\"wordmark\">$1\u0131ve by f\u0131ve</span>");
+                node.parentNode.replaceChild(tag, node)    
+            } else if (iconRex.test(node.textContent)) {
+                const tag = document.createElement('span');
+                tag.innerHTML = node.textContent.replace(iconRex, '<i class="ri-$1"></i>');
+                node.parentNode.replaceChild(tag, node);
+            }
         } else {
             node.childNodes.forEach((n) => findText(n));
         }
