@@ -1,6 +1,6 @@
 {
   "name": "fivebyfive-se",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Website for Fivebyfive AB",
   "main": "index.js",
   "dependencies": {
