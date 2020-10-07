@@ -17,7 +17,7 @@ const cache = require('express-redis-cache')({
 const router = express.Router();
 
 const cache_Name = (...parts) => (req, res, next) => {
-    res.express_redis_cache_name = [...parts, req.params.uid, req.language].filter((p) => !!p).join('/');
+    res.express_redis_cache_name = [...parts, req.params.uid, req.language, req.theme].filter((p) => !!p).join('/');
     next();
 };
 
