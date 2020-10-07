@@ -1,14 +1,25 @@
+require('dotenv').config();
 	
 const express = require('express');
 const i18n = require('i18n');
+const Redis = require('ioredis');
 
 const ensureHttps = require('../lib/middleware/ensure-https');
 const injectPrismic = require('../lib/middleware/inject-prismic');
 const initPrismicApi = require('../lib/middleware/init-prismic-api');
-
 const themeCookie = require('../lib/middleware/theme-cookie');
 
+const cache = require('express-redis-cache')({
+    client: new Redis(process.env.REDIS_URL),
+    prefix: 'fivebyfive'
+});
+
 const router = express.Router();
+
+const cache_Name = (...parts) => (req, res, next) => {
+    res.express_redis_cache_name = [...parts, req.params.uid, req.language].filter((p) => !!p).join('/');
+    next();
+};
 
 router
     .use(ensureHttps)
@@ -16,8 +27,8 @@ router
     .use(initPrismicApi)
     .use(themeCookie)
 
-    .get('/', async (req, res) => await res.renderPrismicPage('start'))
-    .get('/page/:uid', async (req, res) => await res.renderPrismicPage(req.params.uid))
+    .get('/', cache_Name('page', 'start'), cache.route(), async (req, res) => await res.renderPrismicPage('start'))
+    .get('/page/:uid', cache_Name('page'), cache.route(), async (req, res) => await res.renderPrismicPage(req.params.uid))
 
     .get('/languages/:lang', (req, res) => {
         res.cookie('language', req.params.lang, { maxAge: 900000, httpOnly: true });
@@ -29,7 +40,20 @@ router
         res.redirect(req.header('Referer') || '/');
     })
 
-
+    .post('/callback/publish', async (req, res) => {
+        if (!req.body.secret || req.body.secret !== process.env.PRISMIC_WEBHOOK_SECRET) {
+            res.sendStatus(403);
+        }
+        const deleted = await Promise.resolve((resolve, reject) => {
+            cache.del(`${prefix}*`, (err, deleted) => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(deleted);
+            });
+        });
+        res.send({ deleted });
+    });
 ;
 
 module.exports = router;
