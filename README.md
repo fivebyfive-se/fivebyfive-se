@@ -15,4 +15,4 @@ which all run in one Heroku dyno:
 
 | Endpoint                               | Description   |
 |----------------------------------------|:--------------|
-| `/image/noise/:width?/:height?/:format?`| generate random black/white noise. Optional parameters: <dl><dt>`width`</dt><dt>height</dt><dd>in pixels (*default: 50*)</dd><dt>`format`</dt><dd>either `json` - returns a JSON-object containing the resulting image base64-encoded -- eg. `{"image": "...", "encoding": "base64" }` or `image` - returns a `image/png` response containing the image.</dd></dl> Results are cached by size and format, so don't expect a lot of randomness. |
+| `/image/noise/:width?/:height?/:format?`| generate random black/white noise. Optional parameters: <dl><dt>`width`</dt><dt>`height`</dt><dd>in pixels (*default: 50*)</dd><dt>`format`</dt><dd>either `json` - returns a JSON-object containing the resulting image base64-encoded -- eg. `{"image": "...", "encoding": "base64" }` or `image` (*default*) - returns a `image/png` response containing the image.</dd></dl> Results are cached by size and format, so don't expect a lot of randomness. |
