@@ -1,0 +1,51 @@
+@include critical {
+    .site-image {
+        opacity: 0;
+    }
+}
+
+@include non-critical {
+    .site-image {
+        @include position-fixed($right: 0, $bottom: 0, $z-index: -1);
+        @extend %flex,
+            %flex--justify-flex-end,
+            %flex--align-flex-end;
+
+        pointer-events: none;
+        transition: all 1.5s ease-in-out;
+        transform: translateX(0);
+        opacity: .8;
+
+        svg {
+            height: 100vh;
+            width: auto;
+            line-height: 0;
+
+        }
+        #ink {
+            fill: var(--color-background);
+        }
+        #fill {
+            fill: var(--color-text-secondary);
+            opacity: .1;
+            transition: opacity 1.5s ease-out;
+        }
+
+
+        &--discreet {
+            transform: translateX(2rem);
+            opacity: .5;
+        }
+
+        &--highlight {
+            transform: scale(1.02);
+            opacity: 1;
+            #fill {
+                opacity: .5;
+            }
+        }
+    }
+    .kalle {
+        cursor: zoom-in;
+    }
+}

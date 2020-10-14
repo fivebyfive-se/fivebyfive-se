@@ -1,6 +1,35 @@
 @include critical {
-    section.about {
-        a { font-weight: 666; }
+    main.site-content {
+        @include desktop-only {
+            margin-top: 25vh;
+            .page-section {
+                margin-bottom: 25vh;
+                a { font-weight: 666; }
+
+                &--about {
+                    height: 50vh;
+                    p {
+                        max-width: 40em;
+                    }
+                }
+            }
+        }
+        @include mobile-only {
+            margin-top: 15vh;
+            .page-section {
+                margin-bottom: 15vh;
+            }
+        }
+        .page-section {
+            h1 { color: var(--color-primary); }
+            h2 { color: var(--color-secondary); }
+            h3 { color: var(--color-tertiary); }
+        }
+    }
+    @include desktop-only {
+        main, footer {
+            max-width: get-setting(grid, max-width);
+        }
     }
 }
 @include non-critical {
@@ -14,7 +43,7 @@
         @extend %font--base,
             %font--body;
 
-        background-color: var(--color-background-secondary) !important;
+        background-color: transparent !important;
         color: var(--color-text) !important;
         position: relative;
 
@@ -32,7 +61,7 @@
         }
 
         .customPageBackground, .sprd-bg-m1 {
-            background-color: var(--color-background-secondary);
+            background-color: transparent;
             color: var(--color-text) !important;
         }
         .sprd-header__burgerbutton,
@@ -48,6 +77,9 @@
             background-color: var(--color-background);
         }
 
+        .sprd-product-list-item {
+            z-index: 2;
+        }
         .sprd-header__actions {
             position: fixed;
             bottom: 0;

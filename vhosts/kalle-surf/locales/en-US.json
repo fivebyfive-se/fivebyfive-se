@@ -2,34 +2,20 @@
 	"menu": {
 		"about": "Welcome",
 		"shop": "Shop",
-		"5x5": "Fivebyfive",
-		"language": "menu.language",
-		"themes": {
-			"dark": "menu.themes.dark"
-		},
-		"main-menu": {
-			"home": "menu.main-menu.home",
-			"work": "menu.main-menu.work",
-			"services": "menu.main-menu.services",
-			"us": "menu.main-menu.us",
-			"contact": "menu.main-menu.contact"
-		}
+		"language": "Svenska"
 	},
 	"index": {
-		"title": "Hi! I'm Kalle",
-		"intro": "I design and develop things at <a href='https://www.fivebyfive.se' class='fivebyfive' rel='noopener nofollow' target='_blank'>Fivebyfive</a>, but also do various kinds of art &mdash; including digital illustrations and paintings. Some of which you can <a data-scroll-to='#shop' href='#shop'><i class='ri-shopping-cart-line'></i> buy below</a>.",
-		"link-preamble": "If you'd rather hire me to create your next website or app or flyer, visit <a href='https://www.fivebyfive.se' class='fivebyfive' rel='noopener nofollow' target='_blank'>Fivebyfive</a>.",
-		"shop-title": "Here's some stuff I've made:"
-	},
-	"work": {
-		"tags": "work.tags",
-		"type": "work.type",
-		"client": "work.client",
-		"link": "work.link",
-		"fullimage": "work.fullimage"
-	},
-	"button": {
-		"open": "button.open",
-		"close": "button.close"
+		"title": "Hi! I'm Kalle,",
+		"intro": {
+			"paragraph1": {
+				"a": "I design and develop things at /Fivebyfive/, but also do various kinds of art &mdash; mainly digital illustrations and paintings. ",
+				"b": "Some of which you can #shop[i_shopping-cart-line buy]. If you want to."
+			},
+			"paragraph2": {
+				"a": "If you'd rather hire me to create your next website or logo or app or RESTful service or visual identity,",
+				"b": "visit /Fivebyfive/."
+			}
+		},
+		"shop-title": "Here's some of my art:"
 	}
 }
