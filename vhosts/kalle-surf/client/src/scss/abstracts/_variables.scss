@@ -1,0 +1,69 @@
+$settings: (
+    breakpoint: (
+        mobile: (max-width: 700px),
+        desktop: (min-width: 701px)
+    ),
+
+    layout: (
+        header-height: 100px,
+        form-width: 700px
+    ),
+
+    grid: (
+        num-cols: 12,
+        gutter: 4rem,
+        max-width: 1400px
+    ),
+
+    color: (
+        background: #070908,
+        background-secondary: #120F0C,
+        text: #A5A68F,
+        text-secondary: #F1F2D0,
+
+
+        primary: #BA443C,
+        secondary: #ED7634,
+        tertiary: #BA7D16,
+
+        success: #218A49,
+        error: #8A332F
+    ),
+
+    rem-height: 10px,
+    rem-height-mobile: 8px,
+
+    font: (
+        family: (
+            body: "'Mulish', sans-serif",
+            heading: "'Mulish', sans-serif",
+            monospace: "monospace"
+        ),
+        style: (
+            normal: (
+                weight: 333,
+                style: 'normal'
+            ),
+            bold: (
+                weight: 666,
+                style: 'normal'
+            )
+        ),
+        size: (
+            base: 3, // * 1rem
+            large: 5,
+            x-large: 5,
+            xx-large: 12,
+            xxx-large: 16,
+            small: 1.75,
+            x-small: 1.5,
+            xx-small: 1.25,
+            xxx-small: 1
+        ),
+        line-height: (
+            base: 3 // * 1rem
+        )
+    )
+);
+
+

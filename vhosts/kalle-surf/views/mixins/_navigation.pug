@@ -1,0 +1,11 @@
+- const baseNavItem = 'nav__item';
+
+mixin nav-link(link, label, icon, ...classes)
+    -
+        const className = [...classes]
+            .filter((v) => !!v)
+            .map((v) => `${baseNavItem}--${v}`)
+            .join(' ');
+    a(href=link, data-scroll-to=link, class=`${baseNavItem} ${className}`)&attributes(attributes)
+        i(class=`${baseNavItem}__icon ri-${icon}`)
+        span(class=`${baseNavItem}__label`)= label

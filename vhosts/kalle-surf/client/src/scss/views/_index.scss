@@ -1,0 +1,88 @@
+@include critical {
+    section.about {
+        a { font-weight: 666; }
+    }
+}
+@include non-critical {
+    #sprd-main {
+        --sprd-main1: var(--color-background-secondary);
+        --sprd-main2: var(--color-primary);
+        --sprd-main3: var(--color-text);
+        --sprd-sub2: var(--color-background-secondary);
+        --sprd-sub3: var(--color-text-secondary);
+
+        @extend %font--base,
+            %font--body;
+
+        background-color: var(--color-background-secondary) !important;
+        color: var(--color-text) !important;
+        position: relative;
+
+        h1, h2, .sprd__caption, .sprd-startpage-teaser__subcaption {
+            font-family: get-font-family(body) !important;
+            font-weight: 666 !important;
+            color: var(--color-text) !important;
+            text-align: left !important;
+        }
+        h2 {
+            font-size: get-font-size(large) * 1rem !important;
+        }
+        #sprd-header-container {
+            display: block;
+        }
+
+        .customPageBackground, .sprd-bg-m1 {
+            background-color: var(--color-background-secondary);
+            color: var(--color-text) !important;
+        }
+        .sprd-header__burgerbutton,
+        .sprd-header__title,
+        .sprd-promo-header,
+        .sprd-breadcrumb,
+        .sprd-department-filter__openmenu,
+        .sprd-listpage__header,
+        .sprd-info-footer {
+            display: none;
+        }
+        .sprd-service-footer {
+            background-color: var(--color-background);
+        }
+
+        .sprd-header__actions {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: auto;
+            height: auto;
+            z-index: 5;
+
+            transition: opacity .3s ease-out;
+
+            &.actions--hidden {
+                opacity: 0;
+            }
+        }
+        #sprd-basket {
+            position: fixed;
+            bottom: size(1);
+            z-index: 5;
+            @include desktop-only {
+                left: get-setting(grid, max-width);
+            }
+            @include mobile-only {
+                right: size(1);
+            }
+        }
+        .sprd-product-list__empty-shop {
+            text-align: left;
+        }
+    }
+
+    @import url('https://fonts.googleapis.com/css2?family=Spartan:wght@900&display=swap');
+    .fivebyfive { 
+        color: #F26B5B;
+        font-family: 'Spartan', 'Futura', 'Futura PT', 'Beteckna', sans-serif; 
+        font-weight: 900; 
+    }
+}

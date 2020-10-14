@@ -1,0 +1,24 @@
+@include critical {
+    .button {
+        @extend %flex,
+        %flex--inline,
+        %flex--justify-center,
+        %flex--align-center;
+        @extend %font--body,
+            %font--normal,
+            %font--large;
+
+        @include padding(1);
+
+        background-color: var(--color-primary);
+        border-radius: .5rem;
+        color: var(--color-text);
+    }
+}
+
+@include non-critical {
+    .button:hover {
+        background-color: var(--color-secondary);
+        color: var(--color-text);
+    }
+}

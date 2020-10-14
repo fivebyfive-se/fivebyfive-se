@@ -1,0 +1,31 @@
+extends _layout.pug
+
+block content
+    section.page-section.page-section--about#about
+        h1= __('index.title')
+        p!= __('index.intro')
+        p!= __('index.link-preamble')
+
+    a.down-button.down-button--hidden(data-scroll-to='#shop')
+        i.ri-shopping-cart-fill
+        i.ri-arrow-down-s-line
+
+    section.page-section.page-section--shop#shop
+        h2.fade-in= __('index.shop-title')
+        #spreadshop.fade-in
+            a(href='https://shop.spreadshirt.se/kallesurf')
+
+
+    script.
+        var spread_shop_config = {
+            shopName: 'kallesurf',
+            locale: 'en_US',
+            prefix: 'https://shop.spreadshirt.se',
+            baseId: 'spreadshop',
+            startToken: '#all',
+            swipeMenu: true
+        };
+
+    script(type="text/javascript", src="https://shop.spreadshirt.se/shopfiles/shopclient/shopclient.nocache.js")
+
+    script(src='/js/main.js')
