@@ -1,45 +1,20 @@
-require('dotenv').config();
+require('module-alias/register');
 
 const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
-const path = require('path');
-const i18n = require('i18n');
+const vhost = require('vhost');
 
-const languageCookie = require('./lib/middleware/language-cookie');
-
-i18n.configure({
-    locales: ['en-US', 'sv-SE'],
-    directory: path.join(__dirname, 'locales'),
-    objectNotation: true
-});
-
-
-const routes = require('./routes');
+const kallesurf_app = require('@vhosts/kalle-surf');
+const fivebyfive_app = require('@vhosts/fivebyfive-se');
+const api_app = require('@vhosts/api-fivebyfive-se');
 
 const port = process.env.PORT || 3000;
 
-const app = express();
-
-if (process.env.NODE_ENV === 'production') {
-    app.set('trust proxy', 1); // trust first proxy
-}
-
-app
-    .use(bodyParser.json({ type: '*/json' }))
-    .use(express.static(path.join(__dirname, 'public')))
-
-    .use(cookieParser())
-    .use(i18n.init)
-    .use(languageCookie)
-
-
-    .set('views', path.join(__dirname, 'views'))
-    .set('view engine', 'pug')
-
-    .use('/', routes)
+express()
+    .use(vhost(/api\.fivebyfive\.local|api\.fivebyfive\.se/, api_app))
+    .use(vhost(/fivebyfive\.local|www\.fivebyfive\.se|www\.5x5\.agency/, fivebyfive_app))
+    .use(vhost(/kallesurf\.local|\.kalle\.surf/, kallesurf_app))
+    
 
     .listen(port, () => {
         console.log(`Listening on ${port}`);
-    })
-;
+    });

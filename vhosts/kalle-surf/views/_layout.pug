@@ -1,0 +1,39 @@
+include mixins/_classes.pug
+include mixins/_grid.pug
+include mixins/_remixicon.pug
+include mixins/_scripts.pug
+include mixins/_navigation.pug
+
+doctype html
+html(lang=lang, data-theme=theme)
+    head
+        meta(charset="utf8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width,initial-scale=1")
+        title kalle.surf
+        block head
+        link(rel='stylesheet', href='/css/critical.css')
+    body
+        header.site-header
+            button.site-header__button(title='menu')
+            nav.site-header__menu
+                +nav-link('#about', __('menu.about'), 'user-smile-line', 'active')
+                +nav-link('#shop', __('menu.shop'), 'shopping-cart-line', 'highlight')
+
+        article
+            main
+                block content
+        
+        footer.site-footer
+            p #[i.ri-heart-fill] #[a.fivebyfive(href='https://www.fivebyfive.se/', rel='noopener nofollow', target='_blank') Fivebyfive]
+
+        link(rel='stylesheet', href='//cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css')
+        link(href="https://fonts.googleapis.com/css2?family=Mulish:wght@333;666&display=swap", rel="stylesheet")
+
+        link(rel='stylesheet', href='/css/non-critical.css')      
+
+
+        +renderScripts()
+        
+        block styles
+        block scripts

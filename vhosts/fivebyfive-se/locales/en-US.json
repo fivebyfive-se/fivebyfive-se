@@ -11,7 +11,9 @@
 			"services": "Services",
 			"us": "About",
 			"contact": "Contact"
-		}
+		},
+		"about": "menu.about",
+		"shop": "menu.shop"
 	},
 	"button": {
 		"readmore": "See more",
@@ -26,5 +28,11 @@
 		"casecollection": "Collection",
 		"fullimage": "Original image",
 		"type": "Type"
+	},
+	"index": {
+		"title": "index.title",
+		"intro": "index.intro",
+		"link-preamble": "index.link-preamble",
+		"shop-title": "index.shop-title"
 	}
 }

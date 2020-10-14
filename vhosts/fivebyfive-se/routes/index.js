@@ -1,17 +1,15 @@
-require('dotenv').config();
-	
 const express = require('express');
-const i18n = require('i18n');
 const Redis = require('ioredis');
 
-const ensureHttps = require('../lib/middleware/ensure-https');
-const injectPrismic = require('../lib/middleware/inject-prismic');
-const initPrismicApi = require('../lib/middleware/init-prismic-api');
-const themeCookie = require('../lib/middleware/theme-cookie');
+const ensureHttps = require('@lib/middleware/ensure-https');
+const injectPrismic = require('@lib/middleware/inject-prismic');
+const initPrismicApi = require('@lib/middleware/init-prismic-api');
+const themeCookie = require('@lib/middleware/theme-cookie');
 
 const cache = require('express-redis-cache')({
     client: new Redis(process.env.REDIS_URL),
-    prefix: 'fivebyfive'
+    prefix: 'fivebyfive.se',
+    expire: 60 * 60 * 24 * 7 // 1 week
 });
 
 const router = express.Router();
@@ -45,7 +43,7 @@ router
             res.sendStatus(403);
         }
         const deleted = await Promise.resolve((resolve, reject) => {
-            cache.del(`${prefix}*`, (err, deleted) => {
+            cache.del('', (err, deleted) => {
                 if (err) {
                     reject(err);
                 }

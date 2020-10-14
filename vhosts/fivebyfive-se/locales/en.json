@@ -1,0 +1,15 @@
+{
+	"menu": {
+		"language": "menu.language",
+		"themes": {
+			"dark": "menu.themes.dark"
+		},
+		"main-menu": {
+			"home": "menu.main-menu.home",
+			"work": "menu.main-menu.work",
+			"services": "menu.main-menu.services",
+			"us": "menu.main-menu.us",
+			"contact": "menu.main-menu.contact"
+		}
+	}
+}

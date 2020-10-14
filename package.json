@@ -5,17 +5,19 @@
   "main": "index.js",
   "dependencies": {
     "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-redis-cache": "^1.1.3",
     "express-request-language": "^1.1.15",
     "i18n": "^0.13.2",
     "ioredis": "^4.17.3",
+    "jimp": "^0.16.1",
+    "module-alias": "^2.2.2",
     "nodejs": "0.0.0",
     "prismic-dom": "^2.2.4",
     "prismic-javascript": "^3.0.2",
     "prismic.io": "^3.6.1",
-    "pug": "^3.0.0"
+    "pug": "^3.0.0",
+    "vhost": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
@@ -23,6 +25,7 @@
     "@babel/plugin-transform-regenerator": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "concurrently": "^5.3.0",
+    "dotenv": "^8.2.0",
     "grunt": "^1.3.0",
     "grunt-babel": "^8.0.0",
     "grunt-contrib-copy": "^1.0.0",
@@ -33,12 +36,22 @@
     "nodemon": "^2.0.4"
   },
   "scripts": {
-    "build": "grunt build",
-    "start": "node --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.js",
-    "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\"",
-    "client:dev": "grunt dev",
-    "server:dev": "nodemon --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.js",
+    "build": "npm run vhosts:build",
+    "start": "node -r dotenv/config --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.js",
+    "dev": "concurrently \"npm run server:dev\" \"npm run vhosts:dev\"",
+    "vhosts:build": "npm run fivebyfive:build && npm run kallesurf:build",
+    "server:dev": "nodemon -r dotenv/config --optimize_for_size --max_old_space_size=460 --gc_interval=100 index.js",
+    "vhosts:dev": "concurrently \"npm run fivebyfive:dev\" \"npm run kallesurf:dev\"",
+    "fivebyfive:build": "grunt --base vhosts/fivebyfive-se --gruntfile vhosts/fivebyfive-se/Gruntfile.js build",
+    "fivebyfive:dev": "grunt --base vhosts/fivebyfive-se --gruntfile vhosts/fivebyfive-se/Gruntfile.js dev",
+    "kallesurf:build": "grunt --base vhosts/kalle-surf --gruntfile vhosts/kalle-surf/Gruntfile.js build",
+    "kallesurf:dev": "grunt --base vhosts/kalle-surf --gruntfile vhosts/kalle-surf/Gruntfile.js dev",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "_moduleAliases": {
+    "@root": ".",
+    "@lib": "./lib",
+    "@vhosts": "./vhosts"
   },
   "author": "Kalle Räisänen <kalle@fivebyfive.se>",
   "license": "ISC"
