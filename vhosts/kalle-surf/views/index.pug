@@ -2,9 +2,9 @@ extends _layout.pug
 
 block content
     section.page-section.page-section--about#about
-        h1= __('index.title')
-        p!= __('index.intro')
-        p!= __('index.link-preamble')
+        h1!= parseFivebyfive('__index.title')
+        p!= parseFivebyfive('__index.intro.paragraph1.a', '__index.intro.paragraph1.b')
+        p!= parseFivebyfive('__index.intro.paragraph2.a', '__index.intro.paragraph2.b')
 
     a.down-button.down-button--hidden(data-scroll-to='#shop')
         i.ri-shopping-cart-fill
@@ -19,7 +19,7 @@ block content
     script.
         var spread_shop_config = {
             shopName: 'kallesurf',
-            locale: 'en_US',
+            locale: '!{ language.replace('-', '_') }',
             prefix: 'https://shop.spreadshirt.se',
             baseId: 'spreadshop',
             startToken: '#all',

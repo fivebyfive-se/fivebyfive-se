@@ -25,6 +25,7 @@
     const initLinks = () => {
         const downButton = document.querySelector('.down-button--hidden');
         const basketContainer = document.querySelector('.sprd-header__actions');
+        const siteImage = document.querySelector('.site-image');
 
         const observer = new IntersectionObserver((entries) => {
             entries.filter((entry) => entry.isIntersecting).forEach((entry) => {
@@ -33,17 +34,25 @@
                     const isAbout = target.classList.contains('page-section--about');
                     downButton.classList.toggle('down-button--hidden', !isAbout);
                     basketContainer.classList.toggle('actions--hidden', isAbout);
-
+                    siteImage.classList.toggle('site-image--discreet', !isAbout);
                     setActiveScrollLink(target.id);
                 } else {
                     downButton.classList.toggle('down-button--hidden', true);
                     basketContainer.classList.toggle('actions--hidden', true);
+                    siteImage.classList.toggle('site-image--discreet', true);
                     setActiveScrollLink('');
                 }
                 toggleMenu(false);
             })
         }, { threshold: .5 });
         document.querySelectorAll('.page-section, .site-footer').forEach((s) => observer.observe(s));
+
+        document.querySelectorAll('.kalle').forEach((k) => k.addEventListener('click', (ev) => {
+            toggleMenu(true);
+            siteImage.classList.remove('site-image--discreet');
+            siteImage.classList.add('site-image--highlight');
+            setTimeout(() => siteImage.classList.remove('site-image--highlight'), 7000);
+        }));
     }
 
     menuButton.addEventListener('click', () => toggleMenu());

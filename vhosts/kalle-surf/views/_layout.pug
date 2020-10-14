@@ -17,12 +17,16 @@ html(lang=lang, data-theme=theme)
         header.site-header
             button.site-header__button(title='menu')
             nav.site-header__menu
+                - const otherLang = language === 'en-US' ? 'sv-SE' : 'en-US';
                 +nav-link('#about', __('menu.about'), 'user-smile-line', 'active')
                 +nav-link('#shop', __('menu.shop'), 'shopping-cart-line', 'highlight')
+                +nav-link(`/l/${otherLang}`, __('menu.language'), 'flag-fill')
 
         article
             main.site-content
                 block content
+            aside.site-image
+                include partials/portrait.svg.pug
         
         footer.site-footer
             p #[i.ri-heart-fill] #[a.fivebyfive(href='https://www.fivebyfive.se/', rel='noopener nofollow', target='_blank') Fivebyfive]

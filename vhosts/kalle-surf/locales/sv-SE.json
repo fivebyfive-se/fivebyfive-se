@@ -1,1 +1,21 @@
-{}
+{
+	"menu": {
+		"about": "Välkommen",
+        "shop": "Butik",
+        "language": "English"
+	},
+	"index": {
+		"title": "Hej! Kalle, här &mdash;",
+		"intro": {
+			"paragraph1": {
+                "a": "jag designar och utvecklar grejer på /Fivebyfive/, men skapar också olika slags konst &mdash; främst digitala illustrationer och målningar. ",
+                "b": "Några av dem kan du #shop[i_shopping-cart-line köpa]. Om du vill."
+			},
+			"paragraph2": {
+                "a": "Om du hellre anlitar mig för att skapa en webbplats eller logotyp eller app eller webbtjänst eller grafisk profil,",
+				"b": "så besök /Fivebyfive/."
+			}
+		},
+		"shop-title": "Här kommer lite konst:"
+	}
+}
