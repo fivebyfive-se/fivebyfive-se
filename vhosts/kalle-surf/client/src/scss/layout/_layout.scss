@@ -13,7 +13,7 @@
     }
     header, main, footer {
     }
-    main {
+    main.site-content {
         @include desktop-only {
             margin-top: 25vh;
             .page-section {
