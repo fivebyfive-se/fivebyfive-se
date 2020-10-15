@@ -1,6 +1,7 @@
 (() => {
     const header = document.querySelector('.site-header');
     const menuButton = document.querySelector('.site-header__button');
+    const menuLinks = document.querySelectorAll('.site-header .nav__item');
     const toggleMenu = (force=undefined) => header.classList.toggle('site-header--show-menu', force);
     const getScrollLinks = () => document.querySelectorAll('[data-scroll-to]');
 
@@ -45,6 +46,7 @@
                 toggleMenu(false);
             })
         }, { threshold: .5 });
+
         document.querySelectorAll('.page-section, .site-footer').forEach((s) => observer.observe(s));
 
         document.querySelectorAll('.kalle').forEach((k) => k.addEventListener('click', (ev) => {
@@ -56,6 +58,7 @@
     }
 
     menuButton.addEventListener('click', () => toggleMenu());
+    menuLinks.forEach((l) => l.addEventListener('click', () => toggleMenu(false)));    
 
     const initFade = () => {
         const observer = new IntersectionObserver((entries) => {

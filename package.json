@@ -17,6 +17,7 @@
     "prismic-javascript": "^3.0.2",
     "prismic.io": "^3.6.1",
     "pug": "^3.0.0",
+    "tumult": "^3.0.14",
     "vhost": "^3.0.2"
   },
   "devDependencies": {

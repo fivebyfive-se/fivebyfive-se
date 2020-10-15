@@ -1,0 +1,154 @@
+@include critical {
+    .site-header {
+        $self: &;
+        @extend %flex,
+            %flex--justify-flex-start,
+            %flex--align-center;
+            
+        @include padding-y(.5);
+        @include position-fixed($top: 0, $left: 0, $z-index: 100);
+        @include mobile-only {
+            align-items: flex-start;
+        }
+
+        height: size(4);
+    
+        &__button {
+            @include margin-x(1);
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+            width: 40px;
+            height: 40px;
+
+            &:before, &:after {
+                @include position-absolute($left: 0);
+                content: '';
+                width: 100%;
+                height: 5px;
+                background-color: var(--color-text);
+            }
+            &:before {
+                top: 10px;
+            }
+            &:after {
+                bottom: 10px;
+            }
+        }
+        &__menu {
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+
+@include non-critical {
+    .site-header {
+        $self: &;
+        width: 100%;
+
+        &, &__button:before, &__button:after {
+            transition: all .4s ease-in-out;
+        }
+
+        &__button {
+            &:before, &:after {
+                transform-origin: center center;
+                box-shadow: 2px 2px 4px 2px var(--color-background);
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        &__menu {
+            @include position-fixed($top: 0, $left: size(5), $z-index: 100);
+            @include padding-y(.5);
+            transition: all .6s cubic-bezier(0.55, 0.15, 0.7, 1.5);
+
+            @extend %flex,
+                %flex--justify-flex-start,
+                %flex--align-center;
+
+            @include desktop-only {
+                height: size(4);
+            }
+
+            @include mobile-only {
+                top: size(4);
+                left: 0;
+                right: 0;
+                bottom: 0;
+                flex-direction: column;
+                align-items: center;
+                transform: translateX(-100%);
+            }
+            @include desktop-only {
+                transform: translateY(-100%);
+            }
+    
+            .nav__item {
+                @extend %flex,
+                     %flex--inline,
+                    %flex--justify-center,
+                    %flex--align-center;
+    
+                color: var(--color-primary);
+                border-bottom: 2px solid transparent;
+
+                @include mobile-only {
+                    @include font($size: x-large);
+                    @include padding-y(.5);
+                    @include margin-bottom(1);
+                    width: 100%;
+
+                }
+                @include desktop-only {
+                    &--active {
+                        border-color: var(--color-tertiary);
+                    }
+                    &--highlight {
+                        color: var(--color-secondary);
+                    }
+                    + .nav__item {
+                        @include desktop-only {
+                            @include margin-left(1);
+                        }
+                    }
+                }
+                @include mobile-only {
+                    &--active {
+                        color: var(--color-tertiary);
+                    }
+                }
+                &__icon {
+                    @include margin-right(.5);
+                }
+            }
+        }
+
+        &--show-menu {
+            background-color: var(--color-background-secondary);
+
+            #{$self}__menu {
+                background-color: var(--color-background-secondary);
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+            }
+            #{$self}__button {
+                &:before, &:after {
+                    box-shadow: none;
+                }
+                &:before {
+                    top: 50%;
+                    transform: rotate(-35deg) translateY(-50%);
+                }
+                &:after {
+                    bottom: 50%;
+                    transform: rotate(35deg) translateY(50%);
+                }
+            }
+        }
+    }
+}
