@@ -8,7 +8,7 @@ const themeCookie = require('@lib/middleware/theme-cookie');
 
 const cache = require('express-redis-cache')({
     client: new Redis(process.env.REDIS_URL),
-    prefix: 'fivebyfive.se',
+    prefix: 'fivebyfive',
     expire: 60 * 60 * 24 * 7 // 1 week
 });
 
