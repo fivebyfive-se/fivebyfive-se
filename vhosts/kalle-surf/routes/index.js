@@ -20,7 +20,8 @@ router
     .use(ensureHttps)
     .use(parseFivebyfive)
 
-    .get('/', cache_Name('home'), cache.route(), async (req, res) => res.render('index'))
+    .get('/', cache_Name('start'), cache.route(), async (req, res) => res.render('index'))
+    // .get('/', async (req, res) => res.render('index'))
 
     .get('/l/:lang', (req, res) => {
         res.cookie('language', req.params.lang, { maxAge: 900000, httpOnly: true });

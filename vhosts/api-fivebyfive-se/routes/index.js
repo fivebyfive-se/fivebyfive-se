@@ -5,7 +5,7 @@ const route_image = require('./image');
 
 router
     .use('/image', route_image)
-    .get('/', async (req, res) => await res.send(200))
+    .get('/', (req, res) => res.sendStatus(200))
 ;
 
 module.exports = router;

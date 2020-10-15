@@ -6,21 +6,59 @@
 
 @include non-critical {
     .site-image {
-        @include position-fixed($right: 0, $bottom: 0, $z-index: -1);
         @extend %flex,
             %flex--justify-flex-end,
             %flex--align-flex-end;
 
+        @include position-fixed($left: 0, $right: 0, $bottom: 0, $top: 0, $z-index: -1);
+        background: linear-gradient(45deg, 
+            var(--color-background),
+            var(--color-background-secondary),
+            var(--color-background)
+        );
+        background-size: 500% 500%;
+        animation: gradient 25s ease infinite;
+
+
+        height: 100vh;
+        width: 100vw;
         pointer-events: none;
-        transition: all 1.5s ease-in-out;
-        transform: translateX(0);
+        transition: opacity 1.5s ease-in-out;
         opacity: .8;
+        &:before, &:after {
+            @include position-fixed($left: 0, $top: 0, $z-index: -2);
+            width: 100%;
+            height: 100%;
+            content: '';
+        }
+        &:before {
+            background: linear-gradient(-45deg, 
+                var(--color-background), 
+                var(--color-primary) 40%,
+                var(--color-secondary) 60%,
+                var(--color-tertiary) 100%
+            );
+            background-size: 500% 500%;
+            mix-blend-mode: soft-light;
+            opacity: .2;
+            animation: gradient 15s ease infinite;
+        }
+        &:after {
+            background: url(/noise_1000x1000.gif);
+            background-repeat: none;
+            background-size: 110% 110%;
+            animation: grain 23s steps(8, end) infinite;
+            mix-blend-mode: multiply;
+            opacity: .1;
+        }
 
         svg {
-            height: 100vh;
-            width: auto;
-            line-height: 0;
-
+            width: 80vh;
+            height: 80vh;
+            @include mobile-only {
+                width: 100vw;
+                height: 100vw;
+            }
         }
         #ink {
             fill: var(--color-background);
@@ -33,12 +71,10 @@
 
 
         &--discreet {
-            transform: translateX(2rem);
             opacity: .5;
         }
 
         &--highlight {
-            transform: scale(1.02);
             opacity: 1;
             #fill {
                 opacity: .5;
