@@ -8,14 +8,15 @@ const themeCookie = require('@lib/middleware/theme-cookie');
 
 const cache = require('express-redis-cache')({
     client: new Redis(process.env.REDIS_URL),
-    prefix: 'fivebyfive',
+    prefix: 'fivebyfive.se',
     expire: 60 * 60 * 24 * 7 // 1 week
 });
 
 const router = express.Router();
 
 const cache_Name = (...parts) => (req, res, next) => {
-    res.express_redis_cache_name = [...parts, req.params.uid, req.language, req.theme].filter((p) => !!p).join('/');
+    const lang = req.lang || req.language || (req.getLocale ? req.getLocale() : null);
+    res.express_redis_cache_name = [...parts, req.params.uid, lang, req.theme].filter((p) => !!p).join('/');
     next();
 };
 
