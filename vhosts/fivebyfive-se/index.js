@@ -26,8 +26,8 @@ module.exports = app
     .use(express.static(path.join(__dirname, 'public')))
 
     .use(cookieParser())
-    .use(languageCookie)
     .use(i18n.init)
+    .use(languageCookie)
 
 
     .set('views', path.join(__dirname, 'views'))
