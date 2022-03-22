@@ -11,17 +11,6 @@ block content
                         != page.intro
 
     .page-body
-        case page.uid
-            when 'start'
-                include templates/_start.pug
-            when 'work'
-                include templates/_work.pug
-            when 'services'
-                include templates/_services.pug
-            when 'contact'
-                include templates/_contact.pug
-            when 'us'
-                include templates/_us.pug
-            default
-                include templates/_text.pug
+        p Contact us at #[a(href='mailto:info@fivebyfive.se') info@fivebyfive.se].
+
 
